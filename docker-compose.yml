@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    command: rails s -b 0.0.0.0
+    environment:
+      - RACK_ENV=development
+      - SECRET_KEY_BASE
+    image: sento/kanban

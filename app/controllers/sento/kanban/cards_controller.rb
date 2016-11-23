@@ -1,6 +1,6 @@
 module Sento
   module Kanban
-    class TicketsController < ApplicationController
+    class CardsController < ApplicationController
       def index
       end
     end

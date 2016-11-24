@@ -27,11 +27,26 @@
 
       .sento-kanban-cards
         padding: 0 4px
+        min-height: 100%
         .card
           padding: 0.5rem
           border-bottom: 1px solid #ccc
           margin-bottom: 0.25rem
+          min-height: 50px
           h4.card-title
             font-size: 0.93rem
           p.card-text
             line-height: 1.0
+          &.gu-transit
+            opacity: 1
+            background-color: #ccc
+            height: 50px
+            h4
+              display: none
+
+body
+  .gu-mirror
+    opacity: 1
+    padding: 0.5rem
+    h4
+      font-size: 0.93rem

@@ -12,3 +12,5 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+gem 'dragula-rails', url: 'https://github.com/Sento/dragula-rails'

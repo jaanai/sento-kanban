@@ -4,43 +4,47 @@
   display: flex
   position: relative
 
-  .sento-kanban-column
+  .sento-kanban-container
     height: 100%
-    background-color: #E2E4E6
-    border-radius: 3px
-    float: left
-    margin-left: 0.7rem
-    width: 270px
-    position: relative
     display: flex
-    flex-direction: column
 
-    .sento-kanban-column-header
-      min-height: 33px
-      h2
-        font-size: 1rem
-        font-weight: 700
-        padding: 8px 10px
-
-    .sento-kanban-cards
-      padding: 0 4px
+    .sento-kanban-column
       height: 100%
+      background-color: #E2E4E6
+      border-radius: 3px
+      float: left
+      margin-left: 0.7rem
+      width: 270px
       position: relative
-      .card
-        padding: 0.5rem
-        border-bottom: 1px solid #ccc
-        margin-bottom: 0.25rem
-        min-height: 50px
-        h4.card-title
-          font-size: 0.93rem
-        p.card-text
-          line-height: 1.0
-        &.gu-transit
-          opacity: 1
-          background-color: #ccc
-          height: 50px
-          h4
-            display: none
+      display: flex
+      flex-direction: column
+
+      .sento-kanban-column-header
+        min-height: 33px
+        h2
+          font-size: 1rem
+          font-weight: 700
+          padding: 8px 10px
+
+      .sento-kanban-cards
+        padding: 0 4px
+        height: 100%
+        position: relative
+        .card
+          padding: 0.5rem
+          border-bottom: 1px solid #ccc
+          margin-bottom: 0.25rem
+          min-height: 50px
+          h4.card-title
+            font-size: 0.93rem
+          p.card-text
+            line-height: 1.0
+          &.gu-transit
+            opacity: 1
+            background-color: #ccc
+            height: 50px
+            h4
+              display: none
 
 body
   .gu-mirror

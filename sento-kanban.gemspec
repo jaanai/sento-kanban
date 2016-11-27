@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'slim-rails', '~> 3.1.1'
   s.add_dependency 'bootstrap', '~> 4.0.0.alpha5'
   s.add_dependency 'perfect-scrollbar-rails', '~> 0.6.12'
+  s.add_dependency 'modal-responder-rails', '~> 1.0.2'
+
   s.add_dependency 'ffaker', '~> 2.3.0'
 
   s.add_development_dependency 'rspec-rails'

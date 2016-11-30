@@ -13,7 +13,24 @@ _I'm inspiring from Trello for now, but then I'll deviate ;-)_
 
 ## Usage
 
-TODO : Write the usage.
+After having installed the gem, you need to update your `config/routes.rb` file
+in order to `mount` this engine within your application:
+
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file,
+  # see http://guides.rubyonrails.org/routing.html
+
+  mount Sento::Kanban::Engine => '/path/to/sento'
+end
+```
+
+Then you need to update your database with the migrations from Sento Kanban:
+
+```
+rails sento_kanban:install:migrations
+rake db:migrate
+```
 
 ## Installation
 Add this line to your application's Gemfile:

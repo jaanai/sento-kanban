@@ -14,13 +14,36 @@
       border-radius: 3px
       float: left
       margin-left: 0.7rem
-      width: 270px
+      width: 271px
       position: relative
       display: flex
       flex-direction: column
 
-      .new-sento-kanban-column
-        padding: 5px 10px
+      &.new
+        background: rgba(0, 0, 0, 0.1)
+        display: flex
+        justify-content: center
+        flex-direction: column
+        text-align: center
+        p
+          color: rgba(255, 255, 255, 0.76)
+          position: absolute
+          width: 100%
+          opacity: 0
+          transition: opacity .25s ease-in-out
+          -moz-transition: opacity .25s ease-in-out
+          -webkit-transition: opacity .25s ease-in-out
+        &:hover
+          background: rgba(0, 0, 0, 0.2)
+          border: 2px dashed rgba(0, 0, 0, 0.2)
+          transition: background .25s ease-in-out
+          -moz-transition: background .25s ease-in-out
+          -webkit-transition: background .25s ease-in-out
+          p
+            opacity: 1
+            transition: opacity .25s ease-in-out
+            -moz-transition: opacity .25s ease-in-out
+            -webkit-transition: opacity .25s ease-in-out
 
       .sento-kanban-column-header
         min-height: 33px
@@ -28,6 +51,9 @@
           font-size: 1rem
           font-weight: 700
           padding: 8px 10px
+
+        .sento-kanban-column-input
+          padding: 2px
 
       .sento-kanban-cards
         padding: 0 4px

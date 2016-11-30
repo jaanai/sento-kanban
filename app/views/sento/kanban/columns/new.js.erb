@@ -1,0 +1,3 @@
+var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
+newColumnContainer.before('<%= j render(partial: "new_column") %>');
+newColumnContainer.hide();

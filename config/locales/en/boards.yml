@@ -13,4 +13,7 @@ en:
         new:
           title: Create a new board
         show:
-          add_column: Add a new column ...
+          click_to_create: Click to create column ...
+      columns:
+        new_column:
+          new_column_name: Name

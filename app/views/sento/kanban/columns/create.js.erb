@@ -1,0 +1,5 @@
+var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
+newColumnContainer.show();
+
+$('form#new_column').before('<%= j render(partial: "column", locals: { column: @new_column }) %>');
+$('form#new_column').remove();

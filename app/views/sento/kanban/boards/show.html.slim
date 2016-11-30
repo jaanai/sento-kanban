@@ -14,5 +14,6 @@
                 h4.card-title= card.title
   
   .sento-kanban-container
-    .sento-kanban-column
-      .new-sento-kanban-column
+    = link_to new_board_column_path(@board), remote: true do
+      .sento-kanban-column.new
+        p= t('.click_to_create')

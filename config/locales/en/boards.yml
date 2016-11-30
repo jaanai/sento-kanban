@@ -5,6 +5,9 @@ en:
       loading: Loading ...
       messages:
         record_not_found: 'The %{name} cannot be found'
+        was_successfully_created: '%{name} was successfully created.'
+        was_successfully_updated: '%{name} was successfully updated.'
+        was_successfully_destroyed: '%{name} was successfully destroyed.'
       boards:
         index:
           title: Boards

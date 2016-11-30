@@ -29,13 +29,16 @@ module Sento
       def create
         @board = Board.new(board_params)
         fetches_all_boards if @board.save
+        flash[:notice] = t('messages.was_successfully_created',
+                           name: t('board'))
         render :new
       end
 
       # PATCH/PUT /boards/1
       def update
         if @board.update(board_params)
-          redirect_to @board, notice: 'Board was successfully updated.'
+          redirect_to @board, notice: t('messages.was_successfully_updated',
+                                        name: t('board'))
         else
           render :edit
         end
@@ -44,7 +47,8 @@ module Sento
       # DELETE /boards/1
       def destroy
         @board.destroy
-        redirect_to boards_url, notice: 'Board was successfully destroyed.'
+        redirect_to boards_url, notice: t('messages.was_successfully_destroyed',
+                                          name: t('board'))
       end
 
       private

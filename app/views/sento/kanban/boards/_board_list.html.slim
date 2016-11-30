@@ -1,0 +1,12 @@
+- @boards.each do |board|
+  = link_to board_path(board) do
+    .card.mr-1
+      .card-block
+        h4.card-title= board.title
+        h6.card-subtitle.text-muted= board.description
+
+= link_to new_board_path, data: { modal: true } do
+  .card.mr-1.new-card
+    .card-block
+      = octicon 'plus', height: 55
+      p.text-xs-center.action-description.m-0= t('.new_board')

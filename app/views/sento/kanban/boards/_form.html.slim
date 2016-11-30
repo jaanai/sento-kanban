@@ -1,0 +1,17 @@
+= simple_form_for(board, html: { class: 'form-horizontal' }) do |f|
+  - if board.errors.any?
+    #error_explanation
+      h2
+        = pluralize(board.errors.count, 'error')
+        |   prohibited this board from being saved:
+
+      ul
+      - board.errors.full_messages.each do |message|
+        li= message
+
+  = f.input :title
+  = f.input :description
+
+  .modal-footer
+    = f.button :submit, class: 'btn-primary'
+    button type="button" class="btn btn-secondary" data-dismiss="modal"= t('.close')

@@ -1,0 +1,50 @@
+#boards-list
+  a
+    &:hover
+      text-decoration: none
+      .card
+        &.new-card
+          background-color: #fff
+          transition: background-color .25s ease-in-out
+          -moz-transition: background-color .25s ease-in-out
+          -webkit-transition: background-color .25s ease-in-out
+          p.action-description
+            opacity: 1
+            transition: opacity .25s ease-in-out
+            -moz-transition: opacity .25s ease-in-out
+            -webkit-transition: opacity .25s ease-in-out
+          svg.octicon
+            opacity: 0
+            transition: opacity .25s ease-in-out
+            -moz-transition: opacity .25s ease-in-out
+            -webkit-transition: opacity .25s ease-in-out
+    .card
+      float: left
+      width: 400px
+      .card-subtitle
+        min-height: 1.1rem
+      &.new-card
+        background-color: #ccc
+        transition: background-color .25s ease-in-out
+        -moz-transition: background-color .25s ease-in-out
+        -webkit-transition: background-color .25s ease-in-out
+        svg.octicon
+          position: absolute
+          opacity: 1
+          transition: opacity .25s ease-in-out
+          -moz-transition: opacity .25s ease-in-out
+          -webkit-transition: opacity .25s ease-in-out
+          left: 170px
+          fill: rgb(192, 192, 192)
+        p.action-description
+          opacity: 0
+          transition: opacity .25s ease-in-out
+          -moz-transition: opacity .25s ease-in-out
+          -webkit-transition: opacity .25s ease-in-out
+          padding: 0.77rem
+    @media (max-width: 33.9em)
+      .card
+        width: 100%
+
+body.board
+  background: #0079bf

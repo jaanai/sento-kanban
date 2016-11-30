@@ -1,0 +1,18 @@
+= content_for :title, @board.title
+= content_for :body_class, 'board'
+
+.sento-kanban.pt-1.pb-1
+  - Array(@columns).each do |column|
+    .sento-kanban-container
+      .sento-kanban-column
+        .sento-kanban-column-header
+          h2.mb-0= column.name
+        .sento-kanban-cards
+          - Array(@cards).each do |card|
+            = link_to card_path(card), data: { modal: true } do
+              .card.card-block
+                h4.card-title= card.title
+  
+  .sento-kanban-container
+    .sento-kanban-column
+      .new-sento-kanban-column

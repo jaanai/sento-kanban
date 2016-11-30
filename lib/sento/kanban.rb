@@ -1,3 +1,4 @@
+require 'octicons_helper'
 require 'sento/kanban/engine'
 
 module Sento

@@ -1,5 +1,7 @@
 Sento::Kanban::Engine.routes.draw do
-  resources :cards
+  resources :boards do
+    resources :columns
+  end
 
-  root to: 'cards#index'
+  root to: 'boards#index'
 end

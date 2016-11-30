@@ -1,0 +1,20 @@
+= simple_form_for @board, remote: true, authenticity_token: true, html: { class: 'form-horizontal' }, remote: true do |f|
+  .modal-body
+    h1= t('.title')
+
+    - if @board.errors.any?
+      #error_explanation
+        h2
+          = pluralize(@board.errors.count, 'error')
+          |   prohibited this board from being saved:
+
+        ul
+        - @board.errors.full_messages.each do |message|
+          li= message
+
+    = f.input :title
+    = f.input :description
+
+  .modal-footer
+    button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('.close')
+    = f.button :submit, class: 'btn-primary ml-1'

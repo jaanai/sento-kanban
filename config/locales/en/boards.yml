@@ -1,0 +1,16 @@
+en:
+  sento:
+    kanban:
+      board: board
+      loading: Loading ...
+      messages:
+        record_not_found: 'The %{name} cannot be found'
+      boards:
+        index:
+          title: Boards
+        board_list:
+          new_board: Click to create a new board
+        new:
+          title: Create a new board
+        show:
+          add_column: Add a new column ...

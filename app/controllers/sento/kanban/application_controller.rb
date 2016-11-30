@@ -1,5 +1,3 @@
-require 'ffaker'
-
 module Sento
   module Kanban
     class ApplicationController < ActionController::Base

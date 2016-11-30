@@ -1,12 +1,12 @@
 module Sento
   module Kanban
-    class Card < ApplicationRecord
+    class Column < ApplicationRecord
       # ~~~ Associations ~~~
       belongs_to :board
-      belongs_to :column
+      has_many :cards
 
       # ~~~ Validations ~~~
-      validates :board_id, :column_id, :title, presence: true
+      validates :name, :board_id, presence: true
     end
   end
 end

@@ -1,4 +1,33 @@
-= content_for :title, 'Card 1'
-
 .modal-body
-  p Here is the card 1.
+  = form_for @card, url: cards_path, method: :patch, remote: true do |f|
+    .container-fluid.pl-0
+      .row
+        .col-md-12
+          .media
+            .media-left
+              = octicon 'note', height: 25, class: 'card-icon'
+            .media-body
+              h4.modal-title
+                = f.text_field :title
+              p
+                | in list
+                '
+                = link_to 'Backlog', '#'
+      .row
+        .col-md-9
+          .media
+            .media-left
+              = octicon 'comment', height: 23, class: 'card-icon'
+            .media-body
+              p.modal-sub-title Add comment
+
+      .row
+        .col-md-9
+          .media
+            .media-left
+              = octicon 'pulse', height: 23, class: 'card-icon'
+            .media-body
+              p.modal-sub-title Activity
+
+        .col-md-3
+          a.btn.btn-secondary.btn-block Test

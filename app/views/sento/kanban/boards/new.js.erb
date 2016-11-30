@@ -1,0 +1,14 @@
+<% if @board.errors.empty? %>
+  window.location.href = '<%= board_path(@board) %>';
+<% else %>
+  <% object_class_name = @board.class.name.demodulize.underscore %>
+  <% @board.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group');
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback"><%= message %></div>');
+  <% end %>
+<% end %>

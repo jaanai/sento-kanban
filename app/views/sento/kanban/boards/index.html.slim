@@ -3,15 +3,16 @@
 javascript:
   $(document).on('ready page:load', loadPageContentAjax);
 
-.row
-  .col-md-12
-    p#notice= notice
+.container
+  .row
+    .col-md-12
+      p#notice= notice
 
-.row
-  .col-md-12
-    h1= t('.title')
+  .row
+    .col-md-12
+      h1= t('.title')
 
-.row
-  .col-xs-12
-    #boards-list
-      h5.loading= t('sento.kanban.loading')
+  .row
+    .col-xs-12
+      #boards-list
+        h5.loading= t('sento.kanban.loading')

@@ -4,3 +4,10 @@
       .sento-kanban-column-header
         .sento-kanban-column-input
           = f.text_field :name, class: 'form-control', placeholder: t('.new_column_name')
+
+javascript:
+  $(function() {
+    setTimeout(function() {
+      $("form:not(.filter) :input:visible:enabled:first").get(0).focus();
+    }, 200);
+  });

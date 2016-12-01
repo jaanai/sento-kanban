@@ -12,9 +12,16 @@
         - @board.errors.full_messages.each do |message|
           li= message
 
-    = f.input :title
-    = f.input :description
+    = f.input :title, input_html: { tabindex: 1 }
+    = f.input :description, input_html: { tabindex: 2 }
 
   .modal-footer
     button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('.close')
     = f.button :submit, class: 'btn-primary ml-1'
+
+javascript:
+  $(function() {
+    setTimeout(function() {
+      $("form:not(.filter) :input:visible:enabled:first").get(0).focus();
+    }, 200);
+  });

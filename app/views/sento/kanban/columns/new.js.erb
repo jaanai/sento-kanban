@@ -1,3 +1,20 @@
 var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
 newColumnContainer.before('<%= j render(partial: "new_column") %>');
 newColumnContainer.hide();
+
+// Select the first form field automatically
+setTimeout(function() {
+  var firstField = $("form:not(.filter) :input:visible:enabled:first");
+  if (firstField.length > 0)
+    firstField.get(0).focus();
+}, 200);
+
+$(document).keyup(function(event) {
+  if (event.keyCode == 27) { // escape key
+    var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
+    $('form#new_column').remove();
+    newColumnContainer.show();
+  } else if (event.keyCode == 13) { // enter key
+    $('form#new_column').submit();
+  }
+});

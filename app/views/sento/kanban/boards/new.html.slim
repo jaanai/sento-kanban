@@ -21,6 +21,7 @@
 
 javascript:
   $(function() {
+    // Automatically select the first form input field
     setTimeout(function() {
       $("form:not(.filter) :input:visible:enabled:first").get(0).focus();
     }, 200);

@@ -5,7 +5,7 @@
         h4.card-title= board.title
         h6.card-subtitle.text-muted= board.description
 
-= link_to new_board_path, data: { modal: true } do
+= link_to new_board_path, data: { modal: true, purpose: 'new-board' } do
   .card.mr-1.new-card
     .card-block.center-block-flex
       = octicon 'plus', height: 55

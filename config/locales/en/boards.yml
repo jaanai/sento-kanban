@@ -20,3 +20,4 @@ en:
       columns:
         new_column:
           new_column_name: Name
+          help_text: Hit enter to create the column, or Esc to cancel.

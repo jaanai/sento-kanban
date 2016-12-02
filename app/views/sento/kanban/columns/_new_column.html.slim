@@ -3,11 +3,27 @@
     .sento-kanban-column
       .sento-kanban-column-header
         .sento-kanban-column-input
-          = f.text_field :name, class: 'form-control', placeholder: t('.new_column_name')
+          .form-group
+            = f.text_field :name, class: 'form-control', placeholder: t('.new_column_name')
+      .sento-kanban-column-body.center-block-flex
+          p.help.p-1= t('.help_text')
 
 javascript:
   $(function() {
+    // Select the first form field automatically
     setTimeout(function() {
-      $("form:not(.filter) :input:visible:enabled:first").get(0).focus();
+      var firstField = $("form:not(.filter) :input:visible:enabled:first");
+      if (firstField.length > 0)
+        firstField.get(0).focus();
     }, 200);
+
+    $(document).keyup(function(event) {
+      if (event.keyCode == 27) { // escape key
+        var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
+        $('form#new_column').remove();
+        newColumnContainer.show();
+      } else if (event.keyCode == 13) { // enter key
+        $('form#new_column').submit();
+      }
+    });
   });

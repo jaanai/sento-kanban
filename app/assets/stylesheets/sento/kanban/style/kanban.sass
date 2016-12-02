@@ -21,10 +21,6 @@
 
       &.new
         background: rgba(0, 0, 0, 0.1)
-        display: flex
-        justify-content: center
-        flex-direction: column
-        text-align: center
         p
           color: rgba(255, 255, 255, 0.76)
           position: absolute
@@ -55,31 +51,32 @@
         .sento-kanban-column-input
           padding: 2px
 
-      .sento-kanban-cards
-        padding: 0 4px
+      .sento-kanban-column-body
         height: 100%
-        position: relative
-        a
-          color: $body-color
-          &.gu-transit
-            opacity: 1
-            .card
-              background-color: #ccc
-              height: 50px
-              h4
-                display: none
-          &:hover
-            text-decoration: none
+        .sento-kanban-cards
+          padding: 0 4px
+          position: relative
+          a
             color: $body-color
-          .card
-            padding: 0.5rem
-            border-bottom: 1px solid #ccc
-            margin-bottom: 0.25rem
-            min-height: 50px
-            h4.card-title
-              font-size: 0.93rem
-            p.card-text
-              line-height: 1.0
+            &.gu-transit
+              opacity: 1
+              .card
+                background-color: #ccc
+                height: 50px
+                h4
+                  display: none
+            &:hover
+              text-decoration: none
+              color: $body-color
+            .card
+              padding: 0.5rem
+              border-bottom: 1px solid #ccc
+              margin-bottom: 0.25rem
+              min-height: 50px
+              h4.card-title
+                font-size: 0.93rem
+              p.card-text
+                line-height: 1.0
 
 body
   .gu-mirror

@@ -7,13 +7,12 @@
       .sento-kanban-column
         .sento-kanban-column-header
           h2.mb-0= column.name
-        .sento-kanban-cards
-          - Array(@cards).each do |card|
-            = link_to card_path(card), data: { modal: true } do
-              .card.card-block
-                h4.card-title= card.title
+        .sento-kanban-column-body
+          .sento-kanban-cards
+            div data-column-id="#{column.id}"
+              = render partial: 'card_list', locals: { column: column }
   
   .sento-kanban-container
     = link_to new_board_column_path(@board), remote: true do
-      .sento-kanban-column.new
+      .sento-kanban-column.new.center-block-flex
         p= t('.click_to_create')

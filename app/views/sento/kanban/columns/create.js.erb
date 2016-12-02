@@ -1,5 +1,18 @@
-var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
-newColumnContainer.show();
+<% if @new_column.errors.empty? %>
+  var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
+  newColumnContainer.show();
 
-$('form#new_column').before('<%= j render(partial: "column", locals: { column: @new_column }) %>');
-$('form#new_column').remove();
+  $('form#new_column').before('<%= j render(partial: "column", locals: { column: @new_column }) %>');
+  $('form#new_column').remove();
+<% else %>
+  <% object_class_name = @new_column.class.name.demodulize.underscore %>
+  <% @new_column.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group');
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback"><%= message %></div>');
+  <% end %>
+<% end %>

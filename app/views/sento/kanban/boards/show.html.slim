@@ -1,17 +1,4 @@
 = content_for :title, @board.title
 
-.sento-kanban.pt-1.pb-1
-  - Array(@columns).each do |column|
-    .sento-kanban-container
-      .sento-kanban-column
-        .sento-kanban-column-header
-          h2.mb-0= column.name
-        .sento-kanban-column-body
-          .sento-kanban-cards
-            div data-column-id="#{column.id}"
-              = render partial: 'card_list', locals: { column: column }
-  
-  .sento-kanban-container
-    = link_to new_board_column_path(@board), remote: true do
-      .sento-kanban-column.new.center-block-flex
-        p= t('.click_to_create')
+#board-content
+  h5.loading= t('sento.kanban.loading')

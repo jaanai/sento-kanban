@@ -8,16 +8,25 @@ en:
         was_successfully_created: '%{name} was successfully created.'
         was_successfully_updated: '%{name} was successfully updated.'
         was_successfully_destroyed: '%{name} was successfully destroyed.'
+      buttons:
+        close: Close
+        delete: 'Delete %{name}'
       boards:
         index:
           title: Boards
-        board_list:
-          new_board: Click to create a new board
         new:
           title: Create a new board
         show:
           click_to_create: Click to create column ...
+        board_list:
+          new_board: Click to create a new board
       columns:
         new_column:
           new_column_name: Name
           help_text: Hit enter to create the column, or Esc to cancel.
+        delete:
+          title: Delete a column
+          confirm_delete: 'Please confirm to delete the column "%{name}".'
+        column:
+          dropdown_title: Actions
+          delete: Delete this column ...

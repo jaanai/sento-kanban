@@ -14,7 +14,5 @@ $(document).keyup(function(event) {
     var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-container');
     $('form#new_column').remove();
     newColumnContainer.show();
-  } else if (event.keyCode == 13) { // enter key
-    $('form#new_column').submit();
   }
 });

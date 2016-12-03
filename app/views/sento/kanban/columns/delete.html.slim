@@ -1,0 +1,7 @@
+.modal-body
+  h1= t('.title')
+
+  p= t('.confirm_delete', name: @column.name)
+.modal-footer
+  button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('sento.kanban.buttons.close')
+  = link_to t('sento.kanban.buttons.delete', name: @column.name), board_column_path(@board, @column), method: :delete, class: 'btn btn-danger ml-1'

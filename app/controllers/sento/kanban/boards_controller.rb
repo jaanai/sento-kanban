@@ -12,7 +12,10 @@ module Sento
 
       # GET /boards/1
       def show
-        @columns = @board.columns
+        respond_to do |format|
+          format.html
+          format.js { @columns = @board.columns }
+        end
       end
 
       # GET /boards/new
@@ -22,15 +25,14 @@ module Sento
       end
 
       # GET /boards/1/edit
-      def edit
-      end
+      def edit; end
 
       # POST /boards
       def create
         @board = Board.new(board_params)
         fetches_all_boards if @board.save
         flash[:notice] = t('messages.was_successfully_created',
-                           name: t('board'))
+                           scope: 'sento.kanban', name: t('board'))
         render :new
       end
 
@@ -38,7 +40,7 @@ module Sento
       def update
         if @board.update(board_params)
           redirect_to @board, notice: t('messages.was_successfully_updated',
-                                        name: t('board'))
+                                        scope: 'sento.kanban', name: t('board'))
         else
           render :edit
         end
@@ -48,6 +50,7 @@ module Sento
       def destroy
         @board.destroy
         redirect_to boards_url, notice: t('messages.was_successfully_destroyed',
+                                          scope: 'sento.kanban',
                                           name: t('board'))
       end
 
@@ -57,18 +60,14 @@ module Sento
       def set_board
         @board = Board.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('messages.record_not_found', name: t('board'))
+        flash[:error] = t('messages.record_not_found', scope: 'sento.kanban',
+                                                       name: t('board'))
         redirect_to action: :index
       end
 
       # Only allow a trusted parameter "white list" through.
       def board_params
         params.require(:board).permit(:title, :description)
-      end
-
-      def column_params
-        return {} unless params.key?(:column)
-        params[:column].permit(:name)
       end
 
       def fetches_all_boards

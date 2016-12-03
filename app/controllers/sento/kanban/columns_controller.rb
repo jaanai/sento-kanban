@@ -4,7 +4,8 @@ module Sento
   module Kanban
     class ColumnsController < ApplicationController
       before_action :fetches_current_board
-      before_action :set_column, only: [:show, :edit, :update, :destroy]
+      before_action :set_column, only: [:show, :edit, :update, :delete,
+                                        :destroy]
       before_action :fetches_all_boards, only: :index
       respond_to :html, :json
 
@@ -20,8 +21,7 @@ module Sento
       end
 
       # GET /boards/1/columns/1/edit
-      def edit
-      end
+      def edit; end
 
       # POST /boards/1/columns
       def create
@@ -32,17 +32,26 @@ module Sento
 
       # PATCH/PUT /boards/1/columns/1
       def update
-        if @board.update(column_params)
-          redirect_to @board, notice: 'Board was successfully updated.'
+        if @column.update(column_params)
+          redirect_to @column, notice: t('messages.was_successfully_updated',
+                                         scope: 'sento.kanban',
+                                         name: t('column'))
         else
           render :edit
         end
       end
 
+      # GET /boards/1/columns/1/delete
+      def delete
+        respond_modal_with @column
+      end
+
       # DELETE /boards/1/columns/1
       def destroy
-        @board.destroy
-        redirect_to boards_url, notice: 'Board was successfully destroyed.'
+        @column.destroy
+        redirect_to board_url(@board),
+                    notice: t('messages.was_successfully_destroyed',
+                              scope: 'sento.kanban', name: t('column'))
       end
 
       private
@@ -50,7 +59,8 @@ module Sento
       def fetches_current_board
         @board = Board.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('messages.record_not_found', name: t('board'))
+        flash[:error] = t('messages.record_not_found', scope: 'sento.kanban',
+                                                       name: t('board'))
         redirect_to root_url
       end
 
@@ -58,13 +68,9 @@ module Sento
       def set_column
         @column = @board.columns.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('messages.record_not_found', name: t('board'))
+        flash[:error] = t('messages.record_not_found', scope: 'sento.kanban',
+                                                       name: t('board'))
         redirect_to action: :index
-      end
-
-      # Only allow a trusted parameter "white list" through.
-      def column_params
-        params.require(:column).permit(:name)
       end
 
       def column_params

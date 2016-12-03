@@ -1,0 +1,8 @@
+.sento-kanban.pt-1.pb-1
+  - Array(@columns).each do |column|
+    = render partial: 'sento/kanban/columns/column', locals: { column: column }
+  
+  .sento-kanban-container
+    = link_to new_board_column_path(@board), remote: true do
+      .sento-kanban-column.new.center-block-flex
+        p= t('.click_to_create')

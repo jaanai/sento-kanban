@@ -1,2 +1,2 @@
-- Array(column.cards).each do |card|
+- Array(column.cards.order(:position)).each do |card|
   = render partial: 'sento/kanban/cards/card', locals: { board: @board, column: column, card: card }

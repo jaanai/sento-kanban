@@ -27,14 +27,16 @@ module Sento
 
       # POST /boards/1/columns/1/cards
       def create
-        build_flash_message(@new_card.save ? :success : :error)
+        build_flash_message(:error) unless @new_card.save
         render :create
       end
 
       # PATCH/PUT /boards/1/columns/1/cards/1
       def update
-        build_flash_message(@card.update(card_params) ? :success : :error)
-        render :update
+        build_flash_message(:error) unless @card.update(card_params)
+        respond_to do |format|
+          format.json { render json: @card }
+        end
       end
 
       # DELETE /boards/1/columns/1/cards/1
@@ -73,7 +75,8 @@ module Sento
       def card_params
         return {} unless params.key?(:card)
 
-        params.require(:card).permit(:title, :description)
+        params.require(:card).permit(:title, :description, :position,
+                                     :column_id)
       end
 
       def i18n_resource_name

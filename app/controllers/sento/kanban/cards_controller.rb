@@ -6,13 +6,11 @@ module Sento
       before_action :fetches_current_board
       before_action :fetches_current_column
       before_action :build_new_card, only: [:new, :create]
-      before_action :set_card, only: [:show, :edit, :update, :destroy]
+      before_action :set_card, only: [:show, :edit, :update, :destroy, :archive]
       respond_to :html, :json
 
       # GET /boards/1/columns/1/cards
-      def index
-        @cards = @column.cards.all
-      end
+      def index; end
 
       # GET /boards/1/columns/1/cards/1
       def show
@@ -43,7 +41,13 @@ module Sento
       def destroy
         @card.destroy
         build_flash_message(:success)
-        redirect_to cards_url
+        redirect_to board_path(@board)
+      end
+
+      # PATCH /boards/1/columns/1/cards/1/archive
+      def archive
+        @card.archive
+        render :archive
       end
 
       private
@@ -65,6 +69,9 @@ module Sento
       # Use callbacks to share common setup or constraints between actions.
       def set_card
         @card = @column.cards.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        build_flash_message(:error, card: :not_found)
+        redirect_to board_url(@board)
       end
 
       def build_new_card
@@ -75,7 +82,7 @@ module Sento
       def card_params
         return {} unless params.key?(:card)
 
-        params.require(:card).permit(:title, :description, :position,
+        params.require(:card).permit(:title, :description, :card_order_position,
                                      :column_id)
       end
 

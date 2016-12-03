@@ -12,17 +12,17 @@ module Sento
         final_resource_name = i18n_resource_name
 
         if options.present?
-          final_action_name = options.keys.first
-          final_resource_name = options.values.first
+          final_resource_name = options.keys.first.to_s
+          key = options.values.first
+        else
+          final_action_name << 'e' unless final_action_name.ends_with?('e')
+
+          key = if type == :success
+                  "#{final_action_name}d_object"
+                else
+                  "not_#{final_action_name}d_object"
+                end
         end
-
-        final_action_name << 'e' unless final_action_name.ends_with?('e')
-
-        key = if type == :success
-                "#{final_action_name}d_object"
-              else
-                "not_#{final_action_name}d_object"
-              end
 
         flash[type] = t("sento.kanban.messages.#{key}",
                         name: final_resource_name)

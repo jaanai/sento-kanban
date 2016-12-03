@@ -4,7 +4,11 @@ Sento::Kanban::Engine.routes.draw do
       member do
         get :delete
       end
-      resources :cards
+      resources :cards do
+        member do
+          patch :archive
+        end
+      end
     end
   end
 

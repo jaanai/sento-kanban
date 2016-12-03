@@ -12,14 +12,14 @@
               p
                 | in list
                 '
-                = link_to 'Backlog', '#'
+                = link_to @column.name, '#'
       .row
         .col-md-9
           .media
             .media-left
               = octicon 'comment', height: 23, class: 'card-icon'
             .media-body
-              p.modal-sub-title Add comment
+              p.modal-sub-title= t('.comment_section_title')
 
       .row
         .col-md-9
@@ -27,7 +27,8 @@
             .media-left
               = octicon 'pulse', height: 23, class: 'card-icon'
             .media-body
-              p.modal-sub-title Activity
+              p.modal-sub-title= t('.activity_section_title')
 
         .col-md-3
-          a.btn.btn-secondary.btn-block Test
+          = link_to t('sento.kanban.buttons.archive'), archive_board_column_card_path(@board, @column, @card), method: :patch, class: 'btn btn-warning btn-block', remote: true
+          = link_to t('sento.kanban.buttons.delete', name: t('sento.kanban.card')), board_column_card_path(@board, @column, @card), method: :delete, class: 'btn btn-danger btn-block'

@@ -30,7 +30,7 @@ module Sento
 
       # PATCH/PUT /boards/1/columns/1
       def update
-        build_flash_message(@column.update(column_params) ? :success : :error)
+        build_flash_message(:error) unless @column.update(column_params)
         render :update
       end
 

@@ -14,6 +14,6 @@ dragula($('.sento-kanban-cards').toArray(), {
   $.ajax({
     url: '/boards/' + boardId + '/columns/' + sourceColumnId + '/cards/' + $(element).data('card-id'),
     method: 'PATCH',
-    data: { card: { position : cardPosition, column_id: targetColumnId } }
+    data: { card: { card_order_position : cardPosition, column_id: targetColumnId } }
   });
 });

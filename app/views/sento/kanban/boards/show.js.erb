@@ -1,1 +1,8 @@
 $('#board-content').html('<%= j render(partial: "board_columns") %>');
+
+$('.sento-kanban').perfectScrollbar();
+$('.sento-kanban-column-body').perfectScrollbar();
+
+dragula($('.sento-kanban-cards').toArray(), {
+  copySortSource: true
+});

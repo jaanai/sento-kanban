@@ -1,5 +1,5 @@
 .modal-body
-  = form_for @card, url: cards_path, method: :patch, remote: true do |f|
+  = form_for @card, url: board_column_card_path(@card), method: :patch, remote: true do |f|
     .container-fluid.pl-0
       .row
         .col-md-12

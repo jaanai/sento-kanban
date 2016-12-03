@@ -4,6 +4,7 @@
     height: 100%
     .form-control-feedback
       position: absolute
+
   .sento-kanban
     height: 100%
     width: 100%
@@ -76,13 +77,14 @@
 
         .sento-kanban-column-body
           height: 100%
+          position: relative
           transition: margin .25s ease-in-out
           -moz-transition: margin .25s ease-in-out
           -webkit-transition: margin .25s ease-in-out
 
           .sento-kanban-cards
             padding: 0 4px
-            position: relative
+            height: 100%
             a
               color: $body-color
               &.gu-transit
@@ -90,7 +92,8 @@
                 .card
                   background-color: #ccc
                   height: 50px
-                  h4
+                  color: none
+                  p.card-title
                     display: none
               &:hover
                 text-decoration: none
@@ -100,10 +103,12 @@
                 border-bottom: 1px solid #ccc
                 margin-bottom: 0.25rem
                 min-height: 50px
-                h4.card-title
+                p.card-title
                   font-size: 0.93rem
-                p.card-text
-                  line-height: 1.0
+            .card.new
+              textarea
+                border: none
+                resize: none
 
 body
   .gu-mirror

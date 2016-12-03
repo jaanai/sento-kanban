@@ -6,4 +6,6 @@
   .dropdown-menu.dropdown-menu-right aria-labelledby="column#{column.position}Options"
     h6.dropdown-header= t('.dropdown_title')
     .dropdown-divider
+    = link_to t('.add_card'), new_board_column_card_path(board, column), class: 'dropdown-item', remote: true
+    .dropdown-divider
     = link_to t('.delete'), delete_board_column_path(board, column), class: 'dropdown-item dropdown-item-danger', data: { modal: true }

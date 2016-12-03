@@ -3,68 +3,81 @@ require_dependency 'sento/kanban/application_controller'
 module Sento
   module Kanban
     class CardsController < ApplicationController
+      before_action :fetches_current_board
+      before_action :fetches_current_column
+      before_action :build_new_card, only: [:new, :create]
       before_action :set_card, only: [:show, :edit, :update, :destroy]
       respond_to :html, :json
 
-      # GET /cards
+      # GET /boards/1/columns/1/cards
       def index
-        @cards = Card.all
+        @cards = @column.cards.all
       end
 
-      # GET /cards/1
+      # GET /boards/1/columns/1/cards/1
       def show
         respond_modal_with @card
       end
 
-      # GET /cards/new
-      def new
-        @card = Card.new
-      end
+      # GET /boards/1/columns/1/cards/new
+      def new; end
 
-      # GET /cards/1/edit
-      def edit
-      end
+      # GET /boards/1/columns/1/cards/1/edit
+      def edit; end
 
-      # POST /cards
+      # POST /boards/1/columns/1/cards
       def create
-        @card = Card.new(card_params)
-
-        if @card.save
-          redirect_to @card, notice: 'Card was successfully created.'
-        else
-          render :new
-        end
+        build_flash_message(@new_card.save ? :success : :error)
+        render :create
       end
 
-      # PATCH/PUT /cards/1
+      # PATCH/PUT /boards/1/columns/1/cards/1
       def update
-        if @card.update(card_params)
-          redirect_to @card, notice: 'Card was successfully updated.'
-        else
-          render :edit
-        end
+        build_flash_message(@card.update(card_params) ? :success : :error)
+        render :update
       end
 
-      # DELETE /cards/1
+      # DELETE /boards/1/columns/1/cards/1
       def destroy
         @card.destroy
-        redirect_to cards_url, notice: 'Card was successfully destroyed.'
+        build_flash_message(:success)
+        redirect_to cards_url
       end
 
       private
 
+      def fetches_current_board
+        @board = Board.find(params[:board_id])
+      rescue ActiveRecord::RecordNotFound
+        build_flash_message(:error, board: :not_found)
+        redirect_to root_url
+      end
+
+      def fetches_current_column
+        @column = @board.columns.find(params[:column_id])
+      rescue ActiveRecord::RecordNotFound
+        build_flash_message(:error, column: :not_found)
+        redirect_to board_url(@board)
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_card
-        @card = Card.find(params[:id])
+        @card = @column.cards.find(params[:id])
+      end
+
+      def build_new_card
+        @new_card = @column.cards.new(card_params)
       end
 
       # Only allow a trusted parameter "white list" through.
       def card_params
+        return {} unless params.key?(:card)
+
         params.require(:card).permit(:title, :description)
       end
 
-      def column_params
-        params.require(:column).permit(:name)
+      def i18n_resource_name
+        t('sento.kanban.card')
       end
     end
   end

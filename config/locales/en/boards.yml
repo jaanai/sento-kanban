@@ -2,13 +2,15 @@ en:
   sento:
     kanban:
       board: board
+      card: card
       column: column
       loading: Loading ...
       messages:
-        record_not_found: 'The %{name} cannot be found'
         created_object: '%{name} was successfully created.'
-        updated_object: '%{name} was successfully updated.'
         destroyed_object: '%{name} was successfully destroyed.'
+        not_created_object: '%{name} was not created.'
+        record_not_found: 'The %{name} cannot be found'
+        updated_object: '%{name} was successfully updated.'
       buttons:
         close: Close
         delete: 'Delete %{name}'
@@ -40,3 +42,4 @@ en:
         column_header:
           dropdown_title: Actions
           delete: Delete this column ...
+          add_card: Add a new card ...

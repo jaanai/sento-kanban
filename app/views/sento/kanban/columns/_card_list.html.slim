@@ -1,4 +1,2 @@
 - Array(column.cards).each do |card|
-  = link_to board_column_card_path(board, column, card), data: { modal: true } do
-  .card.card-block
-    h4.card-title= card.title
+  = render partial: 'sento/kanban/cards/card', locals: { board: @board, column: column, card: card }

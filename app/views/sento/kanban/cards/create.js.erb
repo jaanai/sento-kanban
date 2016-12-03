@@ -1,0 +1,3 @@
+var newCard = $('.sento-kanban-column[data-id="<%= @column.id %>"] .card.card-block.new');
+newCard.before('<%= j render(partial: "card", locals: { board: @board, column: @column, card: @new_card })%>');
+newCard.remove();

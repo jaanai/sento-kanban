@@ -4,6 +4,7 @@ module Sento
   module Kanban
     class ColumnsController < ApplicationController
       before_action :fetches_current_board
+      before_action :build_new_column, only: [:new, :create]
       before_action :set_column, only: [:show, :edit, :update, :delete,
                                         :destroy]
       before_action :fetches_all_boards, only: :index
@@ -16,16 +17,13 @@ module Sento
       def show; end
 
       # GET /boards/1/columns/new
-      def new
-        @new_column = @board.columns.new
-      end
+      def new; end
 
       # GET /boards/1/columns/1/edit
       def edit; end
 
       # POST /boards/1/columns
       def create
-        @new_column = @board.columns.new(column_params)
         @new_column.position = @board.columns.count
         @new_column.save
       end
@@ -53,7 +51,7 @@ module Sento
       def fetches_current_board
         @board = Board.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
-        build_flash_message(:success, board: :not_found)
+        build_flash_message(:error, board: :not_found)
         redirect_to root_url
       end
 
@@ -61,17 +59,22 @@ module Sento
       def set_column
         @column = @board.columns.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        build_flash_message(:success, column: :not_found)
+        build_flash_message(:error, column: :not_found)
         redirect_to action: :index
       end
 
       def column_params
         return {} unless params.key?(:column)
+
         params[:column].permit(:name)
       end
 
       def fetches_all_boards
         @boards = Board.all
+      end
+
+      def build_new_column
+        @new_column = @board.columns.new(column_params)
       end
 
       def i18n_resource_name

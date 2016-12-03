@@ -8,8 +8,6 @@
 //= require unobtrusive_flash
 //= require unobtrusive_flash_bootstrap
 
-//= require sento/kanban/kanban
-
 //= require_tree ./boards
 
 function loadPageContentAjax() {

@@ -1,0 +1,23 @@
+var columnCardContainer = $('.sento-kanban-column[data-id="<%= @column.id %>"] .sento-kanban-cards');
+columnCardContainer.prepend('<%= j render(partial: "new_card") %>');
+
+$('form#new_card textarea#card_title').keyup(function(event) {
+  if (event.keyCode == 13) { $('form#new_card').submit(); }
+});
+
+// Toggle the dropdown (the call to dropdown('toggle') as described in the
+// documentation of Bootstrap makes the dropdown no more working)
+$('.dropdown.open').trigger('click');
+
+// Select the first form field automatically
+setTimeout(function() {
+  var firstField = $("form:not(.filter) :input:visible:enabled:first");
+  if (firstField.length > 0)
+    firstField.get(0).focus();
+}, 200);
+
+$(document).keyup(function(event) {
+  if (event.keyCode == 27) { // escape key
+    $('.card.card-block.new').remove();
+  }
+});

@@ -17,11 +17,9 @@ html lang="en"
       button.navbar-toggler.hidden-sm-up type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"
       #exCollapsingNavbar.collapse.navbar-toggleable-xs
         = link_to 'Navbar', root_url, class: 'navbar-brand'
-        ul.nav.navbar-nav
-          li.nav-item.active
-            = link_to root_url, class: 'nav-link' do
-              | Home
-              span.sr-only (current)
+        - if @board
+          #board-menu
+            = render partial: 'sento/kanban/boards/menu'
 
     = yield
 

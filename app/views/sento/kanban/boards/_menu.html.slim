@@ -1,0 +1,6 @@
+ul.nav.navbar-nav
+  li.nav-item.dropdown
+    = link_to '#', class: 'nav-link dropdown-toggle', id: 'boardMenu', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do
+      = @board.title
+    .dropdown-menu aria-labelledby="boardMenu"
+      = link_to t('sento.kanban.boards.settings'), edit_board_path(@board), class: 'dropdown-item', data: { modal: true }

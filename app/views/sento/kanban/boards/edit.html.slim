@@ -1,0 +1,18 @@
+= simple_form_for @board, remote: true, authenticity_token: true, html: { class: 'form-horizontal' } do |f|
+  .modal-body
+    h1= t('.title')
+    
+    fieldset.form-group
+      legend= t('.details')
+      = f.input :title
+      = f.input :description
+
+    fieldset.form-group
+      legend.text-danger= t('.delete')
+      .text-danger= t('.destroy_board_loose_data')
+      br
+      = link_to t('.confirm_delete', name: @board.title), board_path(@board), method: :delete, class: 'btn btn-danger'
+
+  .modal-footer
+    button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('sento.kanban.buttons.close')
+    = f.button :submit, class: 'btn-primary ml-1'

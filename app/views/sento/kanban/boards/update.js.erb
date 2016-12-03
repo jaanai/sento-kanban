@@ -1,0 +1,21 @@
+<% if @board.errors.empty? %>
+  $('#mainModal').modal('hide');
+  $('#board-menu').html('<%= j render(partial: "sento/kanban/boards/menu") %>');
+<% else %>
+  <% object_class_name = @board.class.name.demodulize.underscore %>
+  <% @board.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group'),
+        columnBody = formGroup.closest('.sento-kanban-column').find('.sento-kanban-column-body');
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    columnBody.removeClass('mt-2');
+    $('input[type="text"].form-control-danger').removeClass('form-control-danger');
+
+    // Adds the field error
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback mt-0"><%= @column.errors.full_message(attribute, message) %></div>');
+    columnBody.addClass('mt-2');
+  <% end %>
+<% end %>

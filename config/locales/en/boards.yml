@@ -6,9 +6,9 @@ en:
       loading: Loading ...
       messages:
         record_not_found: 'The %{name} cannot be found'
-        was_successfully_created: '%{name} was successfully created.'
-        was_successfully_updated: '%{name} was successfully updated.'
-        was_successfully_destroyed: '%{name} was successfully destroyed.'
+        created_object: '%{name} was successfully created.'
+        updated_object: '%{name} was successfully updated.'
+        destroyed_object: '%{name} was successfully destroyed.'
       buttons:
         close: Close
         delete: 'Delete %{name}'
@@ -17,10 +17,17 @@ en:
           title: Boards
         new:
           title: Create a new board
+        edit:
+          title: Board settings
+          details: Details
+          destroy_board_loose_data: 'WARNING: This will delete all the cards from this board and the board itself. This action is irreversible!'
+          confirm_delete: 'Delete the %{name} board'
         board_columns:
           click_to_create: Click to create column ...
         board_list:
           new_board: Click to create a new board
+        menu:
+          settings: Settings ...
       columns:
         new_column:
           new_column_name: Name

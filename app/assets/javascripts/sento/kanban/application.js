@@ -5,6 +5,8 @@
 //= require dragula
 //= require modal-responder
 //= require pace/pace
+//= require unobtrusive_flash
+//= require unobtrusive_flash_bootstrap
 
 //= require sento/kanban/kanban
 
@@ -13,3 +15,6 @@
 function loadPageContentAjax() {
   $.ajax({ url: document.URL, method: 'GET', dataType: 'script' });
 }
+
+// unobtrusive_flash
+UnobtrusiveFlash.flashOptions['timeout'] = 4000;

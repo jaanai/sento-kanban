@@ -32,10 +32,7 @@ module Sento
 
       # PATCH/PUT /boards/1/columns/1
       def update
-        if @column.update(column_params)
-          flash[:notice] = t('sento.kanban.messages.was_successfully_updated',
-                             name: t('sento.kanban.column'))
-        end
+        build_flash_message(@column.update(column_params) ? :success : :error)
         render :update
       end
 
@@ -47,9 +44,8 @@ module Sento
       # DELETE /boards/1/columns/1
       def destroy
         @column.destroy
-        redirect_to board_url(@board),
-                    notice: t('sento.kanban.messages.was_successfully_destroyed',
-                              name: t('sento.kanban.column'))
+        build_flash_message(:success)
+        redirect_to board_url(@board)
       end
 
       private
@@ -57,8 +53,7 @@ module Sento
       def fetches_current_board
         @board = Board.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('sento.kanban.messages.record_not_found',
-                          name: t('sento.kanban.column'))
+        build_flash_message(:success, board: :not_found)
         redirect_to root_url
       end
 
@@ -66,8 +61,7 @@ module Sento
       def set_column
         @column = @board.columns.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('sento.kanban.messages.record_not_found',
-                          name: t('sento.kanban.column'))
+        build_flash_message(:success, column: :not_found)
         redirect_to action: :index
       end
 
@@ -78,6 +72,10 @@ module Sento
 
       def fetches_all_boards
         @boards = Board.all
+      end
+
+      def i18n_resource_name
+        t('sento.kanban.column')
       end
     end
   end

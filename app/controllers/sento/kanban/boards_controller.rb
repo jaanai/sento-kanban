@@ -25,32 +25,33 @@ module Sento
       end
 
       # GET /boards/1/edit
-      def edit; end
+      def edit
+        respond_modal_with @board
+      end
 
       # POST /boards
       def create
         @board = Board.new(board_params)
-        fetches_all_boards if @board.save
-        flash[:notice] = t('sento.kanban.messages.was_successfully_created',
-                           name: t('sento.kanban.board'))
+        if @board.save
+          fetches_all_boards
+          build_flash_message(:success)
+        else
+          build_flash_message(:error)
+        end
         render :new
       end
 
       # PATCH/PUT /boards/1
       def update
-        if @board.update(board_params)
-          redirect_to @board, notice: t('sento.kanban.messages.was_successfully_updated',
-                                        name: t('sento.kanban.board'))
-        else
-          render :edit
-        end
+        build_flash_message(@board.update(board_params) ? :success : :error)
+        render :update
       end
 
       # DELETE /boards/1
       def destroy
         @board.destroy
-        redirect_to boards_url, notice: t('sento.kanban.messages.was_successfully_destroyed',
-                                          name: t('board'))
+        build_flash_message(:success)
+        redirect_to boards_url
       end
 
       private
@@ -59,8 +60,7 @@ module Sento
       def set_board
         @board = Board.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('sento.kanban.messages.record_not_found',
-                          name: t('sento.kanbanboard'))
+        build_flash_message(:error, board: :not_found)
         redirect_to action: :index
       end
 
@@ -71,6 +71,10 @@ module Sento
 
       def fetches_all_boards
         @boards = Board.all
+      end
+
+      def i18n_resource_name
+        t('sento.kanban.board')
       end
     end
   end

@@ -16,7 +16,7 @@ en:
           title: Boards
         new:
           title: Create a new board
-        show:
+        board_columns:
           click_to_create: Click to create column ...
         board_list:
           new_board: Click to create a new board

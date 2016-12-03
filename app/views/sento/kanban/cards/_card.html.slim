@@ -1,4 +1,3 @@
 = link_to board_column_card_path(board, column, card), class: 'card-action-link', data: { modal: true, card_id: card.id } do
   .card.card-block
-    p.card-title
-      = "#{card.title} (#{card.card_order})"
+    p.card-title= card.title

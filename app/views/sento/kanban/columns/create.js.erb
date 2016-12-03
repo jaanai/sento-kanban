@@ -13,6 +13,6 @@
     formGroup.find('.form-control-feedback').remove();
     formGroup.addClass('has-danger');
     field.addClass('form-control-danger');
-    formGroup.append('<div class="form-control-feedback"><%= message %></div>');
+    formGroup.append('<div class="form-control-feedback"><%= @new_column.errors.full_message(attribute, message) %></div>');
   <% end %>
 <% end %>

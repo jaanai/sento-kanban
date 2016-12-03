@@ -48,12 +48,17 @@
               -webkit-transition: opacity .25s ease-in-out
 
         .sento-kanban-column-header
-          min-height: 33px
-          h2
-            font-size: 1rem
-            font-weight: 700
-            padding: 8px 10px
-            float: left
+          min-height: 42px
+          a
+            &:hover
+              h2
+                background-color: rgba(0, 0, 0, 0.1)
+            h2
+              font-size: 1rem
+              font-weight: 700
+              padding: 8px 10px
+              float: left
+              width: 225px
           .dropdown
             a
               -webkit-appearance: none
@@ -71,6 +76,10 @@
 
         .sento-kanban-column-body
           height: 100%
+          transition: margin .25s ease-in-out
+          -moz-transition: margin .25s ease-in-out
+          -webkit-transition: margin .25s ease-in-out
+
           .sento-kanban-cards
             padding: 0 4px
             position: relative

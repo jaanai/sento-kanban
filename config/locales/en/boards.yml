@@ -2,6 +2,7 @@ en:
   sento:
     kanban:
       board: board
+      column: column
       loading: Loading ...
       messages:
         record_not_found: 'The %{name} cannot be found'
@@ -24,9 +25,11 @@ en:
         new_column:
           new_column_name: Name
           help_text: Hit enter to create the column, or Esc to cancel.
+        edit_column:
+          column_name: Column name
         delete:
           title: Delete a column
           confirm_delete: 'Please confirm to delete the column "%{name}".'
-        column:
+        column_header:
           dropdown_title: Actions
           delete: Delete this column ...

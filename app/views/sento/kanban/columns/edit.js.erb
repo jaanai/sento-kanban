@@ -1,0 +1,15 @@
+$('[data-id="<%= @column.id %>"] .sento-kanban-column-header').html('<%= j render(partial: "edit_column") %>');
+
+// Select the first form field automatically
+setTimeout(function() {
+  var firstField = $("form:not(.filter) :input:visible:enabled:first");
+  if (firstField.length > 0)
+    firstField.get(0).focus();
+}, 200);
+
+$(document).keyup(function(event) {
+  if (event.keyCode == 27) { // escape key
+    $('[data-id="<%= @column.id %>"] .sento-kanban-column-header').html('<%= j render(partial: "column_header", locals: { board: @board, column: @column }) %>');
+    $('[data-id="<%= @column.id %>"] .sento-kanban-column-body').removeClass('mt-2');
+  }
+});

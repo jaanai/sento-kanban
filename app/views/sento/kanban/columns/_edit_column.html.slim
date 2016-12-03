@@ -1,0 +1,4 @@
+= form_for @column, url: board_column_path(@board, @column), method: :patch, remote: true do |f|
+  .sento-kanban-column-input
+    .form-group.mb-0
+      = f.text_field :name, class: 'form-control', placeholder: t('.column_name')

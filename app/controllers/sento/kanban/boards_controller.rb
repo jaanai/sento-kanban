@@ -31,16 +31,16 @@ module Sento
       def create
         @board = Board.new(board_params)
         fetches_all_boards if @board.save
-        flash[:notice] = t('messages.was_successfully_created',
-                           scope: 'sento.kanban', name: t('board'))
+        flash[:notice] = t('sento.kanban.messages.was_successfully_created',
+                           name: t('sento.kanban.board'))
         render :new
       end
 
       # PATCH/PUT /boards/1
       def update
         if @board.update(board_params)
-          redirect_to @board, notice: t('messages.was_successfully_updated',
-                                        scope: 'sento.kanban', name: t('board'))
+          redirect_to @board, notice: t('sento.kanban.messages.was_successfully_updated',
+                                        name: t('sento.kanban.board'))
         else
           render :edit
         end
@@ -49,8 +49,7 @@ module Sento
       # DELETE /boards/1
       def destroy
         @board.destroy
-        redirect_to boards_url, notice: t('messages.was_successfully_destroyed',
-                                          scope: 'sento.kanban',
+        redirect_to boards_url, notice: t('sento.kanban.messages.was_successfully_destroyed',
                                           name: t('board'))
       end
 
@@ -60,8 +59,8 @@ module Sento
       def set_board
         @board = Board.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = t('messages.record_not_found', scope: 'sento.kanban',
-                                                       name: t('board'))
+        flash[:error] = t('sento.kanban.messages.record_not_found',
+                          name: t('sento.kanbanboard'))
         redirect_to action: :index
       end
 

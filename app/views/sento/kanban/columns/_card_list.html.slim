@@ -1,4 +1,4 @@
-- Array(@cards).each do |card|
-  = link_to card_path(card), data: { modal: true } do
-    .card.card-block
-      h4.card-title= card.title
+- Array(column.cards).each do |card|
+  = link_to board_column_card_path(board, column, card), data: { modal: true } do
+  .card.card-block
+    h4.card-title= card.title

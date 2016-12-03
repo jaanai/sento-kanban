@@ -1,0 +1,9 @@
+= link_to edit_board_column_path(board, column), remote: true do
+  h2.mb-0= column.name
+.dropdown
+  a.btn.float-xs-right type="button" id="column#{column.position}Options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+    | ...
+  .dropdown-menu.dropdown-menu-right aria-labelledby="column#{column.position}Options"
+    h6.dropdown-header= t('.dropdown_title')
+    .dropdown-divider
+    = link_to t('.delete'), delete_board_column_path(board, column), class: 'dropdown-item dropdown-item-danger', data: { modal: true }

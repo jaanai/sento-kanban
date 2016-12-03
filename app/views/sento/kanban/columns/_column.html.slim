@@ -1,16 +1,9 @@
 .sento-kanban-container
-  .sento-kanban-column
+  .sento-kanban-column data-id="#{column.id}"
     .sento-kanban-column-header
-      h2.mb-0= column.name
-      .dropdown
-        a.btn.float-xs-right type="button" id="column#{column.position}Options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          | ...
-        .dropdown-menu.dropdown-menu-right aria-labelledby="column#{column.position}Options"
-          h6.dropdown-header= t('.dropdown_title')
-          .dropdown-divider
-          = link_to t('.delete'), delete_board_column_path(@board, column), class: 'dropdown-item dropdown-item-danger', data: { modal: true }
+      = render partial: 'sento/kanban/columns/column_header', locals: { board: @board, column: column }
 
     .sento-kanban-column-body
       .sento-kanban-cards
         div data-column-id="#{column.id}"
-          = render partial: 'sento/kanban/columns/card_list', locals: { column: column }
+          = render partial: 'sento/kanban/columns/card_list', locals: { board: @board, column: column }

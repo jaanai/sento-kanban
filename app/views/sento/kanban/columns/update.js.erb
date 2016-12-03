@@ -1,0 +1,20 @@
+<% if @column.errors.empty? %>
+  $('[data-id="<%= @column.id %>"] .sento-kanban-column-header').html('<%= j render(partial: "column_header", locals: { board: @board, column: @column }) %>');
+<% else %>
+  <% object_class_name = @column.class.name.demodulize.underscore %>
+  <% @column.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group'),
+        columnBody = formGroup.closest('.sento-kanban-column').find('.sento-kanban-column-body');
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    columnBody.removeClass('mt-2');
+    $('input[type="text"].form-control-danger').removeClass('form-control-danger');
+
+    // Adds the field error
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback mt-0"><%= @column.errors.full_message(attribute, message) %></div>');
+    columnBody.addClass('mt-2');
+  <% end %>
+<% end %>

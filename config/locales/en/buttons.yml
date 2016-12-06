@@ -1,0 +1,9 @@
+en:
+  sento:
+    kanban:
+      buttons:
+        archive: Archive
+        cancel: Cancel
+        close: Close
+        delete: 'Delete %{name}'
+        save: Save

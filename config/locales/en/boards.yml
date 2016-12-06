@@ -1,21 +1,6 @@
 en:
   sento:
     kanban:
-      board: board
-      card: card
-      column: column
-      loading: Loading ...
-      messages:
-        created_object: '%{name} was successfully created.'
-        destroyed_object: '%{name} was successfully destroyed.'
-        not_created_object: '%{name} was not created.'
-        not_found: '%{name} cannot be found.'
-        record_not_found: 'The %{name} cannot be found'
-        updated_object: '%{name} was successfully updated.'
-      buttons:
-        archive: Archive
-        close: Close
-        delete: 'Delete %{name}'
       boards:
         index:
           title: Boards
@@ -32,20 +17,3 @@ en:
           new_board: Click to create a new board
         menu:
           settings: Settings ...
-      columns:
-        new_column:
-          new_column_name: Name
-          help_text: Hit enter to create the column, or Esc to cancel.
-        edit_column:
-          column_name: Column name
-        delete:
-          title: Delete a column
-          confirm_delete: 'Please confirm to delete the column "%{name}".'
-        column_header:
-          dropdown_title: Actions
-          delete: Delete this column ...
-          add_card: Add a new card ...
-      cards:
-        show:
-          comment_section_title: Add comment
-          activity_section_title: Activity

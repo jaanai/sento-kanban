@@ -1,0 +1,16 @@
+en:
+  sento:
+    kanban:
+      columns:
+        new_column:
+          new_column_name: Name
+          help_text: Hit enter to create the column, or Esc to cancel.
+        edit_column:
+          column_name: Column name
+        delete:
+          title: Delete a column
+          confirm_delete: 'Please confirm to delete the column "%{name}".'
+        column_header:
+          dropdown_title: Actions
+          delete: Delete this column ...
+          add_card: Add a new card ...

@@ -11,9 +11,26 @@
     color: #aaa
     a:not(.btn)
       color: #aaa
-      font-weight: 600
+      text-decoration: underline
+      svg
+        fill: #aaa
       &:hover
         color: #4e4e4e
+        svg
+          fill: #4e4e4e
+    #card-description
+      margin-left: .4rem
+      margin-top: .3rem
+      margin-bottom: 2rem
+      textarea
+        overflow: hidden
+        overflow-wrap: break-word
+        resize: none
+        height: 108px
+        background: rgba(0, 0, 0, .03)
+        border-color: rgba(0, 0, 0, .15)
+        box-shadow: inset 0 1px 6px rgba(0, 0, 0, .1)
+        margin-bottom: 4px
   .card-icon
     margin-top: 4px
     fill: #aaa

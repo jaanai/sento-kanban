@@ -1,0 +1,7 @@
+en:
+  sento:
+    kanban:
+      board: board
+      card: card
+      column: column
+      loading: Loading ...

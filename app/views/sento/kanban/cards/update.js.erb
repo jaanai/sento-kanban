@@ -1,0 +1,18 @@
+<% if @card.errors.empty? %>
+  $('#card-description').html('<%= j render(partial: "card_description_and_link") %>');
+<% else %>
+  <% object_class_name = @card.class.name.demodulize.underscore %>
+  <% @card.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group');
+
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    $('input[type="text"].form-control-danger').removeClass('form-control-danger');
+
+    // Adds the field error
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback mt-0"><%= @column.errors.full_message(attribute, message) %></div>');
+  <% end %>
+<% end %>

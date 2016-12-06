@@ -1,0 +1,11 @@
+en:
+  sento:
+    kanban:
+      cards:
+        show:
+          comment_section_title: Add comment
+          activity_section_title: Activity
+        card_description_and_link:
+          edit_description: Edit the description ...
+          description: Description
+          edit: Edit

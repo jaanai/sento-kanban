@@ -1,0 +1,10 @@
+en:
+  sento:
+    kanban:
+      messages:
+        created_object: '%{name} was successfully created.'
+        destroyed_object: '%{name} was successfully destroyed.'
+        not_created_object: '%{name} was not created.'
+        not_found: '%{name} cannot be found.'
+        record_not_found: 'The %{name} cannot be found'
+        updated_object: '%{name} was successfully updated.'

@@ -1,0 +1,14 @@
+- if @card.description.present?
+  .ml-2
+    span= t('.description')
+    '
+    = link_to t('.edit'), edit_board_column_card_path(@board, @column, @card), remote: true
+    br
+    p= @card.description
+- else
+  = link_to edit_board_column_card_path(@board, @column, @card), remote: true do
+    .media
+      .media-left
+        = octicon 'note', height: 23
+      .media-body
+        = t('.edit_description')

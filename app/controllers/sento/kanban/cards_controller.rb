@@ -32,9 +32,7 @@ module Sento
       # PATCH/PUT /boards/1/columns/1/cards/1
       def update
         build_flash_message(:error) unless @card.update(card_params)
-        respond_to do |format|
-          format.json { render json: @card }
-        end
+        render :update
       end
 
       # DELETE /boards/1/columns/1/cards/1

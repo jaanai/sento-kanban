@@ -4,7 +4,7 @@
   background-color: #edeff0
   height: 100%
   width: 336px
-  right: 0rem
+  right: -21rem
   box-shadow: 0 0 6px rgba(0,0,0,.4)
   transition: right .25s ease-in-out
   -moz-transition: right .25s ease-in-out
@@ -14,7 +14,18 @@
     padding: .7rem 1rem
     text-align: center
     h2
+      position: absolute
+      left: -4rem
+      padding: .5rem .7rem
+      width: auto
+      cursor: pointer
+      color: #fff
+      background-color: rgba(0, 0, 0, 0.1)
+      border-top-left-radius: 1rem
+      border-bottom-left-radius: 1rem
       font-size: 18px
+      &:hover
+        background-color: rgba(0, 0, 0, .2)
     svg
       fill: #999
       margin-top: 4px
@@ -26,23 +37,17 @@
   .floating-menu-body
     position: relative
     height: 100%
-  &.hide
-    right: -21rem
+  &.show
+    right: 0
     transition: right .25s ease-in-out
     -moz-transition: right .25s ease-in-out
     -webkit-transition: right .25s ease-in-out
-    .floating-menu-indicator
-      display: block
     .floating-menu-header
       h2
-        position: absolute
-        left: -4rem
-        padding: .5rem .7rem
-        width: auto
-        cursor: pointer
-        color: #fff
-        background-color: rgba(0, 0, 0, 0.1)
-        border-top-left-radius: 1rem
-        border-bottom-left-radius: 1rem
-        &:hover
-          background-color: rgba(0, 0, 0, .2)
+        position: static
+        left: 0
+        width: 100%
+        cursor: auto
+        background: none
+        padding: 0
+        color: inherit

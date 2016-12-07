@@ -1,8 +1,11 @@
+// Page content
 $('#board-content').html('<%= j render(partial: "board_columns") %>');
 
+// Scrollbars
 $('.sento-kanban').perfectScrollbar();
 $('.sento-kanban-column-body').perfectScrollbar();
 
+// Drag'n drop
 dragula($('.sento-kanban-cards').toArray(), {
   copySortSource: true
 }).on('drop', function(element, target, source) {
@@ -16,4 +19,12 @@ dragula($('.sento-kanban-cards').toArray(), {
     method: 'PATCH',
     data: { card: { card_order_position : cardPosition, column_id: targetColumnId } }
   });
+});
+
+// Floating menu
+$('*[data-behavior="close-floating-menu"]').on('click', function() {
+  $('.floating-menu').addClass('hide');
+});
+$('*[data-behavior="open-floating-menu"]').on('click', function() {
+  $('.floating-menu').removeClass('hide');
 });

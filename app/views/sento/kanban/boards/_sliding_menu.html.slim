@@ -5,3 +5,16 @@
       = t('.menu')
   hr
   .floating-menu-body
+    .container.mt-1
+      .row
+        .col-xs-12
+          .media
+            .media-left
+              = octicon 'organization', height: 25, class: 'icon'
+            .media-body
+              p.small-title= t('.members')
+      .row
+        .col-xs-12
+          - @board.users.each do |user|
+            - present(user) do |presented_user|
+              = presented_user.avatar_url_or_fallback

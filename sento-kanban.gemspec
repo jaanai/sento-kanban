@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
 require 'sento/kanban/version'
@@ -11,11 +11,12 @@ Gem::Specification.new do |s|
   s.email       = ['info@sento.io']
   s.homepage    = 'https://github.com/sento/sento-kanban'
   s.summary     = 'The Sento application Kanban view as a Rails engine'
-  s.description = 'The Sento application stack includes differents components ' \
-                  'with one of them being this Kanban view. Sento tries to ' \
-                  'free up as much as possible the code in order to allows ' \
-                  'others to use it, avoid reinventing the wheel, and ideally ' \
-                  'have contributions from the open source community.'
+  s.description = 'The Sento application stack includes differents ' \
+                  'components with one of them being this Kanban view. ' \
+                  'Sento tries to free up as much as possible the code in ' \
+                  'order to allows others to use it, avoid reinventing the ' \
+                  'wheel, and ideally have contributions from the open ' \
+                  'source community.'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile',
@@ -32,7 +33,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.3.1'
   s.add_dependency 'pace-rails', '~> 0.1.3'
   s.add_dependency 'unobtrusive_flash', '~> 3.3.1'
-  s.add_dependency 'ranked-model'
+  s.add_dependency 'ranked-model', '~> 0.4.0'
+  s.add_dependency 'interactor', '~> 3.1.0'
 
   s.add_dependency 'ffaker', '~> 2.3.0'
 

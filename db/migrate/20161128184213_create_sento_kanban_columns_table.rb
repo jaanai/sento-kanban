@@ -5,7 +5,7 @@ class CreateSentoKanbanColumnsTable < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.integer :position, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

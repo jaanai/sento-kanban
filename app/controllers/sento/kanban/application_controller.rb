@@ -2,7 +2,10 @@ module Sento
   module Kanban
     class ApplicationController < ActionController::Base
       protect_from_forgery with: :exception
-      after_filter :prepare_unobtrusive_flash
+
+      before_action :authenticate_user!, if: :using_devise?
+
+      after_action :prepare_unobtrusive_flash
 
       private
 
@@ -26,6 +29,10 @@ module Sento
 
         flash[type] = t("sento.kanban.messages.#{key}",
                         name: final_resource_name)
+      end
+
+      def using_devise?
+        Sento::Kanban.using_devise == true
       end
     end
   end

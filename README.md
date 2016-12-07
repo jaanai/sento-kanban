@@ -22,8 +22,40 @@ Rails.application.routes.draw do
   # see http://guides.rubyonrails.org/routing.html
 
   mount Sento::Kanban::Engine => '/path/to/sento'
+
+  root to: 'welcome#index'
 end
 ```
+
+You also need to define a `User` class which should look like the following:
+
+```ruby
+class User < ApplicationRecord
+  # ~~~ Associations ~~~
+  has_many :boards, through: :board_links
+  has_many :board_links
+
+  # ~~~ Validations ~~~
+  validates :email, :firstname, :lastname, presence: true
+  validates :email, uniqueness: true
+
+  # Your code here ...
+end
+```
+
+Your `users` table should have the following columns:
+
+```
+  ...
+  t.string :email, null: false, index: true, unique: true
+  t.string :firstname
+  t.string :lastname
+  t.string :avatar
+  ...
+```
+
+_We recommend you to use the [Devise](https://github.com/plataformatec/devise)
+gem_
 
 Then you need to update your database with the migrations from Sento Kanban:
 

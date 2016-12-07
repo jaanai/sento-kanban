@@ -4,7 +4,7 @@
       .col-md-12
         .media
           .media-left
-            = octicon 'note', height: 25, class: 'card-icon'
+            = octicon 'note', height: 25, class: 'icon'
           .media-body
             h4.modal-title= @card.title
             p
@@ -22,17 +22,17 @@
           .col-md-9
             .media
               .media-left
-                = octicon 'comment', height: 23, class: 'card-icon'
+                = octicon 'comment', height: 23, class: 'icon'
               .media-body
-                p.modal-sub-title= t('.comment_section_title')
+                p.small-title= t('.comment_section_title')
 
         .row
           .col-md-9
             .media
               .media-left
-                = octicon 'pulse', height: 23, class: 'card-icon'
+                = octicon 'pulse', height: 23, class: 'icon'
               .media-body
-                p.modal-sub-title= t('.activity_section_title')
+                p.small-title= t('.activity_section_title')
 
 
       .col-xs-6.col-sm-3

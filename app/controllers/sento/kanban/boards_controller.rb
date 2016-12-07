@@ -33,8 +33,8 @@ module Sento
       def create
         @board = Board.new(board_params)
         if @board.save
+          InviteAUserInABoard.call(user: current_user, board: @board)
           fetches_all_boards
-          build_flash_message(:success)
         else
           build_flash_message(:error)
         end

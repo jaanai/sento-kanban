@@ -4,7 +4,7 @@ class CreateSentoKanbanBoards < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.text :description
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

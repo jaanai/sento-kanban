@@ -8,7 +8,7 @@ class CreateSentoKanbanCards < ActiveRecord::Migration[5.0]
       t.integer :card_order
       t.boolean :archived, null: false, default: false, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

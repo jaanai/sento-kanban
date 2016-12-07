@@ -22,9 +22,9 @@ dragula($('.sento-kanban-cards').toArray(), {
 });
 
 // Floating menu
-$('*[data-behavior="close-floating-menu"]').on('click', function() {
-  $('.floating-menu').addClass('hide');
-});
 $('*[data-behavior="open-floating-menu"]').on('click', function() {
-  $('.floating-menu').removeClass('hide');
+  $('.floating-menu').addClass('show');
+});
+$('*[data-behavior="close-floating-menu"]').on('click', function() {
+  $('.floating-menu').removeClass('show');
 });

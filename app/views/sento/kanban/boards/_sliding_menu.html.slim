@@ -18,3 +18,15 @@
           - @board.users.each do |user|
             - present(user) do |presented_user|
               = presented_user.avatar_url_or_fallback
+
+      .row
+        .col-xs-12
+          .media.mt-1
+            .media-left
+              = octicon 'pulse', height: 30, class: 'icon'
+            .media-body
+              p.small-title= t('.activity_section_title')
+      .row
+        .col-xs-12
+          #activities
+            = render partial: 'sento/kanban/shared/activities', locals: { object: @board }

@@ -7,7 +7,6 @@ module Sento
       before_action :build_new_column, only: [:new, :create]
       before_action :set_column, only: [:show, :edit, :update, :delete,
                                         :destroy]
-      before_action :fetches_all_boards, only: :index
       respond_to :html, :json
 
       # GET /boards/1/columns
@@ -25,7 +24,9 @@ module Sento
       # POST /boards/1/columns
       def create
         @new_column.position = @board.columns.count
-        @new_column.save
+        return unless @new_column.save
+        CreateNewColumnCreatedActivity.call(board: @board, column: @new_column,
+                                            user: current_user)
       end
 
       # PATCH/PUT /boards/1/columns/1
@@ -49,7 +50,7 @@ module Sento
       private
 
       def fetches_current_board
-        @board = Board.find(params[:board_id])
+        @board = current_user.boards.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
         redirect_to root_url
@@ -67,10 +68,6 @@ module Sento
         return {} unless params.key?(:column)
 
         params[:column].permit(:name)
-      end
-
-      def fetches_all_boards
-        @boards = Board.all
       end
 
       def build_new_column

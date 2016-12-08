@@ -58,7 +58,7 @@ module Sento
 
       # Use callbacks to share common setup or constraints between actions.
       def set_board
-        @board = Board.find(params[:id])
+        @board = current_user.boards.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
         redirect_to action: :index
@@ -70,7 +70,7 @@ module Sento
       end
 
       def fetches_all_boards
-        @boards = Board.all
+        @boards = current_user.boards.all
       end
 
       def i18n_resource_name

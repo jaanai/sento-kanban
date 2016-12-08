@@ -1,0 +1,12 @@
+- object.activities.order(created_at: :desc).each.with_index do |activity, index|
+  - unless index.zero?
+    hr
+  - present(activity) do |presented_activity|
+    .media
+      .media-left
+        = presented_activity.icon_url
+      .media-body
+        - if presented_activity.author_fullname
+          h4.media-heading= presented_activity.author_fullname
+        .description= presented_activity.description
+        small.timestamp= presented_activity.timestamp

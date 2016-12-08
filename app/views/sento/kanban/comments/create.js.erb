@@ -1,0 +1,17 @@
+<% if @new_comment.errors.empty? %>
+  $('#card-activity').html('<%= j render(partial: "sento/kanban/cards/activities") %>');
+<% else %>
+  <% object_class_name = @new_comment.class.name.demodulize.underscore %>
+  <% @new_comment.errors.each do |attribute, message| %>
+    var field = $("#<%= object_class_name %>_<%= attribute %>"),
+        formGroup = field.closest('div.form-group');
+    // Removes previously created error messages
+    $('.form-control-feedback').remove();
+    $('.form-control-danger').removeClass('form-control-danger');
+    $('.has-danger').removeClass('has-danger');
+
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback"><%= @new_comment.errors.full_message(attribute, message) %></div>');
+  <% end %>
+<% end %>

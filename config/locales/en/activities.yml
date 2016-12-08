@@ -1,0 +1,5 @@
+en:
+  sento:
+    kanban:
+      new_board_created: created this board
+      new_column_created: 'added %{name} to this board'

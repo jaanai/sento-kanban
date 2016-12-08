@@ -3,7 +3,7 @@ module Sento
     class Column < ApplicationRecord
       # ~~~ Associations ~~~
       belongs_to :board
-      has_many :cards
+      has_many :cards, dependent: :destroy
 
       # ~~~ Validations ~~~
       validates :name, :board_id, presence: true

@@ -7,6 +7,7 @@ module Sento
       before_action :fetches_current_column
       before_action :build_new_card, only: [:new, :create]
       before_action :set_card, only: [:show, :edit, :update, :destroy, :archive]
+      before_action :build_new_comment, only: :show
       respond_to :html, :json
 
       # GET /boards/1/columns/1/cards
@@ -51,7 +52,7 @@ module Sento
       private
 
       def fetches_current_board
-        @board = Board.find(params[:board_id])
+        @board = current_user.boards.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
         redirect_to root_url
@@ -74,6 +75,10 @@ module Sento
 
       def build_new_card
         @new_card = @column.cards.new(card_params)
+      end
+
+      def build_new_comment
+        @new_comment = @card.comments.new
       end
 
       # Only allow a trusted parameter "white list" through.

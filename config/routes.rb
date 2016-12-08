@@ -10,6 +10,9 @@ Sento::Kanban::Engine.routes.draw do
         end
       end
     end
+    resources :cards do
+      resources :comments
+    end
   end
 
   root to: 'boards#index'

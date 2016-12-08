@@ -9,6 +9,8 @@ module Sento
       # ~~~ Associations ~~~
       belongs_to :board
       belongs_to :column
+      has_many :comments, dependent: :destroy
+      has_many :activities
 
       # ~~~ Validations ~~~
       validates :board_id, :column_id, :title, presence: true

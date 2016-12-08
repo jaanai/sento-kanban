@@ -1,10 +1,10 @@
 .modal-body
   .container-fluid.pl-0
     .row
-      .col-md-12
+      .col-xs-12
         .media
           .media-left
-            = octicon 'note', height: 25, class: 'icon'
+            = octicon 'note', height: 35, class: 'icon'
           .media-body
             h4.modal-title= @card.title
             p
@@ -19,21 +19,35 @@
               = render partial: 'card_description_and_link'
 
         .row
-          .col-md-9
+          .col-xs-12
             .media
               .media-left
-                = octicon 'comment', height: 23, class: 'icon'
+                = octicon 'comment', height: 30, class: 'icon'
               .media-body
                 p.small-title= t('.comment_section_title')
-
         .row
-          .col-md-9
+          .col-xs-12
             .media
               .media-left
-                = octicon 'pulse', height: 23, class: 'icon'
+                - present(current_user) do |user|
+                  = user.avatar_url_or_fallback
+              .media-body
+                = simple_form_for @new_comment, url: board_card_comments_path(@board, @card), method: :post, remote: true do |f|
+                  = f.input :body, label: false
+                  .form-group
+                    = f.submit t('sento.kanban.buttons.save'), class: 'btn btn-success mb-1'
+
+        .row
+          .col-xs-12
+            .media
+              .media-left
+                = octicon 'pulse', height: 30, class: 'icon'
               .media-body
                 p.small-title= t('.activity_section_title')
-
+        .row
+          .col-xs-12
+            #card-activity
+              = render partial: 'sento/kanban/shared/activities', locals: { object: @card }
 
       .col-xs-6.col-sm-3
         = link_to t('sento.kanban.buttons.archive'), archive_board_column_card_path(@board, @column, @card), method: :patch, class: 'btn btn-warning btn-block', remote: true

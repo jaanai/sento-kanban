@@ -1,16 +1,9 @@
 module Sento
   module Kanban
     class InviteAUserInABoard
-      include Interactor
+      include Interactor::Organizer
 
-      def call
-        board = context.board
-        user = context.user
-
-        context.fail! unless board && user
-
-        board.users << user
-      end
+      organize AddUserToABoard, CreateNewBoardCreatedActivity
     end
   end
 end

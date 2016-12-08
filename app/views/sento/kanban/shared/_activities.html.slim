@@ -8,5 +8,5 @@
       .media-body
         - if presented_activity.author_fullname
           h4.media-heading= presented_activity.author_fullname
-        .description= presented_activity.description
+        .description== presented_activity.description
         small.timestamp= presented_activity.timestamp

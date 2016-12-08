@@ -26,7 +26,12 @@ module Sento
 
       # POST /boards/1/columns/1/cards
       def create
-        build_flash_message(:error) unless @new_card.save
+        if @new_card.save
+          CreateNewCardCreatedActivity.call(board: @board, column: @column,
+                                            card: @new_card, user: current_user)
+        else
+          build_flash_message(:error)
+        end
         render :create
       end
 

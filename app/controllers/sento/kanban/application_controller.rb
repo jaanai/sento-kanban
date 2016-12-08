@@ -11,7 +11,7 @@ module Sento
 
       # TODO : Refactor this method
       def build_flash_message(type, options = {})
-        final_action_name = action_name
+        final_action_name = action_name.dup
         final_resource_name = i18n_resource_name
 
         if options.present?

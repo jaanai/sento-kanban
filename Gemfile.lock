@@ -10,7 +10,6 @@ PATH
   specs:
     sento-kanban (0.1.0)
       bootstrap (~> 4.0.0.alpha5)
-      ffaker (~> 2.3.0)
       interactor (~> 3.1.0)
       modal-responder-rails (~> 1.0.3)
       octicons_helper (~> 3.0.1)
@@ -85,6 +84,7 @@ GEM
       thor (>= 0.14, < 2.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    machinist (2.0)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -110,6 +110,7 @@ GEM
       ast (~> 2.2)
     perfect-scrollbar-rails (0.6.12)
       railties (>= 3.2, < 6.0)
+    pg (0.19.0)
     powerpack (0.1.1)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -168,6 +169,8 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     sass (3.4.22)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -203,9 +206,13 @@ PLATFORMS
 
 DEPENDENCIES
   dragula-rails!
-  rspec-rails
+  ffaker (~> 2.3.0)
+  machinist (~> 2.0)
+  pg
+  rspec-rails (~> 3.5)
   rubocop
   sento-kanban!
+  shoulda-matchers (~> 3.1.1)
 
 BUNDLED WITH
    1.10.6

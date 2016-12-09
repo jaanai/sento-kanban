@@ -11,6 +11,11 @@ module Sento
       config.before_initialize do
         config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
       end
+
+      config.generators do |g|
+        g.test_framework :rspec
+        g.fixture_replacement :machinist
+      end
     end
   end
 end

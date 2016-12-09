@@ -77,7 +77,14 @@ $ gem install sento-kanban
 
 ## Contributing
 
-TODO : Write the contribution guideline.
+1. Search/Open an issue related to your contribution
+2. Fork this repository
+3. Build the Docker container using `docker-compose build`
+4. Write your tests (TDD/BDD)
+5. Run the tests using Docker `docker-compose run web bundle exec rake`
+6. Fix the tests (meaning implement your feature)
+7. Commit everything and rebase with master if multiple commits (be sure to give the ticket ref in the commit message)
+8. Create a Pull Request
 
 ## License
 

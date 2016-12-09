@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile',
                 'README.md']
+  s.test_files = Dir['spec/**/*']
 
   s.required_ruby_version = '~> 2.0'
 
@@ -36,8 +37,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'ranked-model', '~> 0.4.0'
   s.add_dependency 'interactor', '~> 3.1.0'
 
-  s.add_dependency 'ffaker', '~> 2.3.0'
-
-  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'pg'
   s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'ffaker', '~> 2.3.0'
+  s.add_development_dependency 'rspec-rails', '~> 3.5'
+  s.add_development_dependency 'shoulda-matchers', '~> 3.1.1'
+  s.add_development_dependency 'machinist', '~> 2.0'
+  s.add_development_dependency 'ffaker', '~> 2.3.0'
 end

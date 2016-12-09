@@ -5,6 +5,7 @@ RUN apt-get update && \
   apt-get install -qq -y build-essential \
                         nodejs \
                         git \
+                        libpq-dev \
                         --fix-missing --no-install-recommends
 
 ENV INSTALL_PATH /application/lib/sento/kanban/

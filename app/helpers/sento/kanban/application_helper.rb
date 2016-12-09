@@ -9,7 +9,7 @@ module Sento
         yield(presenter) if block_given?
       rescue NameError => error
         Rails.logger.error 'ERROR: The presenter Sento::Kanban::' \
-                           "#{model.class}Presenter doesn't exists. " \
+                           "#{model_class_name}Presenter doesn't exists. " \
                            "(#{error.inspect})"
         raise
       end

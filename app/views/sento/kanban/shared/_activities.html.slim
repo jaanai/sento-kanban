@@ -1,6 +1,6 @@
 - object.activities.order(created_at: :desc).each.with_index do |activity, index|
   - unless index.zero?
-    hr
+    hr.mt-0
   - present(activity) do |presented_activity|
     .media
       .media-left

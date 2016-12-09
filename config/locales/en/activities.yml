@@ -3,7 +3,7 @@ en:
     kanban:
       new_board_created: created this board
       new_column_created: 'added %{name} to this board'
-      new_card_created: 'added <a href="/cards/%{card_id}">%{card_title}</a> to %{column_name}'
-      card_archived: 'archived <a href="/cards/%{card_id}">%{card_title}</a>'
-      new_comment_created: 'on <a href="/cards/%{card_id}">%{card_title}</a><div class="card">%{comment}</div>'
-      card_moved: 'moved <a href="/cards/%{card_id}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'
+      new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'
+      card_archived: 'archived <a href="%{card_link}">%{card_title}</a>'
+      new_comment_created: 'on <a href="%{card_link}">%{card_title}</a><div class="card">%{comment}</div>'
+      card_moved: 'moved <a href="%{card_link}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'

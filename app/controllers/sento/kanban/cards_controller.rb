@@ -8,23 +8,29 @@ module Sento
       before_action :build_new_card, only: [:new, :create]
       before_action :set_card, only: [:show, :edit, :update, :destroy, :archive]
       before_action :build_new_comment, only: :show
+
       respond_to :html, :json
 
       # GET /boards/1/columns/1/cards
+      # GET /boards/1/cards
       def index; end
 
       # GET /boards/1/columns/1/cards/1
+      # GET /boards/1/cards/1
       def show
         respond_modal_with @card
       end
 
       # GET /boards/1/columns/1/cards/new
+      # GET /boards/1/cards/new
       def new; end
 
       # GET /boards/1/columns/1/cards/1/edit
+      # GET /boards/1/cards/1/edit
       def edit; end
 
       # POST /boards/1/columns/1/cards
+      # POST /boards/1/cards
       def create
         if @new_card.save
           CreateNewCardCreatedActivity.call(board: @board, column: @column,
@@ -36,21 +42,25 @@ module Sento
       end
 
       # PATCH/PUT /boards/1/columns/1/cards/1
+      # PATCH/PUT /boards/1/cards/1
       def update
         build_flash_message(:error) unless @card.update(card_params)
         render :update
       end
 
       # DELETE /boards/1/columns/1/cards/1
+      # DELETE /boards/1/cards/1
       def destroy
         @card.destroy
         build_flash_message(:success)
         redirect_to board_path(@board)
       end
 
-      # PATCH /boards/1/columns/1/cards/1/archive
+      # PATCH /boards/1/cards/1/archive
       def archive
         @card.archive
+        CreateCardArchivedActivity.call(board: @board, card: @card,
+                                        user: current_user)
         render :archive
       end
 
@@ -64,22 +74,28 @@ module Sento
       end
 
       def fetches_current_column
+        return unless params.key?(:column_id)
+
         @column = @board.columns.find(params[:column_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, column: :not_found)
         redirect_to board_url(@board)
       end
 
+      def column_or_board
+        @column || @board
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_card
-        @card = @column.cards.find(params[:id])
+        @card = column_or_board.cards.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, card: :not_found)
         redirect_to board_url(@board)
       end
 
       def build_new_card
-        @new_card = @column.cards.new(card_params)
+        @new_card = column_or_board.cards.new(card_params)
       end
 
       def build_new_comment

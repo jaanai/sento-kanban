@@ -4,3 +4,4 @@ en:
       new_board_created: created this board
       new_column_created: 'added %{name} to this board'
       new_card_created: 'added <a href="%{card_id}">%{card_title}</a> to %{column_name}'
+      card_archived: 'archived <a href="%{card_id}">%{card_title}</a>'

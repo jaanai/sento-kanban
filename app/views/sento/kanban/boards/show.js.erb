@@ -1,9 +1,7 @@
 // Page content
 $('#board-content').html('<%= j render(partial: "board_columns") %>');
 
-// Scrollbars
-$('.sento-kanban').perfectScrollbar();
-$('.sento-kanban-column-body').perfectScrollbar();
+applyPerfectScrollbar();
 
 // Drag'n drop
 dragula($('.sento-kanban-cards').toArray(), {

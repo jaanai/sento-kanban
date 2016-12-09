@@ -3,6 +3,6 @@
     .sento-kanban-column-header
       = render partial: 'sento/kanban/columns/column_header', locals: { board: @board, column: column }
 
-    .sento-kanban-column-body
+    .sento-kanban-column-body data-behavior="scrollable"
       .sento-kanban-cards data-column-id="#{column.id}"
         = render partial: 'sento/kanban/columns/card_list', locals: { board: @board, column: column }

@@ -44,7 +44,12 @@ module Sento
       # PATCH/PUT /boards/1/columns/1/cards/1
       # PATCH/PUT /boards/1/cards/1
       def update
-        build_flash_message(:error) unless @card.update(card_params)
+        previous_column = @card.column.dup
+        if @card.update(card_params)
+          create_activity_card_moved_from(previous_column) if @card.moved?
+        else
+          build_flash_message(:error)
+        end
         render :update
       end
 
@@ -108,6 +113,13 @@ module Sento
 
         params.require(:card).permit(:title, :description, :card_order_position,
                                      :column_id)
+      end
+
+      def create_activity_card_moved_from(previous_column)
+        CreateCardMovedActivity.call(board: @board, card: @card,
+                                     previous_column: previous_column,
+                                     new_column: @card.column,
+                                     user: current_user)
       end
 
       def i18n_resource_name

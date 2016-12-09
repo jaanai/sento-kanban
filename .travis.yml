@@ -1,0 +1,9 @@
+# Use Ubuntu 'trusty' distribution
+sudo: required
+dist: trusty
+
+install: echo 'Nothing to install, we are using Docker :)'
+
+script:
+  - docker-compose run web bundle exec rake db:drop db:create db:setup RAILS_ENV=test
+  - docker-compose run web bundle exec rake RAILS_ENV=test

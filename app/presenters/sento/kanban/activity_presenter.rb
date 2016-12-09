@@ -1,7 +1,7 @@
 module Sento
   module Kanban
     class ActivityPresenter < BasePresenter
-      include UserAvatarPresenter
+      include Sento::Kanban::UserAvatarPresenter
 
       def icon_url
         model_avatar_or_fallback(@model.author)

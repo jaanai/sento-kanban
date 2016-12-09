@@ -13,7 +13,13 @@ module Sento
 
       # POST /boards/1/cards/1/comments
       def create
-        build_flash_message(:error) unless @new_comment.save
+        if @new_comment.save
+          CreateNewCommentCreatedActivity.call(board: @board, card: @card,
+                                               comment: @new_comment,
+                                               user: current_user)
+        else
+          build_flash_message(:error)
+        end
         render :create
       end
 

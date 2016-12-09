@@ -6,7 +6,7 @@
     br
     p= @card.description
 - else
-  = link_to edit_board_column_card_path(@board, @column, @card), remote: true do
+  = link_to edit_board_card_path(@board, @card), remote: true do
     .media
       .media-left
         = octicon 'note', height: 23

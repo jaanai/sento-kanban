@@ -2,11 +2,11 @@
   .ml-2
     span= t('.description')
     '
-    = link_to t('.edit'), edit_board_card_path(@board, @card), remote: true
+    = link_to t('.edit'), edit_card_path(@card), remote: true
     br
     p= @card.description
 - else
-  = link_to edit_board_card_path(@board, @card), remote: true do
+  = link_to edit_card_path(@card), remote: true do
     .media
       .media-left
         = octicon 'note', height: 23

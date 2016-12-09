@@ -17,6 +17,7 @@ module Sento
 
       # GET /boards/1/columns/1/cards/1
       # GET /boards/1/cards/1
+      # GET /cards/1
       def show
         respond_modal_with @card
       end
@@ -27,6 +28,7 @@ module Sento
 
       # GET /boards/1/columns/1/cards/1/edit
       # GET /boards/1/cards/1/edit
+      # GET /cards/1/edit
       def edit; end
 
       # POST /boards/1/columns/1/cards
@@ -43,6 +45,7 @@ module Sento
 
       # PATCH/PUT /boards/1/columns/1/cards/1
       # PATCH/PUT /boards/1/cards/1
+      # PATCH/PUT /cards/1
       def update
         previous_column = @card.column.dup
         if @card.update(card_params)
@@ -55,6 +58,7 @@ module Sento
 
       # DELETE /boards/1/columns/1/cards/1
       # DELETE /boards/1/cards/1
+      # DELETE /cards/1
       def destroy
         @card.destroy
         build_flash_message(:success)
@@ -62,6 +66,7 @@ module Sento
       end
 
       # PATCH /boards/1/cards/1/archive
+      # PATCH /cards/1/archive
       def archive
         @card.archive
         CreateCardArchivedActivity.call(board: @board, card: @card,
@@ -72,6 +77,8 @@ module Sento
       private
 
       def fetches_current_board
+        return unless params.key?(:board_id)
+
         @board = current_user.boards.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
@@ -87,20 +94,20 @@ module Sento
         redirect_to board_url(@board)
       end
 
-      def column_or_board
-        @column || @board
+      def cards_source
+        @column || @board || current_user
       end
 
       # Use callbacks to share common setup or constraints between actions.
       def set_card
-        @card = column_or_board.cards.find(params[:id])
+        @card = cards_source.cards.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, card: :not_found)
         redirect_to board_url(@board)
       end
 
       def build_new_card
-        @new_card = column_or_board.cards.new(card_params)
+        @new_card = cards_source.cards.new(card_params)
       end
 
       def build_new_comment

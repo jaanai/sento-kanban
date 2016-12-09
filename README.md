@@ -27,17 +27,11 @@ Rails.application.routes.draw do
 end
 ```
 
-You also need to define a `User` class which should look like the following:
+You also need to add the following mixin in your `User` class:
 
 ```ruby
 class User < ApplicationRecord
-  # ~~~ Associations ~~~
-  has_many :boards, through: :board_links
-  has_many :board_links
-
-  # ~~~ Validations ~~~
-  validates :email, :firstname, :lastname, presence: true
-  validates :email, uniqueness: true
+  include Sento::Kanban::User
 
   # Your code here ...
 end

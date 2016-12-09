@@ -19,11 +19,21 @@ module Sento
       end
 
       def description
-        I18n.t(@model.i18n_key, @model.i18n_values)
+        I18n.t(@model.i18n_key, computed_i18n_values)
       end
 
       def timestamp
         I18n.l(@model.created_at, format: :long)
+      end
+
+      private
+
+      def computed_i18n_values
+        return @model.i18n_values unless @model.i18n_values.key?(:card_link)
+
+        card_id = @model.i18n_values[:card_id]
+        @model.i18n_values[:card_link] = h.sento_kanban.card_url(card_id)
+        @model.i18n_values
       end
     end
   end

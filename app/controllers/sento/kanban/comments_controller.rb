@@ -39,14 +39,20 @@ module Sento
       private
 
       def fetches_current_board
+        return unless params.key?(:board_id)
+
         @board = current_user.boards.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
         redirect_to root_url
       end
 
+      def cards_source
+        @board || current_user
+      end
+
       def fetches_current_card
-        @card = @board.cards.find(params[:card_id])
+        @card = cards_source.cards.find(params[:card_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, card: :not_found)
         redirect_to board_url(@board)

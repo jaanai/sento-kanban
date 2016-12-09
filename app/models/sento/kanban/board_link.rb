@@ -3,7 +3,7 @@ module Sento
     class BoardLink < ApplicationRecord
       # ~~~ Associations ~~~
       belongs_to :board
-      belongs_to :user
+      belongs_to :user, class_name: '::User'
 
       # ~~~ Validations ~~~
       validates :board_id, :user_id, presence: true

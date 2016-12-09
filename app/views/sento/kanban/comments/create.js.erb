@@ -1,5 +1,5 @@
 <% if @new_comment.errors.empty? %>
-  $('#card-activity').html('<%= j render(partial: "sento/kanban/shared/activities", locals: { object: @card }) %>');
+  $('#card-activities').html('<%= j render(partial: "sento/kanban/shared/activities", locals: { object: @card }) %>');
   $('#comment_body').val('');
 <% else %>
   <% object_class_name = @new_comment.class.name.demodulize.underscore %>

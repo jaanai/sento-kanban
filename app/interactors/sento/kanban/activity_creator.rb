@@ -4,7 +4,7 @@ module Sento
       extend ActiveSupport::Concern
 
       def create_activity_from(context, key, values)
-        board = context.board
+        board = context.board || context.card.board
         column = context.column
         card = context.card
         author = context.user

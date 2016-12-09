@@ -1,4 +1,4 @@
-= simple_form_for @card, url: board_card_path(@board, @card), method: :patch, remote: true, authenticity_token: true, html: { class: 'form-horizontal' } do |f|
+= simple_form_for @card, method: :patch, remote: true, authenticity_token: true, html: { class: 'form-horizontal' } do |f|
   = f.input :description, label: false, input_html: { class: 'ml-2' }
   .form-group
     = f.submit t('sento.kanban.buttons.save'), class: 'btn btn-success ml-2 mb-1'

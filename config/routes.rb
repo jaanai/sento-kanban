@@ -4,13 +4,13 @@ Sento::Kanban::Engine.routes.draw do
       member do
         get :delete
       end
-      resources :cards
+      resources :cards, only: [:new, :create]
     end
-    resources :cards do
-      resources :comments
-      member do
-        patch :archive
-      end
+  end
+  resources :cards, except: [:index, :new, :create] do
+    resources :comments
+    member do
+      patch :archive
     end
   end
 

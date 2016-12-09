@@ -9,13 +9,11 @@ $('.sento-kanban-column-body').perfectScrollbar();
 dragula($('.sento-kanban-cards').toArray(), {
   copySortSource: true
 }).on('drop', function(element, target, source) {
-  var boardId = $('#board-content').data('board-id'),
-      targetColumnId = $(target).data('column-id'),
-      sourceColumnId = $(source).data('column-id'),
+  var targetColumnId = $(target).data('column-id'),
       cardPosition = $(target).find('a.card-action-link').index($(element));
 
   $.ajax({
-    url: '/boards/' + boardId + '/columns/' + sourceColumnId + '/cards/' + $(element).data('card-id'),
+    url: document.URL + '/cards/' + $(element).data('card-id'),
     method: 'PATCH',
     data: { card: { card_order_position : cardPosition, column_id: targetColumnId } }
   });

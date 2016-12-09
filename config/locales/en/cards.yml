@@ -2,6 +2,7 @@ en:
   sento:
     kanban:
       cards:
+        page_title: '%{card_name} on %{board_name} | Sento kanban'
         show:
           comment_section_title: Add comment
           activity_section_title: Activity

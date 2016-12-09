@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Sento::Kanban::Engine => "/sento-kanban"
+  mount Sento::Kanban::Engine => '/'
 end

@@ -6,6 +6,7 @@ Sento::Kanban::Engine.routes.draw do
       end
       resources :cards, only: [:new, :create]
     end
+    resources :cards, only: :update
   end
   resources :cards, except: [:index, :new, :create] do
     resources :comments

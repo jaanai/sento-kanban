@@ -47,7 +47,7 @@ module Sento
 
       def build_using_username_from(user, options)
         return user.username unless options[:initials]
-        user.username.first_and_last
+        user.username[0..1]
       end
 
       def build_using_email_from(user, options)

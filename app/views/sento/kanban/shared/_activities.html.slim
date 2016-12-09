@@ -1,4 +1,4 @@
-- object.activities.order(created_at: :desc).each.with_index do |activity, index|
+- object.activities.includes(:author).order(created_at: :desc).each.with_index do |activity, index|
   - unless index.zero?
     hr.mt-0
   - present(activity) do |presented_activity|

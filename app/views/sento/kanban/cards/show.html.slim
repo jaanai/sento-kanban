@@ -10,7 +10,7 @@
             p
               | in list
               '
-              = link_to @column.name, '#'
+              = link_to @card.column.name, '#'
     .row
       .col-xs-6.col-sm-9
         .row
@@ -51,4 +51,4 @@
 
       .col-xs-6.col-sm-3
         = link_to t('sento.kanban.buttons.archive'), archive_board_card_path(@board, @card), method: :patch, class: 'btn btn-warning btn-block', remote: true
-        = link_to t('sento.kanban.buttons.delete', name: t('sento.kanban.card')), board_column_card_path(@board, @column, @card), method: :delete, class: 'btn btn-danger btn-block'
+        = link_to t('sento.kanban.buttons.delete', name: t('sento.kanban.card')), board_card_path(@board, @card), method: :delete, class: 'btn btn-danger btn-block'

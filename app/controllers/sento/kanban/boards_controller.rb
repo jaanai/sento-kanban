@@ -5,6 +5,7 @@ module Sento
     class BoardsController < ApplicationController
       before_action :set_board, only: [:show, :edit, :update, :destroy]
       before_action :fetches_all_boards, only: :index
+      before_action :initialize_opening_card_if_needed, only: :show
 
       respond_to :html, :json
 
@@ -76,6 +77,20 @@ module Sento
 
       def kanban_source
         Sento::Kanban.using_devise ? current_user.boards : Sento::Kanban::Board
+      end
+
+      #
+      # In the case the user uses a card direct link, the application has
+      # redirected him to this BoardsController and we will open the card.
+      # This method sets the @open_card variable (which will trigger the click
+      # on the card), and removes the `:open_card` from the user's session.
+      #
+      def initialize_opening_card_if_needed
+        return if request.format.html?
+        return unless session[:open_card]
+
+        @open_card = session[:open_card]
+        session.delete(:open_card)
       end
 
       def i18n_resource_name

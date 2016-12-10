@@ -13,3 +13,7 @@ $('*[data-behavior="open-floating-menu"]').on('click', function() {
 $('*[data-behavior="close-floating-menu"]').on('click', function() {
   $('.floating-menu').removeClass('show');
 });
+
+<% if @open_card %>
+  $('.sento-kanban-cards a.card-action-link[data-card-id="<%= @open_card %>"]').trigger('click');
+<% end %>

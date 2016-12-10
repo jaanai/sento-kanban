@@ -8,6 +8,7 @@ module Sento
       before_action :build_new_card, only: [:new, :create]
       before_action :set_card, only: [:show, :edit_title, :edit_description,
                                       :update, :destroy, :archive]
+      before_action :redirect_to_the_board_with_direct_card_links
       before_action :build_new_comment, only: :show
 
       respond_to :html, :json
@@ -133,6 +134,13 @@ module Sento
                                      previous_column: previous_column,
                                      new_column: @card.column,
                                      user: current_user)
+      end
+
+      def redirect_to_the_board_with_direct_card_links
+        return true unless request.format.html?
+
+        session[:open_card] = @card.id
+        redirect_to board_path(@card.board)
       end
 
       def i18n_resource_name

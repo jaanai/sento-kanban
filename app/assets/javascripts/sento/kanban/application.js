@@ -9,6 +9,7 @@
 //= require unobtrusive_flash_bootstrap
 
 //= require_tree ./boards
+//= require ./apply-dragula
 //= require ./apply-perfect-scrollbar
 
 function loadPageContentAjax() {

@@ -4,6 +4,8 @@
 
   $('form#new_column').before('<%= j render(partial: "column", locals: { column: @new_column }) %>');
   $('form#new_column').remove();
+
+  applyDragula();
 <% else %>
   <% object_class_name = @new_column.class.name.demodulize.underscore %>
   <% @new_column.errors.each do |attribute, message| %>

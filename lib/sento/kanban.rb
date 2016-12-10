@@ -6,6 +6,8 @@ require 'modal-responder-rails'
 require 'pace/rails'
 require 'unobtrusive_flash'
 require 'octicons_helper'
+require 'interactor'
+require 'ranked-model'
 
 module Sento
   module Kanban

@@ -55,8 +55,10 @@ module Sento
       # PATCH/PUT /cards/1
       def update
         previous_column = @card.column.dup
+        previous_title = @card.title.dup
         if @card.update(card_params)
           create_activity_card_moved_from(previous_column) if @card.moved?
+          create_activity_card_renamed_from(previous_title) if @card.renamed?
         else
           build_flash_message(:error)
         end
@@ -134,6 +136,12 @@ module Sento
                                      previous_column: previous_column,
                                      new_column: @card.column,
                                      user: current_user)
+      end
+
+      def create_activity_card_renamed_from(previous_title)
+        CreateCardRenamedActivity.call(board: @board, card: @card,
+                                       previous_title: previous_title,
+                                       user: current_user)
       end
 
       def redirect_to_the_board_with_direct_card_links

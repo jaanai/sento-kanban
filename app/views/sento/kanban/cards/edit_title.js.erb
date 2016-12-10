@@ -9,7 +9,6 @@ $('*[data-behavior="cancel-edit"]').on('click', function() {
 });
 
 $('#mainModal').on('hide.bs.modal', function(event) {
-  console.log('hide.bs.modal ...');
   if (preventModalHide) {
     event.preventDefault();
   }

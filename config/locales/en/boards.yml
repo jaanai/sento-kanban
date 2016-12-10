@@ -2,6 +2,7 @@ en:
   sento:
     kanban:
       boards:
+        page_title: '%{board_name} | Sento kanban'
         index:
           title: Boards
         new:

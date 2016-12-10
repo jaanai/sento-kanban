@@ -56,6 +56,13 @@
           = link_to t('sento.kanban.buttons.archive'), archive_card_path(@card), method: :patch, class: 'btn btn-warning btn-block', remote: true
           = link_to t('sento.kanban.buttons.delete', name: t('sento.kanban.card')), card_path(@card), method: :delete, class: 'btn btn-danger btn-block'
 
-  javascript:
-    window.history.pushState(null, "#{j card.page_title}", "#{card_path(@card)}");
-    document.title = "#{j card.page_title}";
+
+  - present(@card.board) do |presented_board|
+    javascript:
+      window.history.pushState(null, "#{j card.page_title}", "#{card_path(@card)}");
+      document.title = "#{j card.page_title}";
+
+      $('#mainModal').on('hide.bs.modal', function(event) {
+        window.history.pushState(null, "#{j presented_board.page_title}", "#{board_path(@card.board)}");
+        document.title = "#{j presented_board.page_title}";
+      });

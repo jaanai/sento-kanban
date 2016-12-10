@@ -8,8 +8,9 @@ module Sento
           h.image_tag(user.avatar_url)
         else
           initials = generate_intials_from(user)
-          h.render partial: 'sento/kanban/shared/default_avatar',
-                   locals: { initials: initials, title: avatar_title(user) }
+          %(<div class="board-member" title="#{avatar_title(user)}">
+              #{initials}
+            </div>).html_safe
         end
       end
 

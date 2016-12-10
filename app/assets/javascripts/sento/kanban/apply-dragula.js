@@ -11,7 +11,7 @@ function applyDragula() {
         cardPosition = $(target).find('a.card-action-link').index($(element));
 
     $.ajax({
-      url: document.URL + '/cards/' + $(element).data('card-id'),
+      url: $('body').data('mount-path') + '/cards/' + $(element).data('card-id'),
       method: 'PATCH',
       data: { card: { card_order_position : cardPosition, column_id: targetColumnId } }
     });

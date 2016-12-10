@@ -12,7 +12,7 @@ html lang="en"
     = javascript_include_tag "sento/kanban/application", 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body class="#{controller_name} #{action_name}"
+  body class="#{controller_name} #{action_name}" data-mount-path="#{root_path}"
     nav.navbar.navbar-dark.navbar-fixed-top
       button.navbar-toggler.hidden-sm-up type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"
       #exCollapsingNavbar.collapse.navbar-toggleable-xs

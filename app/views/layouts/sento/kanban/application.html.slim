@@ -17,9 +17,19 @@ html lang="en"
       button.navbar-toggler.hidden-sm-up type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"
       #exCollapsingNavbar.collapse.navbar-toggleable-xs
         = link_to 'Navbar', root_url, class: 'navbar-brand'
-        - if @board
-          #board-menu
-            = render partial: 'sento/kanban/boards/menu'
+        #board-menu
+          ul.nav.navbar-nav
+            - if @board
+              li.nav-item.dropdown
+                = link_to '#', class: 'nav-link dropdown-toggle', id: 'boardMenu', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do
+                  span.board-title= @board.title
+                .dropdown-menu aria-labelledby="boardMenu"
+                  = link_to t('sento.kanban.boards.settings'), edit_board_path(@board), class: 'dropdown-item', data: { modal: true }
+            li.nav-item
+              = link_to t('sento.kanban.buttons.menu'), '#', class: 'nav-link hidden-sm-up', data: { behavior: 'open-floating-menu' }
+
+        button.btn.navbtn.float-xs-right.hidden-xs-down type="button" title="#{t('sento.kanban.buttons.menu')}" data-behavior="open-floating-menu"
+          = octicon 'three-bars'
 
     = yield
 

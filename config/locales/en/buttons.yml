@@ -7,4 +7,5 @@ en:
         close: Close
         create: Create
         delete: 'Delete %{name}'
+        menu: Menu
         save: Save

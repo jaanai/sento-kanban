@@ -6,7 +6,17 @@ RUN apt-get update && \
                         nodejs \
                         git \
                         libpq-dev \
+                        libfontconfig \
                         --fix-missing --no-install-recommends
+
+ENV PHANTOMJS_VERSION 2.1.1
+
+# ~~~~ Phantomjs ~~~~
+RUN cd /tmp && \
+    curl -L -O https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
+    tar xjf /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C /tmp && \
+    mv /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin && \
+    rm -rf /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64
 
 ENV INSTALL_PATH /application/lib/sento/kanban/
 RUN mkdir -p $INSTALL_PATH

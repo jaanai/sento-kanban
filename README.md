@@ -37,20 +37,6 @@ class User < ApplicationRecord
 end
 ```
 
-Your `users` table should have the following columns:
-
-```
-  ...
-  t.string :email, null: false, index: true, unique: true
-  t.string :firstname
-  t.string :lastname
-  t.string :avatar
-  ...
-```
-
-_We recommend you to use the [Devise](https://github.com/plataformatec/devise)
-gem_
-
 Then you need to update your database with the migrations from Sento Kanban:
 
 ```

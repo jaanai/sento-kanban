@@ -14,3 +14,20 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'dragula-rails', git: 'https://github.com/Sento/dragula-rails'
+
+group :test do
+  gem 'cucumber-rails', '~> 1.4.5', require: false
+  gem 'pg'
+  gem 'ffaker', '~> 2.3.0'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'shoulda-matchers', '~> 3.1.1'
+  gem 'machinist', '~> 2.0'
+  gem 'database_cleaner', '~> 1.5.3'
+  gem 'capybara', '~> 2.11.0'
+  gem 'capybara-screenshot', '~> 1.0.14'
+  gem 'poltergeist', '~> 1.12.0'
+end
+
+group :development do
+  gem 'rubocop'
+end

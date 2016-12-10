@@ -28,7 +28,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 5.0.0', '>= 5.0.0.1'
   s.add_dependency 'slim-rails', '~> 3.1.1'
   s.add_dependency 'bootstrap', '~> 4.0.0.alpha5'
-  s.add_dependency 'perfect-scrollbar-rails', '~> 0.6.12'
+  # s.add_dependency 'dragula-rails'
+  s.add_dependency 'perfect-scrollbar-rails', '~> 0.6.15'
+  s.add_dependency 'responders', '~> 2.3.0'
   s.add_dependency 'modal-responder-rails', '~> 1.0.3'
   s.add_dependency 'octicons_helper', '~> 3.0.1'
   s.add_dependency 'simple_form', '~> 3.3.1'
@@ -36,11 +38,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'unobtrusive_flash', '~> 3.3.1'
   s.add_dependency 'ranked-model', '~> 0.4.0'
   s.add_dependency 'interactor', '~> 3.1.0'
-
-  s.add_development_dependency 'pg'
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'ffaker', '~> 2.3.0'
-  s.add_development_dependency 'rspec-rails', '~> 3.5'
-  s.add_development_dependency 'shoulda-matchers', '~> 3.1.1'
-  s.add_development_dependency 'machinist', '~> 2.0'
 end

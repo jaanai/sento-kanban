@@ -11,6 +11,7 @@
 //= require_tree ./boards
 //= require ./apply-dragula
 //= require ./apply-perfect-scrollbar
+//= require ./select-first-input
 
 function loadPageContentAjax() {
   $.ajax({ url: document.URL, method: 'GET', dataType: 'script' });

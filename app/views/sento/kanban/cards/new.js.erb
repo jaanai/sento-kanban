@@ -9,12 +9,7 @@ $('form#new_card textarea#card_title').keyup(function(event) {
 // documentation of Bootstrap makes the dropdown no more working)
 $('.dropdown.open').trigger('click');
 
-// Select the first form field automatically
-setTimeout(function() {
-  var firstField = $("form:not(.filter) :input:visible:enabled:first");
-  if (firstField.length > 0)
-    firstField.get(0).focus();
-}, 200);
+selectFirstActiveInput();
 
 $(document).keyup(function(event) {
   if (event.keyCode == 27) { // escape key

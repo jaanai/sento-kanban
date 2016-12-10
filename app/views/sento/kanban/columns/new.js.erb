@@ -2,12 +2,7 @@ var newColumnContainer = $('.sento-kanban-column.new').closest('.sento-kanban-co
 newColumnContainer.before('<%= j render(partial: "new_column") %>');
 newColumnContainer.hide();
 
-// Select the first form field automatically
-setTimeout(function() {
-  var firstField = $("form:not(.filter) :input:visible:enabled:first");
-  if (firstField.length > 0)
-    firstField.get(0).focus();
-}, 200);
+selectFirstActiveInput();
 
 $(document).keyup(function(event) {
   if (event.keyCode == 27) { // escape key

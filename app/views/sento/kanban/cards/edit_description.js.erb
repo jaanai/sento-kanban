@@ -4,12 +4,7 @@ $('*[data-behavior="cancel-edit"]').on('click', function() {
   $('#card-description').html('<%= j render(partial: "card_description_and_link") %>');
 });
 
-// Select the first form field automatically
-setTimeout(function() {
-  var firstField = $("form:not(.filter) :input:visible:enabled:first");
-  if (firstField.length > 0)
-    firstField.get(0).focus();
-}, 200);
+selectFirstActiveInput();
 
 $(document).keyup(function(event) {
   if (event.keyCode == 27) { // escape key

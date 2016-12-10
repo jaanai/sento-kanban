@@ -6,15 +6,22 @@
   .modal-body
     color: #aaa
 
-    a:not(.btn)
-      color: #aaa
-      text-decoration: underline
-      svg
-        fill: #aaa
-      &:hover
-        color: #4e4e4e
+    a
+      &:not(.btn)
+        color: #aaa
+        text-decoration: underline
         svg
-          fill: #4e4e4e
+          fill: #aaa
+        &:hover
+          color: #4e4e4e
+          svg
+            fill: #4e4e4e
+
+    #card-title, #card-description .media
+      &:hover
+        background-color: rgba(255, 255, 255, .6)
+      a.editable
+        text-decoration: none
 
     .media
       .media-left

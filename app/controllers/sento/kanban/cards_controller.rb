@@ -6,7 +6,8 @@ module Sento
       before_action :fetches_current_board
       before_action :fetches_current_column
       before_action :build_new_card, only: [:new, :create]
-      before_action :set_card, only: [:show, :edit, :update, :destroy, :archive]
+      before_action :set_card, only: [:show, :edit_title, :edit_description,
+                                      :update, :destroy, :archive]
       before_action :build_new_comment, only: :show
 
       respond_to :html, :json
@@ -26,10 +27,15 @@ module Sento
       # GET /boards/1/cards/new
       def new; end
 
-      # GET /boards/1/columns/1/cards/1/edit
-      # GET /boards/1/cards/1/edit
-      # GET /cards/1/edit
-      def edit; end
+      # GET /boards/1/columns/1/cards/1/edit/description
+      # GET /boards/1/cards/1/edit/description
+      # GET /cards/1/edit/description
+      def edit_description; end
+
+      # GET /boards/1/columns/1/cards/1/edit/title
+      # GET /boards/1/cards/1/edit/title
+      # GET /cards/1/edit/title
+      def edit_title; end
 
       # POST /boards/1/columns/1/cards
       # POST /boards/1/cards

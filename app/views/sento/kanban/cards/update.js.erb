@@ -1,7 +1,7 @@
 <% if @card.errors.empty? %>
+  $('#card-title').html('<%= link_to edit_title_card_path(@card), class: "editable", remote: true do %><h4 class="modal-title"><%= j @card.title %></h4><% end %>');
   $('#card-description').html('<%= j render(partial: "card_description_and_link") %>');
   $('#card-activities').html('<%= j render(partial: "sento/kanban/shared/activities", locals: { object: @card }) %>');
-  $('#comment_body').val('');
 <% else %>
   <% object_class_name = @card.class.name.demodulize.underscore %>
   <% @card.errors.each do |attribute, message| %>

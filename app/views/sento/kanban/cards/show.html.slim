@@ -7,7 +7,9 @@
             .media-left
               = octicon 'note', height: 35, class: 'icon'
             .media-body
-              h4.modal-title= card.title
+              #card-title
+                = link_to edit_title_card_path(@card), class: 'editable', remote: true do
+                  h4.modal-title= card.title
               p
                 | in list
                 '

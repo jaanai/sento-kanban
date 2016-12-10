@@ -5,6 +5,7 @@ module Sento
     class BoardsController < ApplicationController
       before_action :set_board, only: [:show, :edit, :update, :destroy]
       before_action :fetches_all_boards, only: :index
+
       respond_to :html, :json
 
       # GET /boards
@@ -58,7 +59,7 @@ module Sento
 
       # Use callbacks to share common setup or constraints between actions.
       def set_board
-        @board = current_user.boards.find(params[:id])
+        @board = kanban_source.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
         redirect_to action: :index
@@ -70,7 +71,11 @@ module Sento
       end
 
       def fetches_all_boards
-        @boards = current_user.boards.all
+        @boards = kanban_source.all
+      end
+
+      def kanban_source
+        Sento::Kanban.using_devise ? current_user.boards : Sento::Kanban::Board
       end
 
       def i18n_resource_name

@@ -6,5 +6,3 @@
     = link_to new_board_column_path(@board), remote: true, data: { purpose: 'new-column' } do
       .sento-kanban-column.new.center-block-flex
         p= t('.click_to_create')
-
-= render partial: 'sliding_menu'

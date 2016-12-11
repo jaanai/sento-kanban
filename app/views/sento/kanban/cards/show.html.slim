@@ -50,7 +50,7 @@
           .row
             .col-xs-12
               #card-activities
-                = render partial: 'sento/kanban/shared/activities', locals: { object: @card }
+                = render partial: 'sento/kanban/shared/activities', locals: { object: card }
 
         .col-xs-6.col-sm-3
           = link_to t('sento.kanban.buttons.archive'), archive_card_path(@card), method: :patch, class: 'btn btn-warning btn-block', remote: true

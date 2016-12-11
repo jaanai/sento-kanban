@@ -12,6 +12,7 @@
 //= require ./apply-dragula
 //= require ./apply-perfect-scrollbar
 //= require ./select-first-input
+//= require ./floating-menu
 
 function loadPageContentAjax() {
   $.ajax({ url: document.URL, method: 'GET', dataType: 'script' });
@@ -19,3 +20,8 @@ function loadPageContentAjax() {
 
 // unobtrusive_flash
 UnobtrusiveFlash.flashOptions['timeout'] = 4000;
+
+$(document).on('ready page:load', function () {
+  SentoKanbanFloatingMenu.initialize();
+  applyPerfectScrollbar();
+});

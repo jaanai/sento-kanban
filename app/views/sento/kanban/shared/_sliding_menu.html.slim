@@ -1,0 +1,38 @@
+- present(@board || kanban_source) do |menu_source|
+  .floating-menu
+    .floating-menu-header
+      = octicon 'x', height: 20, class: 'float-xs-right', data: { behavior: 'close-floating-menu' }
+      h2
+        = t('sento.kanban.buttons.menu')
+    hr
+    .floating-menu-body data-behavior="scrollable"
+      .container.mt-1
+        .row
+          .col-xs-12
+            .media
+              .media-left
+                = octicon 'organization', height: 25, class: 'icon'
+              .media-body
+                p.small-title= t('.members')
+        .row
+          .col-xs-12
+            #board-members.mb-1
+              - menu_source.users.each do |user|
+                - present(user) do |presented_user|
+                  = presented_user.avatar_url_or_fallback
+
+        .row
+          .col-xs-12.text-xs-center
+            = link_to t('sento.kanban.buttons.add_member'), new_board_user_path(@board), class: 'btn btn-secondary', remote: true
+
+        .row
+          .col-xs-12
+            .media.mt-1
+              .media-left
+                = octicon 'pulse', height: 30, class: 'icon'
+              .media-body
+                p.small-title= t('.activity_section_title')
+        .row
+          .col-xs-12
+            #activities
+              = render partial: 'sento/kanban/shared/activities', locals: { object: menu_source }

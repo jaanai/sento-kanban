@@ -9,6 +9,10 @@ module Sento
         I18n.t('sento.kanban.cards.page_title', card_name: @model.title,
                                                 board_name: @model.board.title)
       end
+
+      def activities
+        @model.activities.includes(:author).order(created_at: :desc)
+      end
     end
   end
 end

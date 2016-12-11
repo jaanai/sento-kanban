@@ -30,8 +30,12 @@ html lang="en"
 
         button.btn.navbtn.float-xs-right.hidden-xs-down type="button" title="#{t('sento.kanban.buttons.menu')}" data-behavior="open-floating-menu"
           = octicon 'three-bars'
+              button.btn.navbtn.float-xs-right.hidden-xs-down type="button" title="#{t('sento.kanban.buttons.menu')}" data-behavior="open-floating-menu"
+                = octicon 'three-bars'
 
     = yield
+
+    = render partial: 'sento/kanban/shared/sliding_menu'
 
     - if @ask_username
       = render partial: 'sento/kanban/shared/ask_username'

@@ -75,10 +75,6 @@ module Sento
         @boards = kanban_source.all
       end
 
-      def kanban_source
-        Sento::Kanban.using_devise ? current_user.boards : Sento::Kanban::Board
-      end
-
       #
       # In the case the user uses a card direct link, the application has
       # redirected him to this BoardsController and we will open the card.
@@ -89,8 +85,7 @@ module Sento
         return if request.format.html?
         return unless session[:open_card]
 
-        @open_card = session[:open_card]
-        session.delete(:open_card)
+        create_and_assing_open_card
       end
 
       def i18n_resource_name

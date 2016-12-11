@@ -1,0 +1,7 @@
+<% if current_user.errors[:username].blank? %>
+  $('#mainModal').modal('hide');
+  <% if @open_card %>
+    $('.modal-backdrop').remove();
+    $('.sento-kanban-cards a.card-action-link[data-card-id="<%= @open_card %>"]').trigger('click');
+  <% end %>
+<% end %>

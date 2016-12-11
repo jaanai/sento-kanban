@@ -48,6 +48,7 @@ module Sento
 
       def build_using_username_from(user, options)
         return user.username unless options[:initials]
+        return unless user.username
         user.username[0..1]
       end
 

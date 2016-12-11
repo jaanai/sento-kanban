@@ -1,0 +1,7 @@
+en:
+  sento:
+    kanban:
+      users:
+        ask_username:
+          title: Create your username
+          explanation: In order to allow others to find you, mention you, assign you and more, you should create your username now.

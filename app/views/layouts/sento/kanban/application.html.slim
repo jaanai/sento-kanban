@@ -33,4 +33,7 @@ html lang="en"
 
     = yield
 
+    - if @ask_username
+      = render partial: 'sento/kanban/shared/ask_username'
+
     #modal-holder

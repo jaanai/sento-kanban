@@ -17,5 +17,12 @@ Sento::Kanban::Engine.routes.draw do
     end
   end
 
+  resources :users do
+    collection do
+      get 'ask-username', to: 'users#ask_username'
+      get 'check-username', to: 'users#check_username'
+    end
+  end
+
   root to: 'boards#index'
 end

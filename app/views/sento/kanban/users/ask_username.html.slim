@@ -1,0 +1,34 @@
+= simple_form_for current_user, remote: true, authenticity_token: true, html: { class: 'form-horizontal' } do |f|
+  .modal-body
+    h2= t('.title')
+    
+    p.lead= t('.explanation')
+    
+    = f.input :username, input_html: { tabindex: 1 }
+
+  .modal-footer
+    button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('sento.kanban.buttons.close')
+    = f.button :submit, t('sento.kanban.buttons.save'), class: 'btn-primary ml-1'
+
+javascript:
+  $(function() {
+    $('#user_username').keypress(function() {
+      if ($(this).val().length > 2) {
+        $this = $(this);
+
+        $.get("#{check_username_users_path}", {
+          username: $this.val()
+        }).success(function() {
+          $this.removeClass('form-control-danger')
+               .addClass('form-control-success')
+               .closest('.form-group').removeClass('has-danger')
+                                      .addClass('has-success');
+        }).error(function() {
+          $this.removeClass('form-control-success')
+               .addClass('form-control-danger')
+               .closest('.form-group').removeClass('has-success')
+                                      .addClass('has-danger');
+        });
+      }
+    });
+  });

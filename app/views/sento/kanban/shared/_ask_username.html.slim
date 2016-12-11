@@ -1,0 +1,6 @@
+javascript:
+  $(document).on('ready page:load', function() {
+    $.get('#{ask_username_users_path}', function(data) {
+      $('#modal-holder').html(data).find('.modal').modal('show');
+    });
+  });

@@ -1,7 +1,7 @@
 en:
   sento:
     kanban:
-      new_board_created: created this board
+      new_board_created: 'created the board %{board_title}'
       new_column_created: 'added %{name} to this board'
       new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'
       card_archived: 'archived <a href="%{card_link}">%{card_title}</a>'

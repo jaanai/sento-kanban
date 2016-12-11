@@ -6,7 +6,7 @@ module Sento
 
       def call
         key = 'sento.kanban.new_board_created'
-        values = nil
+        values = { board_title: context.board.title }
 
         create_activity_from(context, key, values)
       end

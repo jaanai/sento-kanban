@@ -5,6 +5,7 @@
     p.lead= t('.explanation')
     
     = f.input :username, input_html: { tabindex: 1 }
+    #input-help-text
 
   .modal-footer
     button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"= t('sento.kanban.buttons.close')
@@ -12,23 +13,29 @@
 
 javascript:
   $(function() {
-    $('#user_username').keypress(function() {
+    $('#user_username').keyup(function() {
       if ($(this).val().length > 2) {
         $this = $(this);
+        
+        $('#input-help-text').html('');
 
         $.get("#{check_username_users_path}", {
           username: $this.val()
         }).success(function() {
+          console.log('SUCCESS');
           $this.removeClass('form-control-danger')
                .addClass('form-control-success')
                .closest('.form-group').removeClass('has-danger')
                                       .addClass('has-success');
         }).error(function() {
+          console.log('ERROR');
           $this.removeClass('form-control-success')
                .addClass('form-control-danger')
                .closest('.form-group').removeClass('has-success')
                                       .addClass('has-danger');
         });
+      } else {
+        $('#input-help-text').html("<p class='form-text text-muted'>#{j t('.username_minimum_3_characters')}</p>");
       }
     });
   });

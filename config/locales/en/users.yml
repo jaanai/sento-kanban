@@ -5,3 +5,4 @@ en:
         ask_username:
           title: Create your username
           explanation: In order to allow others to find you, mention you, assign you and more, you should create your username now.
+          username_minimum_3_characters: You need to type at least 3 characters.

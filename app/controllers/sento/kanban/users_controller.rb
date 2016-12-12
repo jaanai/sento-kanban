@@ -18,9 +18,9 @@ module Sento
       end
 
       def check_username
-        status = ::User.exists?(username: params[:user]) ? 200 : 409
+        status = ::User.exists?(username: params[:username]) ? 422 : 200
 
-        head :no_content, status: status
+        render json: {}, status: status
       end
 
       private

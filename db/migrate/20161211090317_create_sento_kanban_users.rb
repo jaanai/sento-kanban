@@ -1,4 +1,4 @@
-class CreateUsers < ActiveRecord::Migration[5.0]
+class CreateSentoKanbanUsers < ActiveRecord::Migration[5.0]
   def change
     if ActiveRecord::Base.connection.table_exists?('users')
       unless column_exists? :users, :username

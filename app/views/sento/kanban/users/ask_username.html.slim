@@ -22,13 +22,11 @@ javascript:
         $.get("#{check_username_users_path}", {
           username: $this.val()
         }).success(function() {
-          console.log('SUCCESS');
           $this.removeClass('form-control-danger')
                .addClass('form-control-success')
                .closest('.form-group').removeClass('has-danger')
                                       .addClass('has-success');
         }).error(function() {
-          console.log('ERROR');
           $this.removeClass('form-control-success')
                .addClass('form-control-danger')
                .closest('.form-group').removeClass('has-success')

@@ -1,5 +1,7 @@
 # Sento Kanban
 
+[![Build Status](https://travis-ci.org/Sento/sento-kanban.svg?branch=master)](https://travis-ci.org/Sento/sento-kanban)
+
 The Sento application stack includes differents components with one of them being
 this Kanban view. Sento tries to free up as much as possible the code in order to
 allows others to use it, avoid reinventing the wheel, and ideally have

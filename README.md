@@ -9,7 +9,7 @@ contributions from the open source community.
 
 Here is screenshot of the actual state:
 
-![sento-kanban](https://cloud.githubusercontent.com/assets/478564/20574970/7c47d15a-b1b7-11e6-82b5-aac7a98594b5.png)
+![sento-kanban](https://cloud.githubusercontent.com/assets/478564/21292782/7ca26ea0-c510-11e6-8daf-09e9f7592c3f.png)
 
 _I'm inspiring from Trello for now, but then I'll deviate ;-)_
 

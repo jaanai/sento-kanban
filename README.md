@@ -61,6 +61,16 @@ Or install it yourself as:
 $ gem install sento-kanban
 ```
 
+## TO DO
+
+ - [ ] Add labels to cards (Issue [#1](https://github.com/Sento/sento-kanban/issues/1))
+ - [ ] Add sub tasks to cards (Issue [#1](https://github.com/Sento/sento-kanban/issues/1))
+ - [ ] Add due date to cards (Issue [#1](https://github.com/Sento/sento-kanban/issues/1))
+ - [ ] Add file upload (Issue [#1](https://github.com/Sento/sento-kanban/issues/1))
+ - [ ] Add real-time kanban update
+ - [ ] Columns drag n drop (Issue [#1](https://github.com/Sento/sento-kanban/issues/4))
+ - [ ] Improve notification style (Issue [#1](https://github.com/Sento/sento-kanban/issues/5))
+
 ## Contributing
 
 1. Search/Open an issue related to your contribution

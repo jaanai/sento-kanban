@@ -68,3 +68,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+# Waiting for ElasticSearch to be ready
+retries = 0
+begin
+  server_version = Searchkick.server_version
+rescue Faraday::ConnectionFailed
+  puts 'Waiting ElasticSearch ...' if retries.zero?
+  sleep 1
+  retries += 1
+  raise 'Timeout on waiting for ElasticSearch' if retries > 10
+  retry
+end

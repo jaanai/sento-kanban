@@ -19,7 +19,14 @@ RSpec.describe Sento::Kanban::Board, type: :model do
   describe 'Associations' do
     it { should have_many(:columns).dependent(:destroy) }
     xit { should have_many(:cards).through(:columns) }
-    it { should have_many(:users).through(:board_links).class_name('::User') }
+    it do
+      should have_many(:users).through(:board_links).class_name('::User')
+        .source(:board_linkable)
+    end
+    it do
+      should have_many(:invitations).through(:board_links)
+        .source(:board_linkable)
+    end
     it { should have_many(:board_links).dependent(:destroy) }
     it { should have_many(:activities).dependent(:destroy) }
   end

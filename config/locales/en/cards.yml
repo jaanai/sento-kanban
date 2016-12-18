@@ -3,6 +3,7 @@ en:
     kanban:
       cards:
         page_title: '%{card_name} on %{board_name} | Sento kanban'
+        where_is_the_card: 'in <strong>%{column_name}</strong> on <strong>%{board_title}</strong>'
         show:
           comment_section_title: Add comment
           activity_section_title: Activity

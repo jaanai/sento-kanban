@@ -3,7 +3,14 @@ module Sento
     class CollectionProxyPresenter < BasePresenter
       def users
         ::User.joins(:board_links)
-              .where(sento_kanban_board_links: { board_id: @model }).uniq
+              .where(sento_kanban_board_links: { board_id: @model }).distinct
+      end
+
+      def invitations
+        Sento::Kanban::Invitation.joins(:board_links)
+                                 .where(sento_kanban_board_links: {
+                                          board_id: @model
+                                        }).distinct
       end
 
       def activities

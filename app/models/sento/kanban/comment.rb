@@ -15,6 +15,7 @@ module Sento
       # ~~~ scopes ~~~
 
       # ~~~ Special behaviors ~~~
+      searchkick text_middle: [:body], autocomplete: [:body]
 
       # ~~~ Custom instance methods ~~~
 

@@ -1,3 +1,5 @@
+require_dependency 'sento/kanban/concerns/service_downtime_handling_for_elasticsearch'
+
 module Sento
   module Kanban
     class ApplicationController < ActionController::Base
@@ -7,6 +9,8 @@ module Sento
       before_action :ensure_user_has_a_username
 
       after_action :prepare_unobtrusive_flash
+
+      include Sento::Kanban::ServiceDowntimeHandlingForElasticSearch
 
       def kanban_source
         Sento::Kanban.using_devise ? current_user.boards : Sento::Kanban::Board

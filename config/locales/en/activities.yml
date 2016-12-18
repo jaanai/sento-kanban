@@ -1,10 +1,12 @@
 en:
   sento:
     kanban:
-      new_board_created: 'created the board %{board_title}'
-      new_column_created: 'added %{name} to this board'
-      new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'
       card_archived: 'archived <a href="%{card_link}">%{card_title}</a>'
-      new_comment_created: 'on <a href="%{card_link}">%{card_title}</a><div class="card">%{comment}</div>'
       card_moved: 'moved <a href="%{card_link}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'
       card_renamed: 'renamed <a href="%{card_link}">%{card_title}</a> from <i>%{previous_card_title}</i>'
+      invited_unconfirmed_member: 'invited an unconfirmed member to %{board_title}'
+      new_board_created: 'created the board %{board_title}'
+      new_board_member: 'added %{member_username} to %{board_title}'
+      new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'
+      new_column_created: 'added %{name} to this board'
+      new_comment_created: 'on <a href="%{card_link}">%{card_title}</a><div class="card">%{comment}</div>'

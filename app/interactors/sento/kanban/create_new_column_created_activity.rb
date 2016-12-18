@@ -3,6 +3,7 @@ module Sento
     class CreateNewColumnCreatedActivity
       include Interactor
       include ActivityCreator
+      include Sento::Kanban::InteractorTimer
 
       def call
         key = 'sento.kanban.new_column_created'

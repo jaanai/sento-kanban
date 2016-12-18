@@ -1,0 +1,9 @@
+var container = $('#global-search .autocomplete .dropdown-menu'),
+    containerInnerHtml = container.html();
+
+container.html('<%= j render(partial: "sento/kanban/users/ask_username_before_invite") %>');
+
+container.find('.back').on('click', function() {
+  container.html(containerInnerHtml);
+  containerInnerHtml = null;
+});

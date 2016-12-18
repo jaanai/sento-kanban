@@ -29,5 +29,12 @@ end
 
 Sento::Kanban::BoardLink.blueprint do
   board { Sento::Kanban::Board.make! }
-  user { User.make! }
+  board_linkable { User.make! }
+end
+
+Sento::Kanban::Invitation.blueprint do
+  email { FFaker::Internet.email }
+  username { FFaker::Internet.user_name }
+  board { Sento::Kanban::Board.make! }
+  inviter { User.make! }
 end

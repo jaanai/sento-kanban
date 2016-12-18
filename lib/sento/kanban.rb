@@ -8,6 +8,8 @@ require 'unobtrusive_flash'
 require 'octicons_helper'
 require 'interactor'
 require 'ranked-model'
+require 'searchkick'
+require 'gemoji'
 
 module Sento
   module Kanban

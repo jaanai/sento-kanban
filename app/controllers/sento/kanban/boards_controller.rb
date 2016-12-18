@@ -6,6 +6,8 @@ module Sento
       before_action :set_board, only: [:show, :edit, :update, :destroy]
       before_action :fetches_all_boards, only: :index
       before_action :initialize_opening_card_if_needed, only: :show
+      before_action :update_current_user_current_board
+      before_action :detect_elasticsearch_service_downtime
 
       respond_to :html, :json
 
@@ -35,7 +37,7 @@ module Sento
       def create
         @board = Board.new(board_params)
         if @board.save
-          InviteAUserInABoard.call(user: current_user, board: @board)
+          CreateNewBoard.call(author: current_user, board: @board)
           fetches_all_boards
         else
           build_flash_message(:error)
@@ -86,6 +88,21 @@ module Sento
         return unless session[:open_card]
 
         create_and_assing_open_card
+      end
+
+      def update_current_user_current_board
+        current_user.update(current_board: @board)
+      end
+
+      def detect_elasticsearch_service_downtime
+        Searchkick.server_version
+
+        @elasticsearch_down = nil
+      rescue Faraday::ConnectionFailed => exception
+        Rails.logger.error 'ElasticSearch connection error: ' \
+                           "#{exception.message}"
+        @elasticsearch_down = true
+        nil
       end
 
       def i18n_resource_name

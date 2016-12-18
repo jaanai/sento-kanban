@@ -3,6 +3,7 @@ module Sento
     class CreateNewCommentCreatedActivity
       include Interactor
       include ActivityCreator
+      include Sento::Kanban::InteractorTimer
 
       def call
         key = 'sento.kanban.new_comment_created'

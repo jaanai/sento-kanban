@@ -6,3 +6,6 @@ en:
           title: Create your username
           explanation: In order to allow others to find you, mention you, assign you and more, you should create your username now.
           username_minimum_3_characters: You need to type at least 3 characters.
+        ask_username_before_invite:
+          description: "We don’t know that person. Add a name and click “Send” and we’ll add a virtual member and send them an invite email. They'll automatically receive access to the board once they sign up and confirm their email address."
+          fill_in_username: Enter a username

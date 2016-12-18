@@ -1,0 +1,47 @@
+- if menu_source.invitations.empty?
+  .row
+    .col-xs-12
+      .media
+        .media-left
+          = octicon 'organization', height: 25, class: 'icon'
+        .media-body
+          p.small-title= t('.members')
+  .row
+    .col-xs-12
+      #board-members.mb-1
+        - menu_source.users.each do |user|
+          - present(user) do |presented_user|
+            = link_to user_path(user) do
+              = presented_user.avatar_url_or_fallback
+- else
+  .row
+    .col-xs-6
+      .media
+        .media-left
+          = octicon 'organization', height: 25, class: 'icon'
+        .media-body
+          p.small-title= t('.members')
+    .col-xs-6
+      .media
+        .media-left
+          = octicon 'organization', height: 25, class: 'icon'
+        .media-body
+          p.small-title= t('.invited_members')
+  .row
+    .col-xs-6
+      #board-members.mb-1
+        - menu_source.users.each do |user|
+          - present(user) do |presented_user|
+            = link_to user_path(user) do
+              = presented_user.avatar_url_or_fallback
+    .col-xs-6
+      #board-guests.mb-1
+        - menu_source.invitations.each do |invitation|
+          - present(invitation) do |presented_invitation|
+            = link_to invitation_path(invitation) do
+              = presented_invitation.avatar_url_or_fallback
+
+- if @board
+  .row
+    .col-xs-12.text-xs-center
+      = link_to t('sento.kanban.buttons.add_member'), new_board_user_path(@board), class: 'btn btn-secondary', remote: true

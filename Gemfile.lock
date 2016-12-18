@@ -10,6 +10,7 @@ PATH
   specs:
     sento-kanban (0.1.0)
       bootstrap (~> 4.0.0.alpha5)
+      gemoji (~> 2.1.0)
       interactor (~> 3.1.0)
       modal-responder-rails (~> 1.0.3)
       octicons_helper (~> 3.0.1)
@@ -18,6 +19,7 @@ PATH
       rails (~> 5.0.0, >= 5.0.0.1)
       ranked-model (~> 0.4.0)
       responders (~> 2.3.0)
+      searchkick (~> 1.4.0)
       simple_form (~> 3.3.1)
       slim-rails (~> 3.1.1)
       unobtrusive_flash (~> 3.3.1)
@@ -66,7 +68,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     ast (2.3.0)
-    autoprefixer-rails (6.5.3.1)
+    autoprefixer-rails (6.5.4)
       execjs
     bootstrap (4.0.0.alpha5)
       autoprefixer-rails (>= 6.0.3)
@@ -103,12 +105,24 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     diff-lcs (1.2.5)
+    elasticsearch (5.0.0)
+      elasticsearch-api (= 5.0.0)
+      elasticsearch-transport (= 5.0.0)
+    elasticsearch-api (5.0.0)
+      multi_json
+    elasticsearch-transport (5.0.0)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.10.0)
+      multipart-post (>= 1.2, < 3)
     ffaker (2.3.0)
+    gemoji (2.1.0)
     gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hashie (3.4.6)
     i18n (0.7.0)
     interactor (3.1.0)
     jquery-rails (4.2.1)
@@ -133,6 +147,7 @@ GEM
       responders (~> 2.3.0)
     multi_json (1.12.1)
     multi_test (0.1.2)
+    multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -211,6 +226,10 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     sass (3.4.22)
+    searchkick (1.4.1)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple_form (3.3.1)

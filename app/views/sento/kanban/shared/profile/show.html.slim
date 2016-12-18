@@ -1,0 +1,13 @@
+- present(@user || @invitation) do |member|
+  #profile.mt-2
+    .container
+      .row
+        .col-xs-6.offset-xs-3
+          .media
+            .media-left
+              = member.avatar_url_or_fallback
+            .media-body
+              h1.media-heading
+                = member.fullname_or_username
+                '
+                small= "@#{member.username.downcase}"

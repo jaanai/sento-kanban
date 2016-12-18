@@ -43,7 +43,8 @@ module Sento
       def create
         if @new_card.save
           CreateNewCardCreatedActivity.call(board: @board, column: @column,
-                                            card: @new_card, user: current_user)
+                                            card: @new_card,
+                                            author: current_user)
         else
           build_flash_message(:error)
         end
@@ -79,7 +80,7 @@ module Sento
       def archive
         @card.archive
         CreateCardArchivedActivity.call(board: @board, card: @card,
-                                        user: current_user)
+                                        author: current_user)
         render :archive
       end
 
@@ -135,13 +136,13 @@ module Sento
         CreateCardMovedActivity.call(board: @board, card: @card,
                                      previous_column: previous_column,
                                      new_column: @card.column,
-                                     user: current_user)
+                                     author: current_user)
       end
 
       def create_activity_card_renamed_from(previous_title)
         CreateCardRenamedActivity.call(board: @board, card: @card,
                                        previous_title: previous_title,
-                                       user: current_user)
+                                       author: current_user)
       end
 
       def redirect_to_the_board_with_direct_card_links

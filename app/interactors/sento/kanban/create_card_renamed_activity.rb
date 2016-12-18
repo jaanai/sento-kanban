@@ -3,6 +3,7 @@ module Sento
     class CreateCardRenamedActivity
       include Interactor
       include ActivityCreator
+      include Sento::Kanban::InteractorTimer
 
       def call
         key = 'sento.kanban.card_renamed'

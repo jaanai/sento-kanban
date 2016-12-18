@@ -7,7 +7,7 @@ module Sento
         board = context.board || context.card.board
         column = context.column
         card = context.card
-        author = context.user
+        author = context.author
 
         Activity.create!(board: board, column: column, card: card,
                          author: author, i18n_key: key, i18n_values: values)

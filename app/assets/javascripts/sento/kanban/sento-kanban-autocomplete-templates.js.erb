@@ -1,0 +1,87 @@
+var SentoKanbanAutocompleteTemplates = {
+  buildHeader : function(name) {
+    return ['<div class="dropdown-item dropdown-item-header">',
+              '<h5>' + name + '</h5>',
+            '</div>'].join('\n');
+  },
+
+  buildMemberResultFrom : function(data) {
+    if (data.action_invite == true) {
+      return SentoKanbanAutocompleteTemplates.buildInviteActionFrom(data);
+    } else {
+      return SentoKanbanAutocompleteTemplates.buildAddActionFrom(data);
+    }
+  },
+
+  buildCardResultFrom : function(data) {
+    return ['<div class="dropdown-item invitation">',
+              '<div class="row">',
+                '<div class="col-xs-5">',
+                  '<a href="' + data.card_path + '">',
+                    '<div class="card card-block">',
+                      '<p class="card-title">' + data.title + '</h4>',
+                    '</div>',
+                  '</a>',
+                '</div>',
+                '<div class="col-xs-7">',
+                  '<p class="font-weight-bold">' + data.title + '</p>',
+                  '<p class="text-muted"><small>' + data.where_is_the_card + '</small></p>',
+                '</div>',
+              '</div>',
+            '</div>'].join('\n');
+  },
+
+  buildInviteActionFrom: function(data) {
+    return ['<div class="dropdown-item invitation">',
+              '<div class="row">',
+                '<div class="col-xs-9 col-sm-7 col-md-8 col-lg-10">',
+                  '<div class="media">',
+                    '<div class="media-left">',
+                      '<%= ActionController::Base.helpers.octicon("mail", height: 30) %>',
+                    '</div>',
+                    '<div class="media-body">',
+                      '<div class="float-xs-left">',
+                        '<h4 class="media-heading mb-0">' + data.email + '</h4>',
+                        '<p class="text-muted"><small>' + data.description + '</small></p>',
+                      '</div>',
+                    '</div>',
+                  '</div>',
+                '</div>',
+                '<div class="col-xs-3 col-sm-5 col-md-4 col-lg-2">',
+                  '<a href="' + data.invite_url + '" class="btn btn-outline-primary float-xs-right" data-remote="true">Invite</a>',
+                '</div>',
+              '</div>',
+            '</div>'].join('\n');
+  },
+
+  buildAddActionFrom: function(data) {
+    return ['<div class="dropdown-item">',
+              '<div class="row">',
+                '<div class="col-xs-9 col-sm-7 col-md-8 col-lg-10">',
+                  '<div class="media">',
+                    '<div class="media-left">',
+                      data.avatar_url_or_fallback,
+                    '</div>',
+                    '<div class="media-body">',
+                      '<a href="' + data.profile_path + '" class="float-xs-left">',
+                        '<h4 class="media-heading mb-0">' + data.fullname_or_username + '</h4>',
+                        '<p class="text-muted"><small>' + data.username + '</small></p>',
+                      '</a>',
+                    '</div>',
+                  '</div>',
+                '</div>',
+                '<div class="col-xs-3 col-sm-5 col-md-4 col-lg-2">',
+                  SentoKanbanAutocompleteTemplates.youOrActionButton(data),
+                '</div>',
+              '</div>',
+            '</div>'].join('\n');
+  },
+
+  youOrActionButton : function(data) {
+    if (data.current_user == true) {
+      return '<span class="tag tag-default float-xs-right">You</span>';
+    } else {
+      return data.add_member_to_board_button;
+    }
+  }
+}

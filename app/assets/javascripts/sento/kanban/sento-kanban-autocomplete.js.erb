@@ -1,0 +1,187 @@
+function SentoKanbanAutocomplete(options) {
+  // Variable initialisation
+  var _autocompleteField = $('#global-search input[data-behavior="search"]');
+  var _autocompleteParent = _autocompleteField.parent();
+  var _autocomplete = null;
+  var _autocompleteContainer = null;
+  var _helpHtml = $('#autocomplete-help').html();
+  var _nothingFoundHtml = $('#autocomplete-nothing-found').html();
+
+  // Options default values
+  var o = options || {};
+  if (o.emptyFieldOnReady === void 0) { o.emptyFieldOnReady = true; }
+  if (o.minLength === void 0) { o.minLength = 0; }
+
+  // Apply options
+  if (o.emptyFieldOnReady) { clearAutocompleteField(); }
+
+  // Hook to an existing autocomplete (from a previous instance)
+  // and clean it.
+  tryToHookOnAnExistingAutocomplete();
+  resetAndHideAutocomplete();
+
+  // Hook on the input text field, call remote server and build autocomplete
+  start();
+
+  // Custom instance methods
+  function tryToHookOnAnExistingAutocomplete() {
+    refreshAutocomplete();
+    refreshAutocompleteContainer();
+  }
+
+  function clearAutocompleteField() {
+    _autocompleteField.val('');
+  }
+
+  function cleanAutocompleteBeforeAppend() {
+    _autocompleteParent.find('.autocomplete').remove();
+    _autocomplete = null;
+  }
+
+  function hideAutocomplete() {
+    _autocomplete.removeClass('open');
+  }
+
+  function showAutocomplete() {
+    _autocomplete.addClass('open');
+  }
+
+  function refreshAutocomplete() {
+    _autocomplete = _autocompleteParent.find('.autocomplete.dropdown');
+  }
+
+  function appendAutocompleteContainerTo(target) {
+    target.append('<div class="autocomplete dropdown">' +
+                    '<div class="dropdown-menu"></div>' +
+                  '</div>');
+    refreshAutocomplete();
+    refreshAutocompleteContainer();
+    showAutocomplete();
+  }
+
+  function refreshAutocompleteContainer() {
+    _autocompleteContainer = _autocompleteParent.find('.autocomplete.dropdown .dropdown-menu');
+  }
+
+  function appendAutocompleteHeaderTo(target) {
+    target.append('<div class="dropdown-menu-header"></div>');
+  }
+
+  function buildAutocompleteIfNeeded() {
+    if ($('.autocomplete.dropdown.open').length == 0) {
+      cleanAutocompleteBeforeAppend();
+      appendAutocompleteContainerTo(_autocompleteParent);
+      refreshAutocompleteContainer();
+      appendAutocompleteHeaderTo(_autocompleteContainer);
+    }
+  }
+
+  function resetAutocompleteContainer() {
+    _autocompleteContainer.html('');
+  }
+
+  function autocompleteContainerAvailable() {
+    return _autocompleteContainer !== null;
+  }
+
+  function resetAndHideAutocomplete() {
+    if (autocompleteContainerAvailable()) {
+      resetAutocompleteContainer();
+      hideAutocomplete();
+      hideClearIcon();
+    }
+  }
+
+  function appendToAutocomplete(content) {
+    _autocompleteContainer.append(content);
+  }
+
+  function showNothingFound() {
+    _autocompleteContainer.html(_nothingFoundHtml);
+  }
+
+  function showClearIcon() {
+    _autocompleteParent.find('.clear-search').addClass('show');
+  }
+
+  function hideClearIcon() {
+    _autocompleteParent.find('.clear-search').removeClass('show');
+  }
+
+  function hookClearFieldIcon() {
+    _autocompleteParent.find('.clear-search').on('click', function() {
+      clearAutocompleteField();
+      resetAndHideAutocomplete();
+      selectFirstActiveInput();
+    });
+  }
+
+  function hookAutocompleteFieldOnSearch() {
+    _autocompleteField.keyup(function() {
+      if ($(this).val().length > (o.minLength - 1)) {
+        var self = $(this);
+
+        showClearIcon();
+
+        $.get({
+          url: '<%= Sento::Kanban::Engine.routes.url_helpers.autocomplete_search_path(query: "%QUERY") %>',
+          beforeSend: function(jqXHR, settings) {
+            // Injects the query to the URL
+            settings.url = settings.url.replace(/%25QUERY/, self.val());
+          }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          console.log('ERROR: textStatus: "' + textStatus + '"');
+        }).done(function(data, textStatus, jqXHR) {
+          buildAutocompleteIfNeeded();
+          resetAutocompleteContainer();
+
+          if (data.cards.length > 0) {
+            appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.cards_header_name));
+            $.each(data.cards, function(index, element) {
+              appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildCardResultFrom(element));
+            });
+          }
+
+          if (data.members.length > 0) {
+            appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.members_header_name));
+            $.each(data.members, function(index, element) {
+              appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildMemberResultFrom(element));
+            });
+          }
+
+          if (data.cards.length == 0 && data.members.length == 0) {
+            showNothingFound();
+          }
+        });
+      } else {
+        resetAndHideAutocomplete();
+        hideClearIcon();
+      }
+    });
+  }
+
+  function showAutocompleteHelp() {
+    _autocompleteContainer.html(_helpHtml);
+  }
+
+  function hookAutocompleteFieldOnFocus() {
+    _autocompleteField.on('focus', function() {
+      buildAutocompleteIfNeeded();
+      resetAutocompleteContainer();
+      showAutocompleteHelp();
+    });
+  }
+
+  function start() {
+    hookClearFieldIcon();
+    hookAutocompleteFieldOnSearch();
+    hookAutocompleteFieldOnFocus();
+  }
+}
+
+$(document).on('ready page:load', function() {
+  SentoKanbanAutocomplete({
+    emptyFieldOnReady: true,
+    minLength: 3
+  });
+});

@@ -1,0 +1,6 @@
+en:
+  sento:
+    kanban:
+      user_mailer:
+        invite_user:
+          subject: '%{inviter_username} (@%{inviter_mention_tag}) invited you to join the board "%{board_title}" on Sento'

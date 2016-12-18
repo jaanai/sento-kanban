@@ -18,5 +18,6 @@ en:
           new_board: Click to create a new board
         menu:
           settings: Settings ...
-        sliding_menu:
+        members:
           members: Members
+          invited_members: Invited

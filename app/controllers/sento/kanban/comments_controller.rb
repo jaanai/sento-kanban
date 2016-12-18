@@ -16,7 +16,7 @@ module Sento
         if @new_comment.save
           CreateNewCommentCreatedActivity.call(board: @board, card: @card,
                                                comment: @new_comment,
-                                               user: current_user)
+                                               author: current_user)
         else
           build_flash_message(:error)
         end

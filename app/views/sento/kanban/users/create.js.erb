@@ -1,0 +1,26 @@
+<% if @context.success? %>
+  jumbotron = $('#global-search .autocomplete .jumbotron');
+  jumbotron.addClass('alert-success').addClass('mb-0');
+  $('#global-search .autocomplete form').remove();
+  jumbotron.find('.back').remove();
+  jumbotron.find('p').html('<%= @context.message %>');
+
+  setTimeout(function() {
+    SentoKanbanAutocomplete({
+      emptyFieldOnReady: true,
+      minLength: 3
+    });
+  }, 1000);
+<% else %>
+  <% @context.errors.each do |attribute, message| %>
+    <% target = attribute %>
+    <% target = :username if attribute == :email %>
+    var field = $("#invite_<%= target %>"),
+        formGroup = field.closest('div.form-group');
+    // Removes previously created error messages
+    formGroup.find('.form-control-feedback').remove();
+    formGroup.addClass('has-danger');
+    field.addClass('form-control-danger');
+    formGroup.append('<div class="form-control-feedback"><%= attribute.capitalize %> <%= message %></div>');
+  <% end %>
+<% end %>

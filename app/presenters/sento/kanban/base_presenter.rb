@@ -3,7 +3,7 @@
 module Sento
   module Kanban
     class BasePresenter < SimpleDelegator
-      def initialize(model, view)
+      def initialize(model, view = nil)
         @model = model
         @view = view
         super(model)

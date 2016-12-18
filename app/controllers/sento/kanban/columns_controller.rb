@@ -26,7 +26,7 @@ module Sento
         @new_column.position = @board.columns.count
         return unless @new_column.save
         CreateNewColumnCreatedActivity.call(board: @board, column: @new_column,
-                                            user: current_user)
+                                            author: current_user)
       end
 
       # PATCH/PUT /boards/1/columns/1

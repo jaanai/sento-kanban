@@ -13,6 +13,8 @@
 //= require ./apply-perfect-scrollbar
 //= require ./select-first-input
 //= require ./floating-menu
+//= require ./sento-kanban-autocomplete
+//= require ./sento-kanban-autocomplete-templates
 
 function loadPageContentAjax() {
   $.ajax({ url: document.URL, method: 'GET', dataType: 'script' });

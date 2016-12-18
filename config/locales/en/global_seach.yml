@@ -1,0 +1,13 @@
+en:
+  sento:
+    kanban:
+      global_search:
+        field:
+          placeholder: Start typing to search ...
+          placeholder_down: Sorry, the search is unavailable now.
+        autocomplete:
+          header: Results for your search
+          nothing_found: We couldn't find any members, cards or boards that matched your search.
+          actions:
+            invite:
+              description: 'An invitation E-mail will be sent to %{email}'

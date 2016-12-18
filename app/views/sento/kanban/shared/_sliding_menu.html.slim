@@ -7,23 +7,20 @@
     hr
     .floating-menu-body data-behavior="scrollable"
       .container.mt-1
-        .row
-          .col-xs-12
-            .media
-              .media-left
-                = octicon 'organization', height: 25, class: 'icon'
-              .media-body
-                p.small-title= t('.members')
-        .row
-          .col-xs-12
-            #board-members.mb-1
-              - menu_source.users.each do |user|
-                - present(user) do |presented_user|
-                  = presented_user.avatar_url_or_fallback
+        - if @board
+          .row
+            .col-xs-12
+              = link_to t('sento.kanban.buttons.edit'), edit_board_path(@board), class: 'btn btn-link float-xs-right', data: { modal: true }
+              h5= @board.title
+              p= @board.description
+          .row
+            .col-xs-12
+              hr
 
-        .row
-          .col-xs-12.text-xs-center
-            = link_to t('sento.kanban.buttons.add_member'), new_board_user_path(@board), class: 'btn btn-secondary', remote: true
+          = render partial: 'sento/kanban/boards/members', locals: { menu_source: menu_source }
+
+        - else
+          = render partial: 'sento/kanban/boards/all_members', locals: { menu_source: menu_source }
 
         .row
           .col-xs-12

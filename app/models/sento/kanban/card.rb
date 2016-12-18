@@ -24,6 +24,8 @@ module Sento
 
       # ~~~ Special behaviors ~~~
       ranks :card_order
+      searchkick text_middle: [:title, :description],
+                 autocomplete: [:title, :description]
 
       # ~~~ Custom instance methods ~~~
       #

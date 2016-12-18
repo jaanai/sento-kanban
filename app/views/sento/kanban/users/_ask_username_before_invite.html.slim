@@ -1,0 +1,19 @@
+.dropdown-item
+  .row
+    .col-xs-12
+      .jumbotron
+        .back
+          = octicon 'chevron-left', height: 26, class: 'close float-xs-left'
+        p.lead.clearfix
+          strong.font-weight-bold.float-xs-left= params[:email]
+          br
+          br
+          small= t('.description')
+  = form_for :invite, url: users_path, remote: true, class: 'form-horizontal' do |f|
+    = f.hidden_field :email, value: params[:email]
+    .row
+      .col-xs-12.col-sm-7.col-md-8.col-lg-9
+        .form-group
+          = f.text_field :username, value: email_to_username(params[:email]), class: 'form-control', placeholder: t('.fill_in_username')
+      .col-xs-12.col-sm-5.col-md-4.col-lg-3
+        = f.submit t('sento.kanban.buttons.send'), class: 'btn btn-primary'

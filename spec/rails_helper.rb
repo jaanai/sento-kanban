@@ -77,6 +77,6 @@ rescue Faraday::ConnectionFailed
   puts 'Waiting ElasticSearch ...' if retries.zero?
   sleep 1
   retries += 1
-  raise 'Timeout on waiting for ElasticSearch' if retries > 10
+  raise 'Timeout on waiting for ElasticSearch' if retries > 20
   retry
 end

@@ -73,10 +73,11 @@ end
 retries = 0
 begin
   server_version = Searchkick.server_version
+  puts "ElasticSearch is available (retries: #{retries.inspect})"
 rescue Faraday::ConnectionFailed
   puts 'Waiting ElasticSearch ...' if retries.zero?
   sleep 1
   retries += 1
-  raise 'Timeout on waiting for ElasticSearch' if retries > 60
+  # raise 'Timeout on waiting for ElasticSearch' if retries > 60
   retry
 end

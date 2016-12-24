@@ -135,21 +135,21 @@ function SentoKanbanAutocomplete(options) {
           buildAutocompleteIfNeeded();
           resetAutocompleteContainer();
 
-          if (data.cards.length > 0) {
+          if (typeof data.cards !== "undefined" && data.cards.length > 0) {
             appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.cards_header_name));
             $.each(data.cards, function(index, element) {
               appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildCardResultFrom(element));
             });
           }
 
-          if (data.members.length > 0) {
+          if (typeof data.members !== "undefined" && data.members.length > 0) {
             appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.members_header_name));
             $.each(data.members, function(index, element) {
               appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildMemberResultFrom(element));
             });
           }
 
-          if (data.cards.length == 0 && data.members.length == 0) {
+          if ((typeof data.cards === "undefined" && typeof data.members === "undefined") || (data.cards.length == 0 && data.members.length == 0)) {
             showNothingFound();
           }
         });

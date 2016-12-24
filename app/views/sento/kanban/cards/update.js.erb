@@ -15,6 +15,6 @@
     // Adds the field error
     formGroup.addClass('has-danger');
     field.addClass('form-control-danger');
-    formGroup.append('<div class="form-control-feedback mt-0"><%= @column.errors.full_message(attribute, message) %></div>');
+    formGroup.append('<div class="form-control-feedback mt-0"><%= @card.errors.full_message(attribute, message) %></div>');
   <% end %>
 <% end %>

@@ -1,0 +1,7 @@
+en:
+  sento:
+    kanban:
+      card_mailer:
+        notify_watcher:
+          subject: New notification on %{board_title}
+          title: Here’s what you missed ...

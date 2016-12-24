@@ -10,6 +10,7 @@ require 'interactor'
 require 'ranked-model'
 require 'searchkick'
 require 'gemoji'
+require 'tether-rails'
 
 module Sento
   module Kanban

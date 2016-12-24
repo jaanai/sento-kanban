@@ -55,14 +55,15 @@ module Sento
       # PATCH/PUT /boards/1/cards/1
       # PATCH/PUT /cards/1
       def update
-        previous_column = @card.column.dup
-        previous_title = @card.title.dup
-        if @card.update(card_params)
-          create_activity_card_moved_from(previous_column) if @card.moved?
-          create_activity_card_renamed_from(previous_title) if @card.renamed?
-        else
-          build_flash_message(:error)
+        if will_rename_the_card?
+          RenameCard.call(card: @card, params: card_params,
+                          author: current_user)
         end
+
+        if will_move_the_card?
+          MoveCard.call(card: @card, params: card_params, author: current_user)
+        end
+
         render :update
       end
 
@@ -78,9 +79,7 @@ module Sento
       # PATCH /boards/1/cards/1/archive
       # PATCH /cards/1/archive
       def archive
-        @card.archive
-        CreateCardArchivedActivity.call(board: @board, card: @card,
-                                        author: current_user)
+        ArchiveCard.call(board: @board, card: @card, author: current_user)
         render :archive
       end
 
@@ -92,7 +91,7 @@ module Sento
         @board = current_user.boards.find(params[:board_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, board: :not_found)
-        redirect_to root_url
+        redirect_to root_path
       end
 
       def fetches_current_column
@@ -101,7 +100,7 @@ module Sento
         @column = @board.columns.find(params[:column_id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, column: :not_found)
-        redirect_to board_url(@board)
+        redirect_to board_path(@board)
       end
 
       def cards_source
@@ -113,7 +112,7 @@ module Sento
         @card = cards_source.cards.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, card: :not_found)
-        redirect_to board_url(@board)
+        redirect_to @board ? board_path(@board) : root_path
       end
 
       def build_new_card
@@ -132,17 +131,16 @@ module Sento
                                      :column_id)
       end
 
-      def create_activity_card_moved_from(previous_column)
-        CreateCardMovedActivity.call(board: @board, card: @card,
-                                     previous_column: previous_column,
-                                     new_column: @card.column,
-                                     author: current_user)
+      def will_rename_the_card?
+        return false unless card_params.key?(:title)
+
+        @card.title != card_params[:title]
       end
 
-      def create_activity_card_renamed_from(previous_title)
-        CreateCardRenamedActivity.call(board: @board, card: @card,
-                                       previous_title: previous_title,
-                                       author: current_user)
+      def will_move_the_card?
+        return false unless card_params.key?(:column_id)
+
+        @card.column_id != card_params[:column_id].to_i
       end
 
       def redirect_to_the_board_with_direct_card_links

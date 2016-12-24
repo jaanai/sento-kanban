@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214063809) do
+ActiveRecord::Schema.define(version: 20161221164823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,11 @@ ActiveRecord::Schema.define(version: 20161214063809) do
   end
 
   create_table "sento_kanban_board_links", force: :cascade do |t|
-    t.integer  "board_id",            null: false
-    t.integer  "board_linkable_id",   null: false
-    t.string   "board_linkable_type", null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["board_id", "board_linkable_id", "board_linkable_type"], name: "index_sento_kanban_board_links_on_boards_and_board_linkable", unique: true, using: :btree
-    t.index ["board_linkable_id", "board_linkable_type"], name: "index_sento_kanban_board_links_on_board_linkable", using: :btree
+    t.integer  "board_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id", "user_id"], name: "index_sento_kanban_board_links_on_board_id_and_user_id", unique: true, using: :btree
   end
 
   create_table "sento_kanban_boards", force: :cascade do |t|
@@ -59,6 +57,14 @@ ActiveRecord::Schema.define(version: 20161214063809) do
     t.index ["column_id"], name: "index_sento_kanban_cards_on_column_id", using: :btree
   end
 
+  create_table "sento_kanban_cards_users", force: :cascade do |t|
+    t.integer  "card_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id", "user_id"], name: "index_sento_kanban_cards_users_on_card_id_and_user_id", unique: true, using: :btree
+  end
+
   create_table "sento_kanban_columns", force: :cascade do |t|
     t.integer  "board_id",   null: false
     t.string   "name",       null: false
@@ -79,22 +85,13 @@ ActiveRecord::Schema.define(version: 20161214063809) do
     t.index ["card_id"], name: "index_sento_kanban_comments_on_card_id", using: :btree
   end
 
-  create_table "sento_kanban_invitations", force: :cascade do |t|
-    t.string   "email",      null: false
-    t.string   "username",   null: false
-    t.integer  "board_id",   null: false
-    t.integer  "inviter_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email", "board_id"], name: "index_sento_kanban_invitations_on_email_and_board_id", unique: true, using: :btree
-    t.index ["email"], name: "index_sento_kanban_invitations_on_email", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string  "username"
     t.string  "fullname"
     t.string  "avatar"
     t.integer "current_board_id"
+    t.boolean "virtual",          default: false, null: false
+    t.index ["virtual"], name: "index_users_on_virtual", using: :btree
   end
 
 end

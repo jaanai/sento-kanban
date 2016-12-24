@@ -10,12 +10,10 @@ Sento::Kanban::Engine.routes.draw do
     resources :users do
       post :add
     end
-    resources :invitations do
-      post :add
-    end
   end
   resources :cards, except: [:index, :new, :create, :edit] do
     resources :comments
+    resources :members
     member do
       get :edit_title, path: 'edit/title'
       get :edit_description, path: 'edit/description'
@@ -23,7 +21,6 @@ Sento::Kanban::Engine.routes.draw do
     end
   end
 
-  # Registered and confirmed users
   resources :users do
     collection do
       get 'ask-username', to: 'users#ask_username'
@@ -31,9 +28,6 @@ Sento::Kanban::Engine.routes.draw do
       get :invite
     end
   end
-
-  # Unconfirmed users
-  resources :invitations
 
   resource :search do
     collection do

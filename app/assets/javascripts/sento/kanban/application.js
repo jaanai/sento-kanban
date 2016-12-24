@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require tether
 //= require bootstrap
 //= require perfect-scrollbar
 //= require dragula
@@ -9,6 +10,7 @@
 //= require unobtrusive_flash_bootstrap
 
 //= require_tree ./boards
+//= require ./apply-bootstrap-popover
 //= require ./apply-dragula
 //= require ./apply-perfect-scrollbar
 //= require ./select-first-input

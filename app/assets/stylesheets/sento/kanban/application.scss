@@ -18,6 +18,11 @@ $modal-content-bg: #EDEFF0;
 
 $form-group-margin-bottom: .5rem;
 
+$popover-title-bg: #fff;
+
+$list-group-border-color: #fff;
+
+@import "tether";
 @import "bootstrap";
 @import "perfect-scrollbar";
 @import "dragula";

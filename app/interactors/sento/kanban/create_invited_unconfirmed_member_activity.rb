@@ -1,8 +1,11 @@
+require_dependency 'sento/kanban/concerns/activity_creator'
+require_dependency 'sento/kanban/concerns/interactor_timer'
+
 module Sento
   module Kanban
     class CreateInvitedUnconfirmedMemberActivity
       include Interactor
-      include ActivityCreator
+      include Sento::Kanban::ActivityCreator
       include Sento::Kanban::InteractorTimer
 
       def call

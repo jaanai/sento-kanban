@@ -1,16 +1,16 @@
 module Sento
   module Kanban
     class CollectionProxyPresenter < BasePresenter
-      def users
+      def members
         ::User.joins(:board_links)
-              .where(sento_kanban_board_links: { board_id: @model }).distinct
+              .where(sento_kanban_board_links: { board_id: @model },
+                     virtual: false).distinct
       end
 
-      def invitations
-        Sento::Kanban::Invitation.joins(:board_links)
-                                 .where(sento_kanban_board_links: {
-                                          board_id: @model
-                                        }).distinct
+      def virtual_members
+        ::User.joins(:board_links)
+              .where(sento_kanban_board_links: { board_id: @model },
+                     virtual: true).distinct
       end
 
       def activities

@@ -1,0 +1,8 @@
+en:
+  sento:
+    kanban:
+      members:
+        index:
+          popover_title: Board members
+        edit:
+          remove: Remove from Card

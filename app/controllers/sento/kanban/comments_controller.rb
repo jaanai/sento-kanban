@@ -5,7 +5,6 @@ module Sento
     class CommentsController < ApplicationController
       before_action :fetches_current_board
       before_action :fetches_current_card
-      before_action :build_new_comment, only: :create
       before_action :set_comment, only: [:edit, :update, :destroy]
 
       # GET /boards/1/cards/1/comments/1/edit
@@ -13,13 +12,12 @@ module Sento
 
       # POST /boards/1/cards/1/comments
       def create
-        if @new_comment.save
-          CreateNewCommentCreatedActivity.call(board: @board, card: @card,
-                                               comment: @new_comment,
-                                               author: current_user)
-        else
-          build_flash_message(:error)
-        end
+        context = CreateNewComment.call(card: @card, author: current_user,
+                                        params: comment_params)
+        @new_comment = context.comment
+
+        build_flash_message(:error) if context.failure?
+
         render :create
       end
 
@@ -64,11 +62,6 @@ module Sento
       rescue ActiveRecord::RecordNotFound
         build_flash_message(:error, comment: :not_found)
         redirect_to board_url(@board)
-      end
-
-      def build_new_comment
-        @new_comment = @card.comments.new(comment_params)
-        @new_comment.author = current_user
       end
 
       # Only allow a trusted parameter "white list" through.

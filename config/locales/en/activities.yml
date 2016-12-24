@@ -5,6 +5,8 @@ en:
       card_moved: 'moved <a href="%{card_link}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'
       card_renamed: 'renamed <a href="%{card_link}">%{card_title}</a> from <i>%{previous_card_title}</i>'
       invited_unconfirmed_member: 'invited an unconfirmed member to %{board_title}'
+      member_joined_card: 'added <strong>%{member_username}</strong> to %{card_title}'
+      member_left_card: 'removed <strong>%{member_username}</strong> from %{card_title}'
       new_board_created: 'created the board %{board_title}'
       new_board_member: 'added %{member_username} to %{board_title}'
       new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'

@@ -1,3 +1,5 @@
+require_dependency 'sento/kanban/concerns/interactor_timer'
+
 module Sento
   module Kanban
     class CreateNewInvitation
@@ -26,21 +28,23 @@ module Sento
       end
 
       def create_new_user
-        new_invitation = Sento::Kanban::Invitation.create(context.params.merge(
-          board: context.board, inviter: context.author
-        ))
-        if new_invitation.valid?
-          context.new_user = new_invitation
+        new_user = ::User.create(context.params.merge(virtual: true))
+        if new_user.valid?
+          context.new_user = new_user
         else
-          context.fail!(errors: new_invitation.errors.to_h)
+          context.fail!(errors: new_user.errors.to_h)
         end
       end
 
       def send_invitation_email
-        UserMailer.invite_user(context.new_user, context.author, context.board)
-                  .deliver_now
+        UserMailer.invite_user(context.new_user, presented_author,
+                               context.board).deliver_now
         context.message = emojify(I18n.t('sento.kanban.messages.user_invited',
                                   email: context.new_user.email).html_safe)
+      end
+
+      def presented_author
+        Sento::Kanban::UserPresenter.new(context.author)
       end
 
       def emojify(html)

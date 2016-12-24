@@ -3,13 +3,11 @@ module Sento
     class BoardLink < ApplicationRecord
       # ~~~ Associations ~~~
       belongs_to :board
-      belongs_to :board_linkable, polymorphic: true
+      belongs_to :user, class_name: '::User'
 
       # ~~~ Validations ~~~
-      validates :board_id, :board_linkable_id, :board_linkable_type,
-                presence: true
-      validates :board_id, uniqueness: { scope: [:board_linkable_id,
-                                                 :board_linkable_type] }
+      validates :board_id, :user_id, presence: true
+      validates :user_id, uniqueness: { scope: :board_id }
     end
   end
 end

@@ -1,3 +1,5 @@
+require_dependency 'sento/kanban/concerns/interactor_timer'
+
 module Sento
   module Kanban
     module Search

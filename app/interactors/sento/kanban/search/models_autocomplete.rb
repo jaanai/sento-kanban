@@ -1,3 +1,5 @@
+require_dependency 'sento/kanban/concerns/interactor_timer'
+
 module Sento
   module Kanban
     module Search
@@ -41,10 +43,9 @@ module Sento
         end
 
         def search_for_members
-          Searchkick.search(context.query, match: :word_start, load: false,
-                            index_name: search_members_index_name,
-                            fields: [:username], limit: context.limit,
-                            misspellings: { below: 5 })
+          ::User.search(context.query, match: :word_start, load: false,
+                        fields: [:username], limit: context.limit,
+                        misspellings: { below: 5 })
         rescue Faraday::ConnectionFailed => exception
           Rails.logger.error 'ElasticSearch connection error: ' \
                              "#{exception.message}"
@@ -53,10 +54,6 @@ module Sento
 
         def search_cards_index_name
           [Sento::Kanban::Card, Sento::Kanban::Comment]
-        end
-
-        def search_members_index_name
-          [::User, Sento::Kanban::Invitation]
         end
       end
     end

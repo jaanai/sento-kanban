@@ -1,0 +1,14 @@
+ul.list-group
+  - @members.each do |member|
+    - present(member) do |presented_member|
+      li.list-group-item
+        = form_for :member, url: presented_member.card_member_path(@card), method: presented_member.card_member_verb(@card), remote: true do |f|
+          = f.hidden_field :member_id, value: member.id
+          = f.button type: :submit do
+            .media
+              .media-left
+                = presented_member.avatar_url_or_fallback
+              .media-body
+                p.username.float-xs-left= presented_member.fullname_or_username
+                - if @card.watchers.include?(member)
+                  = octicon 'check', class: 'float-xs-right' 

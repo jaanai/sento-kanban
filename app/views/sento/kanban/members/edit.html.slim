@@ -1,0 +1,12 @@
+.popover-profile
+  - present(@member) do |presented_member|
+    .media
+      .media-left
+        = presented_member.avatar_url_or_fallback
+      .media-body
+        h5.media-heading.mb-0= presented_member.fullname_or_username
+        p.mt-0
+          | @
+          = presented_member.username
+ul.list-group
+  = link_to t('.remove'), card_member_path(@card, @member), method: :delete, remote: true, class: 'list-group-item list-group-item-action'

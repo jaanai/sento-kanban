@@ -4,17 +4,17 @@ module Sento
       include RankedModel
 
       # ~~~ Virtual attributes ~~~
-      attr_accessor :previous_column_id, :previous_title
 
       # ~~~ Callbacks ~~~
       before_validation :update_board_from_column, on: :create
-      before_update :remember_previous_card_information
 
       # ~~~ Associations ~~~
       belongs_to :board
       belongs_to :column
       has_many :comments, dependent: :destroy
       has_many :activities
+      has_many :card_links
+      has_and_belongs_to_many :watchers, class_name: '::User'
 
       # ~~~ Validations ~~~
       validates :board_id, :column_id, :title, presence: true
@@ -37,40 +37,10 @@ module Sento
         update(archived: true)
       end
 
-      #
-      # Determines if the card has just been moved.
-      #
-      # @return [TrueClass,FalseClass] true when the card has been moved,
-      #   otherwise false.
-      #
-      def moved?
-        column_id != previous_column_id
-      end
-
-      #
-      # Determines if the card has just been renamed.
-      #
-      # @return [TrueClass,FalseClass] true when the card has been renamed,
-      #   otherwise false.
-      #
-      def renamed?
-        title != previous_title
-      end
-
       private
 
       def update_board_from_column
         self.board = column.board
-      end
-
-      #
-      # Saves some card's information before updating the database.
-      # @see #moved?
-      # @see #renamed?
-      #
-      def remember_previous_card_information
-        self.previous_column_id = column_id_was
-        self.previous_title = title_was
       end
     end
   end

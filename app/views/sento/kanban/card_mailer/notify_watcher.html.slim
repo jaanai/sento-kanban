@@ -1,0 +1,15 @@
+h1= t('.title')
+
+ul.list-group
+  li.list-group-item
+  - present(@card_activity) do |presented_activity|
+    .media
+      .media-left
+        = presented_activity.icon_url
+      .media-body
+        .description
+          - if presented_activity.author_fullname
+            span.author= presented_activity.author_fullname
+            '
+          == presented_activity.description
+        small.timestamp= presented_activity.timestamp

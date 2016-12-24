@@ -10,6 +10,7 @@ en:
         create: Create
         delete: 'Delete %{name}'
         edit: Edit
+        members: Members
         menu: Menu
         save: Save
         send: Send

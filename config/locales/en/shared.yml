@@ -8,3 +8,5 @@ en:
           help:
             title: Search autocomplete
             description: 'Search cards, comments or members just by starting to type in this field.'
+        sliding_menu:
+          activity_section_title: Activity

@@ -3,6 +3,9 @@ en:
     kanban:
       boards:
         page_title: '%{board_name} | Sento kanban'
+        all_members:
+          all_members: Members
+          all_invited_members: Invited
         index:
           title: Boards
         new:

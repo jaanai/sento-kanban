@@ -8,10 +8,11 @@
 .row
   .col-xs-12
     #board-members.mb-1
-      - menu_source.users.each do |user|
-        - present(user) do |presented_user|
-          = link_to user_path(user) do
-            = presented_user.avatar_url_or_fallback
+      - unless menu_source.blank?
+        - menu_source.members.each do |member|
+          - present(member) do |presented_member|
+            = link_to user_path(member) do
+              = presented_member.avatar_url_or_fallback
 
 .row
   .col-xs-12
@@ -23,7 +24,8 @@
 .row
   .col-xs-12
     #board-members.mb-1
-      - menu_source.invitations.each do |invitation|
-        - present(invitation) do |presented_invitation|
-          = link_to invitation_path(invitation) do
-            = presented_invitation.avatar_url_or_fallback
+      - unless menu_source.blank?
+        - menu_source.virtual_members.each do |virtual_member|
+          - present(virtual_member) do |presented_virtual_member|
+            = link_to user_path(virtual_member) do
+              = presented_virtual_member.avatar_url_or_fallback

@@ -13,12 +13,10 @@ module Sento
         belongs_to :current_board,
                    optional: true,
                    class_name: 'Sento::Kanban::Board'
+        has_many :board_links, class_name: 'Sento::Kanban::BoardLink'
         has_many :boards,
                  through: :board_links,
                  class_name: 'Sento::Kanban::Board'
-        has_many :board_links,
-                 class_name: 'Sento::Kanban::BoardLink',
-                 as: :board_linkable
         has_many :cards, through: :boards, class_name: 'Sento::Kanban::Card'
 
         # ~~~~ Validations ~~~~
@@ -26,6 +24,13 @@ module Sento
 
         # ~~~~ Special behaviors ~~~~
         searchkick word_start: [:username], autocomplete: [:username]
+
+        #
+        # Password not required for invited users
+        #
+        def password_required?
+          super if virtual == false
+        end
       end
 
       #

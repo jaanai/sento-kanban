@@ -48,6 +48,18 @@ module Sento
         @model == h.current_user
       end
 
+      def card_member_path(card)
+        if card.watchers.include?(@model)
+          h.card_member_path(card, @model)
+        else
+          h.card_members_path(card)
+        end
+      end
+
+      def card_member_verb(card)
+        card.watchers.include?(@model) ?  :delete : :post
+      end
+
       private
 
       def board

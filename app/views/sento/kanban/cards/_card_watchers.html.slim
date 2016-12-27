@@ -5,6 +5,3 @@
       - present(watcher) do |presented_watcher|
         = link_to edit_card_member_path(@card, watcher), title: "#{presented_watcher.fullname_or_username}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>", data: { toggle: 'popover', html: true, container: 'body', placement: 'bottom' } do
           = presented_watcher.avatar_url_or_fallback
-
-javascript:
-  applyBootstrapPopover();

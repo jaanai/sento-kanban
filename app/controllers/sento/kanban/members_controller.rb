@@ -47,7 +47,7 @@ module Sento
       end
 
       def fetches_all_members
-        @members = @card.board.all_members
+        @members = @card.board.all_members.order(:username)
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221164823) do
+ActiveRecord::Schema.define(version: 20161227173358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161221164823) do
     t.string  "avatar"
     t.integer "current_board_id"
     t.boolean "virtual",          default: false, null: false
+    t.index ["username"], name: "index_users_on_username", using: :btree
     t.index ["virtual"], name: "index_users_on_virtual", using: :btree
   end
 

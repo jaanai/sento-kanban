@@ -6,4 +6,9 @@ install: echo 'Nothing to install, we are using Docker :)'
 
 script:
   - docker-compose run web bundle exec rake db:drop db:create db:setup RAILS_ENV=test
+  - docker-compose ps
+  - docker-compose start searchengine
+  - docker-compose ps
+  - docker ps -a
+  - docker network ls
   - docker-compose run web bundle exec rake RAILS_ENV=test

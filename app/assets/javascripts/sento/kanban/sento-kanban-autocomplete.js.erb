@@ -6,6 +6,7 @@ function SentoKanbanAutocomplete(options) {
   var _autocompleteContainer = null;
   var _helpHtml = $('#autocomplete-help').html();
   var _nothingFoundHtml = $('#autocomplete-nothing-found').html();
+  var _typingTimer;
 
   // Options default values
   var o = options || {};
@@ -116,43 +117,47 @@ function SentoKanbanAutocomplete(options) {
     });
   }
 
+  function requestServer() {
+    $.get({
+      url: '<%= Sento::Kanban::Engine.routes.url_helpers.autocomplete_search_path(query: "%QUERY") %>',
+      beforeSend: function(jqXHR, settings) {
+        // Injects the query to the URL
+        settings.url = settings.url.replace(/%25QUERY/, _autocompleteField.val());
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('ERROR: textStatus: "' + textStatus + '"');
+    }).done(function(data, textStatus, jqXHR) {
+      buildAutocompleteIfNeeded();
+      resetAutocompleteContainer();
+
+      if (typeof data.cards !== "undefined" && data.cards.length > 0) {
+        appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.cards_header_name));
+        $.each(data.cards, function(index, element) {
+          appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildCardResultFrom(element));
+        });
+      }
+
+      if (typeof data.members !== "undefined" && data.members.length > 0) {
+        appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.members_header_name));
+        $.each(data.members, function(index, element) {
+          appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildMemberResultFrom(element));
+        });
+      }
+
+      if ((typeof data.cards === "undefined" && typeof data.members === "undefined") || (data.cards.length == 0 && data.members.length == 0)) {
+        showNothingFound();
+      }
+    });
+  }
+
   function hookAutocompleteFieldOnSearch() {
     _autocompleteField.keyup(function() {
       if ($(this).val().length > (o.minLength - 1)) {
-        var self = $(this);
 
         showClearIcon();
 
-        $.get({
-          url: '<%= Sento::Kanban::Engine.routes.url_helpers.autocomplete_search_path(query: "%QUERY") %>',
-          beforeSend: function(jqXHR, settings) {
-            // Injects the query to the URL
-            settings.url = settings.url.replace(/%25QUERY/, self.val());
-          }
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-          console.log('ERROR: textStatus: "' + textStatus + '"');
-        }).done(function(data, textStatus, jqXHR) {
-          buildAutocompleteIfNeeded();
-          resetAutocompleteContainer();
-
-          if (typeof data.cards !== "undefined" && data.cards.length > 0) {
-            appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.cards_header_name));
-            $.each(data.cards, function(index, element) {
-              appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildCardResultFrom(element));
-            });
-          }
-
-          if (typeof data.members !== "undefined" && data.members.length > 0) {
-            appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildHeader(data.members_header_name));
-            $.each(data.members, function(index, element) {
-              appendToAutocomplete(SentoKanbanAutocompleteTemplates.buildMemberResultFrom(element));
-            });
-          }
-
-          if ((typeof data.cards === "undefined" && typeof data.members === "undefined") || (data.cards.length == 0 && data.members.length == 0)) {
-            showNothingFound();
-          }
-        });
+        clearTimeout(_typingTimer);
+        _typingTimer = setTimeout(requestServer, 800);
       } else {
         resetAndHideAutocomplete();
         hideClearIcon();

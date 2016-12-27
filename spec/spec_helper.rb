@@ -16,9 +16,7 @@
 # users commonly want.
 #
 
-puts "[debug(#{__FILE__.split("app/")[1]}:#{__LINE__})] ENV['ELASTICSEARCH_URL']: #{ENV['ELASTICSEARCH_URL'].inspect}"
-ENV['ELASTICSEARCH_URL'] = 'http://searchengine:9201'
-puts "[debug(#{__FILE__.split("app/")[1]}:#{__LINE__})] ENV['ELASTICSEARCH_URL']: #{ENV['ELASTICSEARCH_URL'].inspect}"
+ENV['ELASTICSEARCH_URL'] = 'http://searchengine:9200'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

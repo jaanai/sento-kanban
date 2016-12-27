@@ -1,7 +1,7 @@
 module Sento
   module Kanban
     #
-    # This concern embbed the relative code to the user or invitation avatar
+    # This concern embbed the relative code to the user avatar
     # building: Picture otherwise initials.
     #
     module AvatarPresenter

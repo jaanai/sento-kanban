@@ -22,22 +22,14 @@ module Sento
       def add_member_to_board_button
         return nil unless can_model_be_added_to_the_board?
 
-        if @model._type == 'sento/kanban/invitation'
-          view.link_to 'Add', h.board_invitation_add_path(board, @model.id), method: :post, class: 'btn btn-outline-primary float-xs-right', remote: true
-        elsif @model._type == 'user'
-          view.link_to 'Add', h.board_user_add_path(board, @model.id), method: :post, class: 'btn btn-outline-primary float-xs-right', remote: true
-        end
+        view.link_to 'Add', h.board_user_add_path(board, @model.id), method: :post, class: 'btn btn-outline-primary float-xs-right', remote: true
       end
 
       #
       # Generates the URL to the search item page
       #
       def profile_path
-        if @model._type == 'sento/kanban/invitation'
-          view.invitation_path(@model.id)
-        elsif @model._type == 'user'
-          view.user_path(@model.id)
-        end
+        view.user_path(@model.id)
       end
 
       #
@@ -70,11 +62,7 @@ module Sento
         return false unless board
         return false if @model._type == 'sento/kanban/card'
 
-        if @model._type == 'sento/kanban/invitation'
-          board.invitations
-        elsif @model._type == 'user'
-          board.users
-        end.exists?(@model.id) == false
+        board.all_members.exists?(@model.id) == false
       end
 
       def view

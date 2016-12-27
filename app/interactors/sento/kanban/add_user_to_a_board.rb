@@ -15,10 +15,10 @@ module Sento
         context.fail!(errors: { board: "can't be blank" }) unless board
         context.fail!(errors: { user: "can't be blank" }) unless new_user
 
-        if new_user.is_a?(User)
-          board.members << new_user
-        elsif new_user.is_a?(Sento::Kanban::Invitation)
+        if new_user.virtual?
           board.virtual_members << new_user
+        else
+          board.members << new_user
         end
       rescue ActiveRecord::RecordInvalid
         context.fail!(errors: { user: 'is already in this board' })

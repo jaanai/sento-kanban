@@ -9,7 +9,7 @@ module Sento
       #
       # Fetches the model fullname or username
       #
-      # @return [String] User or Invitation fullname or username
+      # @return [String] User fullname or username
       #
       def fullname_or_username
         @model.fullname || @model.username

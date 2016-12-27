@@ -2,6 +2,7 @@ en:
   sento:
     kanban:
       card_archived: 'archived <a href="%{card_link}">%{card_title}</a>'
+      card_description_updated: 'updated the <a href="%{card_link}">%{card_title}</a> description'
       card_moved: 'moved <a href="%{card_link}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'
       card_renamed: 'renamed <a href="%{card_link}">%{card_title}</a> from <i>%{previous_card_title}</i>'
       invited_unconfirmed_member: 'invited an unconfirmed member to %{board_title}'

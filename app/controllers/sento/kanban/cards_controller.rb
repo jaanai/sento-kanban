@@ -60,6 +60,11 @@ module Sento
                           author: current_user)
         end
 
+        if will_update_the_card_description?
+          ChangeCardDescription.call(card: @card, params: card_params,
+                                     author: current_user)
+        end
+
         if will_move_the_card?
           MoveCard.call(card: @card, params: card_params, author: current_user)
         end
@@ -135,6 +140,12 @@ module Sento
         return false unless card_params.key?(:title)
 
         @card.title != card_params[:title]
+      end
+
+      def will_update_the_card_description?
+        return false unless card_params.key?(:description)
+
+        @card.description != card_params[:description]
       end
 
       def will_move_the_card?

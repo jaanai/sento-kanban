@@ -1,10 +1,9 @@
 - if @card.description.present?
-  .ml-2
-    span= t('.description')
-    '
-    = link_to t('.edit'), edit_description_card_path(@card), remote: true
-    br
-    p= @card.description
+  span= t('.description')
+  '
+  = link_to t('.edit'), edit_description_card_path(@card), remote: true
+  br
+  p= @card.description
 - else
   = link_to edit_description_card_path(@card), remote: true do
     .media

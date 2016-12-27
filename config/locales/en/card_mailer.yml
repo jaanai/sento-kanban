@@ -5,3 +5,4 @@ en:
         notify_watcher:
           subject: New notification on %{board_title}
           title: Here’s what you missed ...
+          this_email_is_sent_automatically_you_can_change_email_configuration: 'You are receiving this email automatically when things you are watching are updated. You can <a href="%{email_parameters_page_url}">change your email parameters here</a>.'

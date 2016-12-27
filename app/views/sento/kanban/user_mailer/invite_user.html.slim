@@ -1,11 +1,4 @@
-h1
-  | Welcome to example.com,
-  = @user.username
-p
-  | You have successfully signed up to example.com,
-  | your username is
-br
-p
-  | To login to the site, just follow this link:
+== p t('.title'), bold: true, font_size: '21px', color: '#000', text_align: 'center'
+== p t('.inviter_invited_you_to_join_board', inviter: @inviter.fullname_or_username), color: '#000', text_align: 'center'
 
-p Thanks for joining and have a great day!
+== join_board_block(@board)

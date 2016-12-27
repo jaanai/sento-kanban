@@ -1,15 +1,7 @@
-h1= t('.title')
+- content_for :header, t('.title')
 
-ul.list-group
-  li.list-group-item
-  - present(@card_activity) do |presented_activity|
-    .media
-      .media-left
-        = presented_activity.icon_url
-      .media-body
-        .description
-          - if presented_activity.author_fullname
-            span.author= presented_activity.author_fullname
-            '
-          == presented_activity.description
-        small.timestamp= presented_activity.timestamp
+- present(@card_activity) do |presented_activity|
+  == media_left presented_activity.icon(mailer: true), card_activity_as_media_body(presented_activity)
+
+== p t('.this_email_is_sent_automatically_you_can_change_email_configuration',
+       email_parameters_page_url: user_url(@user)).html_safe

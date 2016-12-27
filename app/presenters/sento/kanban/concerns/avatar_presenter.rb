@@ -7,18 +7,35 @@ module Sento
     module AvatarPresenter
       extend ActiveSupport::Concern
 
-      def model_avatar_or_fallback(user)
+      def model_avatar_or_fallback(user, options = {})
         if user.respond_to?(:avatar_url)
           h.image_tag(user.avatar_url)
         else
           initials = generate_intials_from(user)
-          "<div class='board-member' title='#{avatar_title(user)}'>" \
-            "#{initials}" \
-          '</div>'.html_safe
+          title = avatar_title(user)
+          if options[:mailer] == true
+            initials_avatar_for_email(initials, title)
+          else
+            initials_avatar_for_web(initials, title)
+          end
         end
       end
 
       private
+
+      def initials_avatar_for_email(initials, title)
+        "<p style=\"margin: 0;font-size: 14px;line-height: 17px; " \
+                   "background-color: #00a2ff; color: #fff; line-height: 1; " \
+                   "border-radius: 3px; padding-top: 11px; " \
+                   "padding-bottom: 8px; padding-left: 4px; " \
+                   "padding-right: 4px; \">#{initials}</p>"
+      end
+
+      def initials_avatar_for_web(initials, title)
+        "<div class='board-member' title='#{title}'>" \
+          "#{initials}" \
+        '</div>'.html_safe
+      end
 
       def avatar_title(user)
         visible_information_from(user, initials: false)

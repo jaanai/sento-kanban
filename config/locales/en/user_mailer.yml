@@ -4,3 +4,6 @@ en:
       user_mailer:
         invite_user:
           subject: '%{inviter_username} (@%{inviter_mention_tag}) invited you to join the board "%{board_title}" on Sento'
+          title: Let's collaborate!
+          inviter_invited_you_to_join_board: '%{inviter} invited you to join the board:'
+          see_the_board: See the board

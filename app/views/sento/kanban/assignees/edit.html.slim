@@ -9,4 +9,4 @@
           | @
           = presented_member.username
 ul.list-group
-  = link_to t('.remove'), card_member_path(@card, @member), method: :delete, remote: true, class: 'list-group-item list-group-item-action'
+  = link_to t('.unassign'), card_assignee_path(@card, @member), method: :delete, remote: true, class: 'list-group-item list-group-item-action'

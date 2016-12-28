@@ -40,16 +40,28 @@ module Sento
         @model == h.current_user
       end
 
-      def card_member_path(card)
-        if card.watchers.include?(@model)
-          h.card_member_path(card, @model)
+      def card_watcher_path(card)
+        if card.watcher_ids.include?(@model.id)
+          h.card_watcher_path(card, @model)
         else
-          h.card_members_path(card)
+          h.card_watchers_path(card)
         end
       end
 
-      def card_member_verb(card)
-        card.watchers.include?(@model) ?  :delete : :post
+      def card_watcher_verb(card)
+        card.watcher_ids.include?(@model.id) ? :delete : :post
+      end
+
+      def card_assignee_path(card)
+        if card.assignee_ids.include?(@model.id)
+          h.card_assignee_path(card, @model)
+        else
+          h.card_assignees_path(card)
+        end
+      end
+
+      def card_assignee_verb(card)
+        card.assignee_ids.include?(@model.id) ? :delete : :post
       end
 
       private

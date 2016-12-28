@@ -1,3 +1,4 @@
 $('#available-board-members').html('<%= j render(partial: "available_board_members") %>');
-$('#card-watchers').html('<%= j render(partial: "sento/kanban/cards/card_watchers") %>');
+$('#card-assignees').html('<%= j render(partial: "sento/kanban/cards/card_assignees") %>');
 $('.popover .popover-profile').closest('.popover').popover('hide');
+applyBootstrapPopover();

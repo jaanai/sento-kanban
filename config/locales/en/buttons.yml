@@ -3,6 +3,7 @@ en:
     kanban:
       buttons:
         add_member: Add member
+        assignees: Assignees
         archive: Archive
         back: Back
         cancel: Cancel
@@ -10,7 +11,7 @@ en:
         create: Create
         delete: 'Delete %{name}'
         edit: Edit
-        members: Members
         menu: Menu
         save: Save
         send: Send
+        watchers: Watchers

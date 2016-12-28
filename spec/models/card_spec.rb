@@ -39,7 +39,14 @@ RSpec.describe Sento::Kanban::Card, type: :model do
     it { should belong_to(:column) }
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_many(:activities) }
-    it { should have_and_belong_to_many(:watchers).class_name('::User') }
+    it { should have_many(:card_watchers) }
+    it do
+      should have_many(:watchers).through(:card_watchers).class_name('::User')
+    end
+    it { should have_many(:card_assignees) }
+    it do
+      should have_many(:assignees).through(:card_assignees).class_name('::User')
+    end
   end
 
   describe 'Validations' do

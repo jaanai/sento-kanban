@@ -2,7 +2,7 @@ ul.list-group data-behavior="scrollable"
   - @members.each do |member|
     - present(member) do |presented_member|
       li.list-group-item
-        = form_for :member, url: presented_member.card_member_path(@card), method: presented_member.card_member_verb(@card), remote: true do |f|
+        = form_for :watcher, url: presented_member.card_watcher_path(@card), method: presented_member.card_watcher_verb(@card), remote: true do |f|
           = f.hidden_field :member_id, value: member.id
           = f.button type: :submit do
             .media
@@ -12,3 +12,6 @@ ul.list-group data-behavior="scrollable"
                 p.username.float-xs-left= presented_member.fullname_or_username
                 - if @card.watcher_ids.include?(member.id)
                   = octicon 'check', class: 'float-xs-right icon'
+
+javascript:
+  applyPerfectScrollbar();

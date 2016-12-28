@@ -13,7 +13,8 @@ Sento::Kanban::Engine.routes.draw do
   end
   resources :cards, except: [:index, :new, :create, :edit] do
     resources :comments
-    resources :members
+    resources :watchers
+    resources :assignees
     member do
       get :edit_title, path: 'edit/title'
       get :edit_description, path: 'edit/description'

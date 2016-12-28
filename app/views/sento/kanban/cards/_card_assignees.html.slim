@@ -1,0 +1,7 @@
+- if @card.assignees.present?
+  .card-members.mt-1
+    h3.card-members-header= t('sento.kanban.assignee').pluralize.capitalize
+    - @card.assignees.order(:username).each do |assignee|
+      - present(assignee) do |presented_assignee|
+        = link_to edit_card_assignee_path(@card, assignee), title: "#{presented_assignee.fullname_or_username}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>", data: { toggle: 'popover', html: true, container: 'body', placement: 'bottom' } do
+          = presented_assignee.avatar_url_or_fallback

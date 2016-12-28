@@ -1,8 +1,10 @@
 en:
   sento:
     kanban:
+      activity_section_title: Activity
+      assignee: assignee
       board: board
       card: card
       column: column
       loading: Loading ...
-      activity_section_title: Activity
+      watcher: watcher

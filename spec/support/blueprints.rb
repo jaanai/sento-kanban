@@ -31,3 +31,13 @@ Sento::Kanban::BoardLink.blueprint do
   board { Sento::Kanban::Board.make! }
   user { User.make! }
 end
+
+Sento::Kanban::CardWatcher.blueprint do
+  card { Sento::Kanban::Card.make! }
+  user { User.make! }
+end
+
+Sento::Kanban::CardAssignee.blueprint do
+  card { Sento::Kanban::Card.make! }
+  user { User.make! }
+end

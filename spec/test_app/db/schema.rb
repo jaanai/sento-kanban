@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227173358) do
+ActiveRecord::Schema.define(version: 20161227191505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 20161227173358) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "sento_kanban_card_assignees", force: :cascade do |t|
+    t.integer  "card_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id", "user_id"], name: "index_sento_kanban_card_assignees_on_card_id_and_user_id", unique: true, using: :btree
+    t.index ["card_id"], name: "index_sento_kanban_card_assignees_on_card_id", using: :btree
+    t.index ["user_id"], name: "index_sento_kanban_card_assignees_on_user_id", using: :btree
+  end
+
+  create_table "sento_kanban_card_watchers", force: :cascade do |t|
+    t.integer  "card_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id", "user_id"], name: "index_sento_kanban_card_watchers_on_card_id_and_user_id", unique: true, using: :btree
+    t.index ["card_id"], name: "index_sento_kanban_card_watchers_on_card_id", using: :btree
+    t.index ["user_id"], name: "index_sento_kanban_card_watchers_on_user_id", using: :btree
+  end
+
   create_table "sento_kanban_cards", force: :cascade do |t|
     t.integer  "board_id",                    null: false
     t.integer  "column_id",                   null: false
@@ -58,10 +78,11 @@ ActiveRecord::Schema.define(version: 20161227173358) do
   end
 
   create_table "sento_kanban_cards_users", force: :cascade do |t|
-    t.integer  "card_id",    null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "card_id",                    null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "assignee",   default: false, null: false
     t.index ["card_id", "user_id"], name: "index_sento_kanban_cards_users_on_card_id_and_user_id", unique: true, using: :btree
   end
 

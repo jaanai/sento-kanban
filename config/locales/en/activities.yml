@@ -1,6 +1,7 @@
 en:
   sento:
     kanban:
+      assignee_removed: 'unassigned <strong>%{member_username}</strong> from <a href="%{card_link}">%{card_title}</a>'
       card_archived: 'archived <a href="%{card_link}">%{card_title}</a>'
       card_description_updated: 'updated the <a href="%{card_link}">%{card_title}</a> description'
       card_moved: 'moved <a href="%{card_link}">%{card_title}</a> from %{previous_column_name} to %{new_column_name}'
@@ -8,6 +9,7 @@ en:
       invited_unconfirmed_member: 'invited an unconfirmed member to %{board_title}'
       member_joined_card: 'added <strong>%{member_username}</strong> to %{card_title}'
       member_left_card: 'removed <strong>%{member_username}</strong> from %{card_title}'
+      new_assignee: 'assigned <a href="%{card_link}">%{card_title}</a> to <strong>%{member_username}</strong>'
       new_board_created: 'created the board %{board_title}'
       new_board_member: 'added %{member_username} to %{board_title}'
       new_card_created: 'added <a href="%{card_link}">%{card_title}</a> to %{column_name}'

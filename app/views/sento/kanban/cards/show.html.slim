@@ -19,8 +19,10 @@
         .col-xs-6.col-sm-9
           .row
             .col-xs-12
-              #card-watchers
+              #card-watchers.float-xs-left
                 = render partial: 'card_watchers'
+              #card-assignees.float-xs-left.pl-2
+                = render partial: 'card_assignees'
 
           .row
             .col-xs-12
@@ -60,7 +62,8 @@
 
         .col-xs-6.col-sm-3
           p.small-title= t('.add_title')
-          = link_to t('sento.kanban.buttons.members'), card_members_path(@card), class: 'btn btn-secondary btn-block', title: "#{t('sento.kanban.buttons.members')}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>", data: { toggle: 'popover', html: true, container: 'body', placement: 'bottom' }
+          = link_to t('sento.kanban.buttons.watchers'), card_watchers_path(@card), class: 'btn btn-secondary btn-block', title: "#{t('sento.kanban.buttons.watchers')}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>", data: { toggle: 'popover', html: true, container: 'body', placement: 'bottom' }
+          = link_to t('sento.kanban.buttons.assignees'), card_assignees_path(@card), class: 'btn btn-secondary btn-block', title: "#{t('sento.kanban.buttons.assignees')}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>", data: { toggle: 'popover', html: true, container: 'body', placement: 'bottom' }
           br
           p.small-title= t('.actions_title')
           = link_to t('sento.kanban.buttons.archive'), archive_card_path(@card), method: :patch, class: 'btn btn-warning btn-block', remote: true

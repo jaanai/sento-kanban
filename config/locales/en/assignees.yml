@@ -1,8 +1,8 @@
 en:
   sento:
     kanban:
-      members:
+      assignees:
         index:
           popover_title: Board members
         edit:
-          remove: Remove from Card
+          unassign: Unassign

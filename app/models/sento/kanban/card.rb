@@ -14,7 +14,16 @@ module Sento
       has_many :comments, dependent: :destroy
       has_many :activities
       has_many :card_links
-      has_and_belongs_to_many :watchers, class_name: '::User'
+      has_many :card_watchers
+      has_many :watchers,
+               through: :card_watchers,
+               class_name: '::User',
+               source: :user
+      has_many :card_assignees
+      has_many :assignees,
+               through: :card_assignees,
+               class_name: '::User',
+               source: :user
 
       # ~~~ Validations ~~~
       validates :board_id, :column_id, :title, presence: true

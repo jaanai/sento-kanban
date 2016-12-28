@@ -72,7 +72,7 @@ $ gem install sento-kanban
  - [ ] Add real-time kanban update
  - [ ] Columns drag n drop (Issue [#1](https://github.com/Sento/sento-kanban/issues/4))
  - [ ] Improve notification style (Issue [#1](https://github.com/Sento/sento-kanban/issues/5))
- - [ ] Add watchers and assignees (Issue [#7](https://github.com/Sento/sento-kanban/issues/7))
+ - [x] Add watchers and assignees (Issue [#7](https://github.com/Sento/sento-kanban/issues/7))
 
 ## Contributing
 

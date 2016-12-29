@@ -1,0 +1,10 @@
+var floatingMenu = $('.floating-menu'),
+    floatingMenuHeader = floatingMenu.find('.floating-menu-header'),
+    floatingMenuBody = floatingMenu.find('.floating-menu-body');
+
+floatingMenuHeader.find('h2').text('<%= t("sento.kanban.shared.sliding_menu.filters") %>');
+floatingMenuHeader.find('[data-behavior="move-back-floating-menu"]').show();
+
+floatingMenuBody.find('.container').html('<%= j render(partial: "options") %>');
+
+applyChosen();

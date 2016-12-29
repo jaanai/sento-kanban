@@ -1,5 +1,3 @@
-require_dependency 'sento/kanban/application_controller'
-
 module Sento
   module Kanban
     class CommentsController < ApplicationController

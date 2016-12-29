@@ -7,4 +7,5 @@ en:
       card: card
       column: column
       loading: Loading ...
+      no_results_text: No results matched
       watcher: watcher

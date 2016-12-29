@@ -8,6 +8,14 @@ module Sento
       def activities
         @model.activities.includes(:author).order(created_at: :desc)
       end
+
+      def has_other_members?
+        @model.all_members.count > 1
+      end
+
+      def members_for_select
+        @model.all_members.order(:username).map(&:username)
+      end
     end
   end
 end

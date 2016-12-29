@@ -46,6 +46,15 @@ module Sento
         update(archived: true)
       end
 
+      #
+      # Extends the Searchkick#search_data method in order to index some model
+      # associations.
+      #
+      def search_data
+        attributes = respond_to?(:to_hash) ? to_hash : serializable_hash
+        attributes.merge(assignee_ids: assignee_ids)
+      end
+
       private
 
       def update_board_from_column

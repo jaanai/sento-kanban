@@ -1,0 +1,46 @@
+// Sento Kanban Floating menu
+// This object hooks to the page and show/hide the sliding menu
+function SentoKanbanFloatingMenu(options) {
+  var _floatingMenu = $('.floating-menu');
+  var _floatingMenuHeader = _floatingMenu.find('.floating-menu-header');
+  var _floatingMenuContainer = _floatingMenu.find('.floating-menu-body .container');
+  var _originalMenuHeaderText = _floatingMenuHeader.find('h2').text();
+  var _menuHeaderBack = _floatingMenuHeader.find('*[data-behavior="move-back-floating-menu"]');
+  var _floatingMenuLoadingHtml = _floatingMenuContainer.find('h5.loading').get(0).outerHTML;
+
+  openHook();
+  closeHook();
+  moveBackHook();
+
+  function openHook() {
+    $('*[data-behavior="open-floating-menu"]').on('click', function() {
+      _floatingMenu.addClass('show');
+      if (_floatingMenuContainer.find('h5.loading').length > 0) {
+        loadMenuContent();
+      }
+    });
+  }
+
+  function closeHook() {
+    $('*[data-behavior="close-floating-menu"]').on('click', function() {
+      _floatingMenu.removeClass('show');
+    });
+  }
+
+  function loadMenuContent() {
+    _floatingMenuContainer.html(_floatingMenuLoadingHtml);
+    $.get({
+      url: '<%= Sento::Kanban::Engine.routes.url_helpers.menu_path %>'
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('ERROR: textStatus: "' + textStatus + '"');
+    }).done(function(data, textStatus, jqXHR) {
+      _floatingMenuContainer.html(data);
+      _floatingMenuHeader.find('h2').text(_originalMenuHeaderText);
+      _menuHeaderBack.hide();
+    });
+  }
+
+  function moveBackHook() {
+    $('*[data-behavior="move-back-floating-menu"]').on('click', loadMenuContent);
+  }
+}

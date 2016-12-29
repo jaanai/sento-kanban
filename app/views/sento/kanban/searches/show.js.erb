@@ -1,0 +1,6 @@
+$('a.card-action-link').remove();
+
+<% @context.filtered_cards.each do |card| %>
+  var column = $('.sento-kanban-cards[data-column-id="<%= card.column_id %>"]');
+  column.append('<%= j render(partial: "sento/kanban/cards/card", locals: { card: card }) %>');
+<% end %>

@@ -1,10 +1,16 @@
 module Sento
   module Kanban
     class SearchesController < ApplicationController
+      #
+      # Filter menu
+      #
       def show
-        render json: ::User.search(params[:search][:query])
+        @context = FilterBoardCards.call(search: params[:search])
       end
 
+      #
+      # Global search menu
+      #
       def autocomplete
         @board = current_user.current_board
         context = BuildSearchAutocompleteResults.call(query: params[:query],

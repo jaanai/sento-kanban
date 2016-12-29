@@ -1,0 +1,10 @@
+en:
+  sento:
+    kanban:
+      filters:
+        options:
+          filters_description: Filter the visible cards by using the one or many of the following filtering options.
+          archived_cards_only: Archived cards only (WIP)
+          cards_without_assignee: Cards without assignee
+          my_cards_only: My cards only
+          select_an_assignee: Select an assignee

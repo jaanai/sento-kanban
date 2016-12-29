@@ -3,7 +3,7 @@ module Sento
     class AssignCard
       include Interactor::Organizer
 
-      organize AddUserAsCardAssignee, CreateCardAssignedActivity,
+      organize AddUserAsCardAssignee, ReindexCards, CreateCardAssignedActivity,
                NotifyCardWatcher
     end
   end

@@ -41,4 +41,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'searchkick', '~> 1.4.0'
   s.add_dependency 'gemoji', '~> 2.1.0'
   s.add_dependency 'tether-rails', '~> 1.3.3'
+  s.add_dependency 'chosen-rails', '~> 1.5.2'
 end

@@ -3,8 +3,8 @@ module Sento
     class UnassignCard
       include Interactor::Organizer
 
-      organize RemoveUserFromCardAssignees, CreateCardUnassignedActivity,
-               NotifyCardWatcher
+      organize RemoveUserFromCardAssignees, ReindexCards,
+               CreateCardUnassignedActivity, NotifyCardWatcher
     end
   end
 end

@@ -10,6 +10,7 @@ Sento::Kanban::Engine.routes.draw do
     resources :users do
       post :add
     end
+    resources :filters
   end
   resources :cards, except: [:index, :new, :create, :edit] do
     resources :comments
@@ -35,6 +36,8 @@ Sento::Kanban::Engine.routes.draw do
       get :autocomplete
     end
   end
+
+  resource :menu
 
   root to: 'boards#index'
 end

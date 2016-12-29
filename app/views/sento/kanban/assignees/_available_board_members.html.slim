@@ -4,7 +4,7 @@ ul.list-group data-behavior="scrollable"
       li.list-group-item
         = form_for :assignee, url: presented_member.card_assignee_path(@card), method: presented_member.card_assignee_verb(@card), remote: true do |f|
           = f.hidden_field :member_id, value: member.id
-          = f.button type: :submit do
+          = f.button type: :submit, class: 'html-submit pt-0 pb-0' do
             .media
               .media-left
                 = presented_member.avatar_url_or_fallback

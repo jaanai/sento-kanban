@@ -11,6 +11,7 @@ require 'ranked-model'
 require 'searchkick'
 require 'gemoji'
 require 'tether-rails'
+require 'chosen-rails'
 
 module Sento
   module Kanban

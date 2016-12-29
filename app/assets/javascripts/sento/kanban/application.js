@@ -8,9 +8,11 @@
 //= require pace/pace
 //= require unobtrusive_flash
 //= require unobtrusive_flash_bootstrap
+//= require chosen-jquery
 
 //= require_tree ./boards
 //= require ./apply-bootstrap-popover
+//= require ./apply-chosen
 //= require ./apply-dragula
 //= require ./apply-perfect-scrollbar
 //= require ./select-first-input
@@ -26,6 +28,6 @@ function loadPageContentAjax() {
 UnobtrusiveFlash.flashOptions['timeout'] = 4000;
 
 $(document).on('ready page:load', function () {
-  SentoKanbanFloatingMenu.initialize();
+  SentoKanbanFloatingMenu();
   applyPerfectScrollbar();
 });

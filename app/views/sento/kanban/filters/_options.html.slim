@@ -1,0 +1,44 @@
+.row
+  .col-xs-12
+    p= t('.filters_description')
+
+.row
+  .col-xs-12
+    hr
+
+.row
+  .col-xs-12
+    .floating-menu-options
+      = form_for :search, url: search_path, method: :get, remote: true do |f|
+        - present(current_user) do |presented_user|
+          = f.button type: :submit, name: 'search[assignee]', value: presented_user.username, class: 'html-submit' do
+            .media.p-0
+              .media-left
+                = presented_user.avatar_url_or_fallback
+              .media-body
+                span.align-middle= t('.my_cards_only')
+        = f.button type: :submit, name: 'search[assignee]', value: 'empty', class: 'html-submit' do
+          .media.p-0
+            .media-left
+              .board-member.grey ?
+            .media-body
+              span.align-middle= t('.cards_without_assignee')
+        - present(current_user.current_board) do |presented_board|
+          - if presented_board.has_other_members?
+            .media
+              .media-left
+                .board-member
+                  = octicon 'search'
+              .media-body
+                = f.select :assignee, presented_board.members_for_select, { include_blank: t('.select_an_assignee') }, data: { chosen: true, no_result: t('sento.kanban.no_results_text'), chosen_width: '220px' }, onchange: '$(this).parent().find("input[type=\"submit\"]").click();'
+                = f.submit class: 'invisible'
+
+.row
+  .col-xs-12
+    hr
+
+.row
+  .col-xs-12
+    .floating-menu-options
+      = link_to '#' do
+        span.align-middle= t('.archived_cards_only')

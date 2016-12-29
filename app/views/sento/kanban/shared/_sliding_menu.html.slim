@@ -1,35 +1,10 @@
-- present(@board || kanban_source) do |menu_source|
-  .floating-menu
-    .floating-menu-header
-      = octicon 'x', height: 20, class: 'float-xs-right', data: { behavior: 'close-floating-menu' }
-      h2
-        = t('sento.kanban.buttons.menu')
-    hr
-    .floating-menu-body data-behavior="scrollable"
-      .container.mt-1
-        - if @board
-          .row
-            .col-xs-12
-              = link_to t('sento.kanban.buttons.edit'), edit_board_path(@board), class: 'btn btn-link float-xs-right', data: { modal: true }
-              h5= @board.title
-              p= @board.description
-          .row
-            .col-xs-12
-              hr
-
-          = render partial: 'sento/kanban/boards/members', locals: { menu_source: menu_source }
-
-        - else
-          = render partial: 'sento/kanban/boards/all_members', locals: { menu_source: menu_source }
-
-        .row
-          .col-xs-12
-            .media.mt-1
-              .media-left
-                = octicon 'pulse', height: 30, class: 'icon'
-              .media-body
-                p.small-title= t('.activity_section_title')
-        .row
-          .col-xs-12
-            #activities
-              = render partial: 'sento/kanban/shared/activities', locals: { object: menu_source }
+.floating-menu
+  .floating-menu-header
+    = octicon 'arrow-left', height: 20, class: 'float-xs-left', data: { behavior: 'move-back-floating-menu' }
+    = octicon 'x', height: 20, class: 'float-xs-right', data: { behavior: 'close-floating-menu' }
+    h2
+      = t('sento.kanban.buttons.menu')
+  hr
+  .floating-menu-body data-behavior="scrollable"
+    .container.mt-1
+      h5.loading= t('sento.kanban.loading')

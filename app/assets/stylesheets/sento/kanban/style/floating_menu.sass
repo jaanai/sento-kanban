@@ -16,17 +16,49 @@
     text-align: center
     h2
       font-size: 18px
+      padding-top: 1px
     svg
       fill: #999
-      margin-top: 4px
+      margin-top: 2px
       cursor: pointer
       position: absolute
-      right: 1rem
+      &[data-behavior="move-back-floating-menu"]
+        left: 1rem
+        display: none
+      &[data-behavior="close-floating-menu"]
+        right: 1rem
     & + hr
       margin: 0
   .floating-menu-body
     position: relative
     height: 100%
+    .floating-menu-options
+      a
+        outline: 0
+        display: block
+        padding: .3rem .5rem
+        .media
+          padding: .2rem
+          .media-left
+            .menu-icon
+              color: #aaa
+              font-size: 1.8rem
+              line-height: 1
+            .board-member
+              margin: 0
+        &:hover
+          background-color: rgba(0, 0, 0, .1)
+          border-radius: 3px
+        &:focus
+          text-decoration: none
+      .media
+        padding: .3rem .5rem
+        .media-left
+          .board-member
+            margin: 0
+        .media-body
+          .chosen-container
+            position: absolute
   &.show
     right: 0
     transition: right .25s ease-in-out

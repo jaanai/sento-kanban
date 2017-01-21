@@ -18,6 +18,9 @@ module Sento
     # Sento::Kanban.using_devise
     mattr_accessor :using_devise
 
+    # Sento::Kanban.search_adapter
+    mattr_accessor :search_adapter
+
     def self.configure
       yield self
     end

@@ -11,14 +11,9 @@
 //= require chosen-jquery
 
 //= require_tree ./boards
-//= require ./apply-bootstrap-popover
-//= require ./apply-chosen
-//= require ./apply-dragula
-//= require ./apply-perfect-scrollbar
-//= require ./select-first-input
-//= require ./floating-menu
-//= require ./sento-kanban-autocomplete
-//= require ./sento-kanban-autocomplete-templates
+//= require_tree ./floating_menu
+//= require_tree ./helpers
+//= require_tree ./search
 
 function loadPageContentAjax() {
   $.ajax({ url: document.URL, method: 'GET', dataType: 'script' });

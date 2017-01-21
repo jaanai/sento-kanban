@@ -6,39 +6,74 @@
   .col-xs-12
     hr
 
-.row
-  .col-xs-12
-    .floating-menu-options
-      = form_for :search, url: search_path, method: :get, remote: true do |f|
-        - present(current_user) do |presented_user|
-          = f.button type: :submit, name: 'search[assignee]', value: presented_user.username, class: 'html-submit' do
+.filters
+  = form_for :search, url: search_path, method: :get, remote: true do |f|
+    .row
+      .col-xs-12
+        .floating-menu-options
+          .form-group
+            - present(current_user) do |presented_user|
+              = f.check_box 'assignee][', { id: 'filter_my_cards' }, presented_user.username, nil
+              .btn-group.w-100
+                = f.label 'assignee][', for: 'filter_my_cards', class: 'btn btn-default text-xs-left' do
+                  .media
+                    .media-left
+                      = presented_user.avatar_url_or_fallback(css_classes: 'allow-padding')
+                    .media-body
+                      .label-spacer
+                        = t('.my_cards_only')
+                        = f.label 'assignee][', for: 'filter_my_cards', class: 'btn btn-default absolute-right' do
+                          span= octicon 'check'
+                          span&nbsp;
+          .form-group
+            = f.check_box 'assignee][', { id: 'filter_cards_without_assignee' }, 'empty', ''
+            .btn-group.w-100
+              = f.label 'assignee][', for: 'filter_cards_without_assignee', class: 'btn btn-default text-xs-left' do
+                .media
+                  .media-left
+                    .board-member.grey ?
+                  .media-body
+                    .label-spacer
+                      = t('.cards_without_assignee')
+                      = f.label 'assignee][', for: 'filter_cards_without_assignee', class: 'btn btn-default absolute-right' do
+                        span= octicon 'check'
+                        span&nbsp;
+          .form-group
+            - present(current_user.current_board) do |presented_board|
+              - if presented_board.has_other_members?
+                .media
+                  .media-left
+                    .board-member
+                      = octicon 'search'
+                  .media-body
+                    = f.select 'assignee][', presented_board.members_for_select, { include_blank: t('.select_an_assignee') }, data: { chosen: true, no_result: t('sento.kanban.no_results_text'), chosen_width: '220px' }, id: 'filter_member_cards'
+                    = f.label 'assignee][', for: 'filter_member_cards', class: 'btn btn-default absolute-right' do
+                      span= octicon 'check'
+                      span&nbsp;
+
+    .row
+      .col-xs-12
+        hr
+
+    .row
+      .col-xs-12
+        .floating-menu-options
+          = f.button type: :submit, name: 'search[archived]', value: 'only', class: 'html-submit' do
+            .media.p-0
+              .media-body
+                span.align-middle= t('.archived_cards_only')
+
+    .row
+      .col-xs-12
+        hr
+
+    .row
+      .col-xs-12
+        .floating-menu-options
+          = f.button type: :submit, class: 'html-submit clear_filters' do
             .media.p-0
               .media-left
-                = presented_user.avatar_url_or_fallback
+                .board-member.grey
+                  = octicon 'x'
               .media-body
-                span.align-middle= t('.my_cards_only')
-        = f.button type: :submit, name: 'search[assignee]', value: 'empty', class: 'html-submit' do
-          .media.p-0
-            .media-left
-              .board-member.grey ?
-            .media-body
-              span.align-middle= t('.cards_without_assignee')
-        - present(current_user.current_board) do |presented_board|
-          - if presented_board.has_other_members?
-            .media
-              .media-left
-                .board-member
-                  = octicon 'search'
-              .media-body
-                = f.select :assignee, presented_board.members_for_select, { include_blank: t('.select_an_assignee') }, data: { chosen: true, no_result: t('sento.kanban.no_results_text'), chosen_width: '220px' }, onchange: '$(this).parent().find("input[type=\"submit\"]").click();'
-                = f.submit class: 'invisible'
-
-.row
-  .col-xs-12
-    hr
-
-.row
-  .col-xs-12
-    .floating-menu-options
-      = link_to '#' do
-        span.align-middle= t('.archived_cards_only')
+                span.align-middle= t('.clear_filters')

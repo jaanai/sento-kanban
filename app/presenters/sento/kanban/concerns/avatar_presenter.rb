@@ -13,10 +13,11 @@ module Sento
         else
           initials = generate_intials_from(user)
           title = avatar_title(user)
+          css_classes = options[:css_classes]
           if options[:mailer] == true
             initials_avatar_for_email(initials, title)
           else
-            initials_avatar_for_web(initials, title)
+            initials_avatar_for_web(initials, title, css_classes)
           end
         end
       end
@@ -31,8 +32,8 @@ module Sento
                    "padding-right: 4px; \">#{initials}</p>"
       end
 
-      def initials_avatar_for_web(initials, title)
-        "<div class='board-member' title='#{title}'>" \
+      def initials_avatar_for_web(initials, title, css_classes)
+        "<div class='board-member#{" #{css_classes}" if css_classes}' title='#{title}'>" \
           "#{initials}" \
         '</div>'.html_safe
       end

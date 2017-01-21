@@ -7,8 +7,8 @@ module Sento
       include Sento::Kanban::AvatarPresenter
       include Sento::Kanban::MemberPresenter
 
-      def avatar_url_or_fallback
-        model_avatar_or_fallback(@model)
+      def avatar_url_or_fallback(options = {})
+        model_avatar_or_fallback(@model, options)
       end
 
       def json_keys

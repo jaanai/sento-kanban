@@ -36,6 +36,20 @@ module Sento
       searchkick text_middle: [:title, :description],
                  autocomplete: [:title, :description]
 
+      # ~~~ Custom class methods ~~~
+      #
+      # Default ElasticSearch query used by a column to show the cards, and by
+      # the filters in order to reset the filtering.
+      #
+      # @see Sento::Kanban::ColumnPresenter
+      #
+      def self.default_elasticsearch_query
+        {
+          where: { archived: false },
+          order: { card_order: :desc }
+        }
+      end
+
       # ~~~ Custom instance methods ~~~
       #
       # Updates the card's archived to true.

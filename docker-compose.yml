@@ -3,8 +3,17 @@ version: '2'
 services:
   database:
     image: postgres
-  searchengine:
+  elasticsearch:
     image: elasticsearch:5.1.1
+  kopf:
+    image: lmenezes/elasticsearch-kopf
+    ports:
+      - 8080:80
+    links:
+      - elasticsearch
+    environment:
+      - KOPF_SERVER_NAME=dockerhost
+      - KOPF_ES_SERVERS=elasticsearch:9200
   web:
     build: .
     command: rails s -b 0.0.0.0
@@ -16,4 +25,4 @@ services:
       - .:/application
     links:
       - database
-      - searchengine
+      - elasticsearch

@@ -1,0 +1,36 @@
+.filters
+  .floating-menu-options
+    .form-group
+      &:hover
+        background-color: rgba(0, 0, 0, .1)
+        border-radius: 3px
+      & input[type="checkbox"]
+        display: none
+        & + .btn-group label
+          padding: 0
+          & .label-spacer
+            padding-top: 5px
+        & + .btn-group label span
+          width: 20px
+          &:first-child
+            display: none
+          &:last-child
+            display: inline-block
+        &:checked + .btn-group label span
+          &:first-child
+            display: inline-block
+          &:last-child
+            display: none
+      & select ~ label
+        padding: 4px 16px 0 0
+        & span
+          width: 20px
+          &:first-child
+            display: none
+          &:last-child
+            display: inline-block
+      & select.selected ~ label span
+        &:first-child
+          display: inline-block
+        &:last-child
+          display: none

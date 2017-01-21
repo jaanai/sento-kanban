@@ -1,6 +1,6 @@
 module Sento
   module Kanban
-    class BoardsController < ApplicationController
+    class BoardsController < Sento::Kanban::ApplicationController
       before_action :set_board, only: [:show, :edit, :update, :destroy]
       before_action :fetches_all_boards, only: :index
       before_action :initialize_opening_card_if_needed, only: :show

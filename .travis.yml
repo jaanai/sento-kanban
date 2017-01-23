@@ -2,7 +2,13 @@
 sudo: required
 dist: trusty
 
+services:
+  - elasticsearch
+
 install: echo 'Nothing to install, we are using Docker :)'
+
+before_script:
+  - cp docker-compose.travis.yml docker-compose.yml
 
 script:
   - docker-compose run web bundle exec rake db:drop db:create db:setup RAILS_ENV=test

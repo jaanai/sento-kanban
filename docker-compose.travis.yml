@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  database:
+    image: postgres
+  web:
+    build: .
+    command: rails s -b 0.0.0.0
+    environment:
+      - RACK_ENV=test
+      - SECRET_KEY_BASE
+    image: sento/kanban
+    volumes:
+      - .:/application
+    links:
+      - database
+    extra_hosts:
+      - "elasticsearch:127.0.0.1"

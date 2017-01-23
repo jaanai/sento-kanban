@@ -12,5 +12,4 @@ before_script:
 
 script:
   - docker-compose run web bundle exec rake db:drop db:create db:setup RAILS_ENV=test
-  - docker-compose logs elasticsearch
   - docker-compose run web bundle exec rake RAILS_ENV=test

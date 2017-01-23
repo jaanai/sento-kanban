@@ -29,7 +29,11 @@ module Sento
       def destroy
         @comment.destroy
         build_flash_message(:success)
-        redirect_to board_path(@board)
+
+        respond_to do |format|
+          format.html { redirect_to board_path(@board || @card.board) }
+          format.js
+        end
       end
 
       private

@@ -6,6 +6,7 @@ en:
       board: board
       card: card
       column: column
+      comment: comment
       loading: Loading ...
       no_results_text: No results matched
       watcher: watcher

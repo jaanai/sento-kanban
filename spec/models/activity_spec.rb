@@ -28,12 +28,14 @@ RSpec.describe Sento::Kanban::Activity, type: :model do
 
     it { should have_db_index(:author_id) }
     it { should have_db_index(:board_id) }
+    it { should have_db_index(:comment_id) }
   end
 
   describe 'Associations' do
     it { should belong_to(:board) }
     it { should belong_to(:column) }
     xit { should belong_to(:card) }
+    xit { should belong_to(:comment) }
     it { should belong_to(:author).class_name('::User') }
   end
 

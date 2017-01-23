@@ -3,6 +3,7 @@ en:
     kanban:
       messages:
         already_in_this_board: 'This user is already a member of this board.'
+        are_you_sure_to_delete: 'Are you sure you want to delete this %{name}?'
         created_object: '%{name} was successfully created.'
         destroyed_object: '%{name} was successfully destroyed.'
         not_created_object: '%{name} was not created.'

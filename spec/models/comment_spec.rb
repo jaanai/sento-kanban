@@ -32,6 +32,7 @@ RSpec.describe Sento::Kanban::Comment, type: :model do
     it { should belong_to(:board) }
     it { should belong_to(:card) }
     it { should belong_to(:author).class_name('::User') }
+    it { should have_one(:activity).dependent(:destroy) }
   end
 
   describe 'Validations' do

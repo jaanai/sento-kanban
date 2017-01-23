@@ -7,6 +7,7 @@ module Sento
       belongs_to :board
       belongs_to :column, optional: true
       belongs_to :card, optional: true
+      belongs_to :comment, optional: true
       belongs_to :author, class_name: '::User'
 
       # ~~~ Validations ~~~
@@ -18,6 +19,9 @@ module Sento
       store :i18n_values, coder: JSON
 
       # ~~~ Custom instance methods ~~~
+      def can_be_deleted?
+        comment.present?
+      end
     end
   end
 end

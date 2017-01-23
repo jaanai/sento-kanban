@@ -9,7 +9,7 @@ en:
         cancel: Cancel
         close: Close
         create: Create
-        delete: 'Delete %{name}'
+        delete: Delete
         edit: Edit
         menu: Menu
         save: Save

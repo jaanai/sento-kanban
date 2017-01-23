@@ -11,6 +11,8 @@ module Sento
 
         context.comment = card.comments.new(context.params)
         context.comment.author = context.author
+
+        context.fail! unless context.comment.save
       end
     end
   end

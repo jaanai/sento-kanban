@@ -8,6 +8,7 @@ module Sento
       belongs_to :board
       belongs_to :card
       belongs_to :author, class_name: '::User'
+      has_one :activity, dependent: :destroy
 
       # ~~~ Validations ~~~
       validates :board_id, :card_id, :author_id, :body, presence: true

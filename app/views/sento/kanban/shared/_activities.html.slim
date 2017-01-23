@@ -1,4 +1,4 @@
-- object.activities.each.with_index do |activity, index|
+- object.activities.order(created_at: :desc).each.with_index do |activity, index|
   - unless index.zero?
     hr.mt-0
   - present(activity) do |presented_activity|
@@ -11,4 +11,9 @@
             span.author= presented_activity.author_fullname
             '
           == presented_activity.description
-        small.timestamp= presented_activity.timestamp
+        .actions
+          small.timestamp= presented_activity.timestamp
+          - if activity.can_be_deleted?
+            |  -
+            '
+            = link_to t('sento.kanban.buttons.delete'), card_comment_path(activity.card, activity.comment_id), method: :delete, remote: true, data: { confirm: t('sento.kanban.messages.are_you_sure_to_delete', name: t('sento.kanban.comment')) }
